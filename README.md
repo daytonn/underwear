@@ -10,14 +10,31 @@ QUnit tests to Jasmine specs for the Array methods.
 ##Extended prototypes:
 
 ###Array:
-    first
-    take
-    rest
-    tail
-    initial
-    last
-    compact
-    flatten
-    without
-    uniq
-    intersection
+ - first
+ - take
+ - rest
+ - tail
+ - initial
+ - last
+ - compact
+ - flatten
+ - without
+ - uniq
+ - intersection
+
+###Function
+(not yet implemented)
+
+###Object
+(not yet implemented)
+
+###Number
+(not yet implemented)
+
+##Custom prototypes
+
+###Template
+(not yet implemented)
+
+###UniqueID
+(not yet implemented)
