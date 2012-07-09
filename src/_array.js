@@ -45,7 +45,19 @@ if (typeof Array.prototype.compact === "undefined") {
 }
 
 if (typeof Array.prototype.flatten === "undefined") {
+    // Flattens a nested array (the nesting can be to any depth). If you pass shallow, the array will only be flattened a single level.
     Array.prototype.flatten = function(shallow) {
         return _.flatten.call(this, this, shallow);
+    };
+}
+
+if (typeof Array.prototype.without === "undefined") {
+    Array.prototype.without = function() {
+        var args = [this];
+        _(Array.prototype.slice.call(arguments)).each(function(arg) {
+            args.push(arg);
+        });
+        console.log(args);
+        return _.without.apply(this, args);
     };
 }

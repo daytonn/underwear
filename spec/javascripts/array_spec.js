@@ -125,4 +125,22 @@ describe("Array", function() {
 
     });
 
+    describe("without", function() {
+
+        var ary, ary2;
+
+        beforeEach(function() {
+            ary = [1, 2, 1, 0, 3, 1, 4];
+            ary2 = [{ one: 1}, { two: 2 }];
+        });
+
+        it("removes all instances of an object in the array", function() {
+            expect(ary.without(0, 1).join(', ')).toEqual('2, 3, 4');
+        });
+
+        it("uses real object identity for comparisons", function() {
+            expect(ary2.without({ one: 1 }).length).toEqual(2);
+            expect(ary2.without(ary2[0]).length).toEqual(1);
+        });
+    });
 });
