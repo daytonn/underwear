@@ -106,4 +106,23 @@ describe("Array", function() {
         });
 
     });
+
+    describe("flatten", function() {
+
+        var ary;
+
+        beforeEach(function() {
+            ary = [1, [2], [3, [[[4]]]]];
+        });
+
+        it("flattens nested arrays", function() {
+            expect(ary.flatten()).toEqual([1, 2, 3, 4]);
+        });
+
+        it("shallowly flatten nested arrays", function() {
+            expect(ary.flatten(true)).toEqual([1,2,3, [[[4]]]]);
+        });
+
+    });
+
 });
