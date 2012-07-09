@@ -74,6 +74,13 @@
         };
     }
 
+    if (typeof Array.prototype.intersection === "undefined") {
+        // Computes the list of values that are the intersection of all the arrays. Each value in the result is present in each of the arrays.
+        Array.prototype.intersection = function() {
+            var args = argsWithThis.call(this, arguments);
+            return _.intersection.apply(this, args);
+        };
+    }
     // Construct an array with the first item being this
     // and the following items mapped to arguments to work
     // as an underscore adapter method

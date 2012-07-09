@@ -172,5 +172,16 @@ describe("Array", function() {
             var iterator = (function(value) { return value + 1; });
             expect(ary4.uniq(true, iterator).join(', ')).toEqual('1, 2, 3, 4');
         });
+
+    });
+
+    describe("intersection", function() {
+
+        it("returns the intersection of two arrays", function() {
+            var stooges = ['moe', 'curly', 'larry'];
+            var leaders = ['moe', 'groucho']; 
+            expect(stooges.intersection(leaders).join('')).toEqual('moe');
+        });
+
     });
 });
