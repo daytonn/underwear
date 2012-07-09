@@ -143,4 +143,34 @@ describe("Array", function() {
             expect(ary2.without(ary2[0]).length).toEqual(1);
         });
     });
+
+    describe("uniq", function() {
+
+        var ary, ary2, ary3, ary4;
+
+        beforeEach(function() {
+            ary = [1, 2, 1, 3, 1, 4];
+            ary2 = [1, 1, 1, 2, 2, 3];
+            ary3 = [{ name: 'moe' }, { name: 'curly' }, { name: 'larry' }, { name: 'curly' }];
+            ary4 = [1, 2, 2, 3, 4, 4];
+        });
+
+        it("finds the unique values in an unsorted array", function() {
+            expect(ary.uniq().join(', ')).toEqual('1, 2, 3, 4');
+        });
+
+        it("finds the unique values in a sorted array", function() {
+            expect(ary2.uniq(true).join(', ')).toEqual('1, 2, 3');
+        });
+
+        it("finds the unique values in the array using a custom iterator", function() {
+            var iterator = function(value) { return value.name };
+            expect(_.map(ary3.uniq(false, iterator), iterator).join(', ')).toEqual('moe, curly, larry');
+        });
+
+        it("finds the unique values in the array using a custom iterator on a sorted array", function() {
+            var iterator = (function(value) { return value + 1; });
+            expect(ary4.uniq(true, iterator).join(', ')).toEqual('1, 2, 3, 4');
+        });
+    });
 });
