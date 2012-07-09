@@ -39,3 +39,14 @@ QUnit tests to Jasmine specs for the Array methods.
 ###UniqueID
 (not yet implemented)
 
+##Utilities
+
+###identity
+(not yey implemented)
+
+###escape
+(not yet implemented)
+
+###result
+(not yet implemented)
+
