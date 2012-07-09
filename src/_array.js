@@ -7,6 +7,7 @@ if (typeof Array.prototype.first === "undefined") {
 }
 
 if (typeof Array.prototype.take === "undefined") {
+    // Alias of first
     Array.prototype.take = Array.prototype.first;
 }
 
@@ -18,6 +19,7 @@ if (typeof Array.prototype.rest === "undefined") {
 }
 
 if (typeof Array.prototype.tail === "undefined") {
+    // Alias of rest
     Array.prototype.tail = Array.prototype.rest;
 }
 
@@ -29,7 +31,15 @@ if (typeof Array.prototype.initial === "undefined") {
 }
 
 if (typeof Array.prototype.last === "undefined") {
+    // Returns the last element of an array. Passing `n` will return the last `n` elements of the array.
     Array.prototype.last = function(n) {
         return _.last.call(this, this, n);
+    };
+}
+
+if (typeof Array.prototype.compact === "undefined") {
+    // Returns a copy of the array with all falsy values removed. In JavaScript, false, null, 0, "", undefined and NaN are all falsy.
+    Array.prototype.compact = function() {
+        return _.compact.call(this, this);
     };
 }

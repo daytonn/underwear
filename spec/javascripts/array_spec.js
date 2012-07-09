@@ -92,4 +92,18 @@ describe("Array", function() {
             expect(ary.last(5).join(', ')).toEqual('1, 2, 3');
         });
     });
+
+    describe("compact", function() {
+
+        var ary;
+
+        beforeEach(function() {
+            ary = [0, 1, false, 2, false, 3];
+        });
+
+        it("remove all the falsy values", function() {
+            expect(ary.compact().length).toEqual(3);
+        });
+
+    });
 });
