@@ -27,3 +27,9 @@ if (typeof Array.prototype.initial === "undefined") {
         return _.initial.call(this, this, n);
     };
 }
+
+if (typeof Array.prototype.last === "undefined") {
+    Array.prototype.last = function(n) {
+        return _.last.call(this, this, n);
+    };
+}

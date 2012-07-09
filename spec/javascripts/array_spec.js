@@ -67,4 +67,29 @@ describe("Array", function() {
         });
 
     });
+
+    describe("last", function() {
+
+        var ary;
+
+        beforeEach(function() {
+            ary = [1,2,3];
+        });
+
+        it("returns the last element of the array", function() {
+            expect(ary.last()).toEqual(3);
+        });
+
+        it("returns nothing when passed 0", function() {
+            expect(ary.last(0).join(', ')).toEqual('');
+        });
+
+        it("returns the last n elements of the array", function() {
+            expect(ary.last(2).join(', ')).toEqual('2, 3');
+        });
+
+        it("returns the whole array when passed an amount larger than the length of the array", function() {
+            expect(ary.last(5).join(', ')).toEqual('1, 2, 3');
+        });
+    });
 });
