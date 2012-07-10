@@ -1,5 +1,15 @@
 (function() {
 
+    //### argsWithThis
+    // Construct an array with the first item being `this` (Array instance) and the
+    // following items mapped to arguments which works as an underscore adapter method
+    function argsWithThis(args) {
+        var a = Array.prototype.slice.call(args);
+        a.unshift(this);
+        return a;
+    }
+
+    //### first
     if (typeof Array.prototype.first === "undefined") {
         // Returns the first value of an array. Passing `n` will return the first `n` elements of the array.
         Array.prototype.first = function() {
@@ -8,11 +18,13 @@
         };
     }
 
+    //### take (first)
     if (typeof Array.prototype.take === "undefined") {
         // Alias of first
         Array.prototype.take = Array.prototype.first;
     }
 
+    //### rest
     if (typeof Array.prototype.rest === "undefined") {
         // Returns the rest of the elements in an array. Pass an index to return the values of the array from that index onward.
         Array.prototype.rest = function() {
@@ -21,11 +33,13 @@
         };
     }
 
+    //### tail (rest)
     if (typeof Array.prototype.tail === "undefined") {
         // Alias of rest
         Array.prototype.tail = Array.prototype.rest;
     }
 
+    //### initial
     if (typeof Array.prototype.initial === "undefined") {
         // Returns everything but the last entry of the array. Especially useful on the arguments object. Pass n to exclude the last n elements from the result.
         Array.prototype.initial = function() {
@@ -34,6 +48,7 @@
         };
     }
 
+    //### last
     if (typeof Array.prototype.last === "undefined") {
         // Returns the last element of an array. Passing `n` will return the last `n` elements of the array.
         Array.prototype.last = function() {
@@ -42,6 +57,7 @@
         };
     }
 
+    //### compact
     if (typeof Array.prototype.compact === "undefined") {
         // Returns a copy of the array with all falsy values removed. In JavaScript, false, null, 0, "", undefined and NaN are all falsy.
         Array.prototype.compact = function() {
@@ -50,6 +66,7 @@
         };
     }
 
+    //### flatten
     if (typeof Array.prototype.flatten === "undefined") {
         // Flattens a nested array (the nesting can be to any depth). If you pass shallow, the array will only be flattened a single level.
         Array.prototype.flatten = function(shallow) {
@@ -58,6 +75,7 @@
         };
     }
 
+    //### without
     if (typeof Array.prototype.without === "undefined") {
         // Returns a copy of the array with all instances of the values removed. === is used for the equality test.
         Array.prototype.without = function() {
@@ -66,6 +84,7 @@
         };
     }
 
+    //### uniq
     if (typeof Array.prototype.uniq == "undefined") {
         // Produces a duplicate-free version of the array, using === to test object equality. If you know in advance that the array is sorted, passing true for isSorted will run a much faster algorithm. If you want to compute unique items based on a transformation, pass an iterator function.
         Array.prototype.uniq = function() {
@@ -74,6 +93,7 @@
         };
     }
 
+    //### intersection
     if (typeof Array.prototype.intersection === "undefined") {
         // Computes the list of values that are the intersection of all the arrays. Each value in the result is present in each of the arrays.
         Array.prototype.intersection = function() {
@@ -81,19 +101,40 @@
             return _.intersection.apply(this, args);
         };
     }
-    // Construct an array with the first item being this
-    // and the following items mapped to arguments to work
-    // as an underscore adapter method
-    function argsWithThis(args) {
-        var a = [this];
 
-        if (typeof args !== "undefined") {
-            _(Array.prototype.slice.call(args)).each(function(arg) {
-                a.push(arg);
-            });
-        }
-
-        return a;
+    //### union
+    if (typeof Array.prototype.union === "undefined") {
+        // Computes the union of the passed-in arrays: the list of unique items, in order, that are present in one or more of the arrays.
+        Array.prototype.union = function() {
+            var args = argsWithThis.call(this, arguments);
+            return _.union.apply(this, args);
+        };
     }
 
+    //### difference
+    if (typeof Array.prototype.difference === "undefined") {
+        // Similar to without, but returns the values from array that are not present in the other arrays.
+        Array.prototype.difference = function() {
+            var args = argsWithThis.call(this, arguments);
+            return _.difference.apply(this, args);
+        };
+    }
+
+    //### zip
+    if (typeof Array.prototype.zip === "undefined") {
+        // Merges together the values of each of the arrays with the values at the corresponding position. Useful when you have separate data sources that are coordinated through matching array indexes. If you're working with a matrix of nested arrays, zip.apply can transpose the matrix in a similar fashion.
+        Array.prototype.zip = function() {
+            var args = argsWithThis.call(this, arguments);
+            return _.zip.apply(this, args);
+        };
+    }
+
+    //### indexOf
+    if (typeof Array.prototype.indexOf === "undefined") {
+        // Returns the index at which value can be found in the array, or -1 if value is not present in the array. Uses the native indexOf function unless it's missing. If you're working with a large array, and you know that the array is already sorted, pass true for isSorted to use a faster binary search.
+        Array.prototype.indexOf = function() {
+            var args = argsWithThis.call(this, arguments);
+            return _.indexOf.apply(this, args);
+        };
+    }
 })();

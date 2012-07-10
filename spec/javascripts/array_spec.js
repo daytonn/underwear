@@ -164,7 +164,7 @@ describe("Array", function() {
         });
 
         it("finds the unique values in the array using a custom iterator", function() {
-            var iterator = function(value) { return value.name };
+            var iterator = function(value) { return value.name; };
             expect(_.map(ary3.uniq(false, iterator), iterator).join(', ')).toEqual('moe, curly, larry');
         });
 
@@ -179,9 +179,69 @@ describe("Array", function() {
 
         it("returns the intersection of two arrays", function() {
             var stooges = ['moe', 'curly', 'larry'];
-            var leaders = ['moe', 'groucho']; 
-            expect(stooges.intersection(leaders).join('')).toEqual('moe');
+            var leaders = ['moe', 'groucho'];
+            var result = stooges.intersection(leaders);
+            expect(result.join('')).toEqual('moe');
         });
 
+    });
+
+    describe("union", function() {
+        it("returns the union of multiple arrays", function() {
+            var result = [1, 2, 3].union([2, 30, 1], [1, 40]);
+            expect(result.join(', ')).toEqual('1, 2, 3, 30, 40');
+        });
+
+        it("returns the union of nested arrays", function() {
+            var result = [1, 2, 3].union([2, 30, 1], [1, 40, [1]]);
+            expect(result.join(', ')).toEqual('1, 2, 3, 30, 40, 1');
+        });
+    });
+
+    describe("difference", function() {
+        it("returns the differences of two arrays", function() {
+            var result = [1, 2, 3].difference([2, 30, 40]);
+            expect(result.join(', ')).toEqual('1, 3');
+        });
+
+        it("returns the difference of three arrays", function() {
+            var result = [1, 2, 3, 4].difference([2, 30, 40], [1, 11, 111]);
+            expect(result.join(', ')).toEqual('3, 4');
+        });
+    });
+
+    describe("zip", function() {
+        it("combines variant length arrays into one array", function() {
+            var names = ['moe', 'larry', 'curly'];
+            var ages = [30, 40, 50], leaders = [true];
+            var stooges = names.zip(ages, leaders);
+
+            expect(String(stooges)).toEqual('moe,30,true,larry,40,,curly,50,');
+        });
+    });
+
+    describe("indexOf", function() {
+        it("returns the index of the value", function() {
+            var numbers = [1, 2, 3];
+            expect(numbers.indexOf(2)).toEqual(1);
+        });
+
+        it("returns -1 when the value is not in the array", function() {
+            var numbers = [10, 20, 30, 40, 50];
+            var result = numbers.indexOf(35, true);
+            expect(result).toEqual(-1);
+        });
+
+        it("returns the index of the value when the array is sorted", function() {
+            var numbers = [10, 20, 30, 40, 50];
+            var result = numbers.indexOf(40, true);
+            expect(result).toEqual(3);
+        });
+
+        it("returns the first index of a value if it appears multiple times in the array", function() {
+            var numbers = [1, 40, 40, 40, 40, 40, 40, 40, 50, 60, 70];
+            var result = numbers.indexOf(40, true);
+            expect(result).toEqual(1);
+        });
     });
 });
