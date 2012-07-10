@@ -32,7 +32,7 @@ QUnit tests to Jasmine specs for the Array methods.
 (not yet implemented)
 
 ###Object
-(not yet implemented)
+ - keys
 
 ###Number
 (not yet implemented)

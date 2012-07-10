@@ -1,14 +1,5 @@
 (function() {
 
-    //### argsWithThis
-    // Construct an array with the first item being `this` (Array instance) and the
-    // following items mapped to arguments which works as an underscore adapter method
-    function argsWithThis(args) {
-        var a = Array.prototype.slice.call(args);
-        a.unshift(this);
-        return a;
-    }
-
     //### first
     if (typeof Array.prototype.first === "undefined") {
         // Returns the first value of an array. Passing `n` will return the first `n` elements of the array.
