@@ -29,10 +29,11 @@ QUnit tests to Jasmine specs for the Array methods.
  - range (Class method: Array.range(a, b, c))
 
 ###Function
-(not yet implemented)
+ - functions (Alias of Object.functions)
 
 ###Object
  - keys
+ - functions
 
 ###Number
 (not yet implemented)
