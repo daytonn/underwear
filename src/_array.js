@@ -137,4 +137,13 @@
             return _.indexOf.apply(this, args);
         };
     }
+
+    //### lastIndexOf
+    if (typeof Array.prototype.lastIndexOf === "undefined") {
+        // Returns the index of the last occurrence of value in the array, or -1 if value is not present. Uses the native lastIndexOf function if possible.
+        Array.prototype.lastIndexOf = function() {
+            var args = argsWithThis.call(this, arguments);
+            return _.lastIndexOf.apply(this, args);
+        };
+    }
 })();

@@ -244,4 +244,17 @@ describe("Array", function() {
             expect(result).toEqual(1);
         });
     });
+
+    describe("lastIndexOf", function() {
+        it("returns the index of the last occurence of the value in the array", function() {
+            var numbers = [1, 0, 1, 0, 0, 1, 0, 0, 0];
+            expect(numbers.lastIndexOf(1)).toEqual(5);
+            expect(numbers.lastIndexOf(0)).toEqual(8);
+        });
+
+        it("returns -1 when the value is not in the array", function() {
+            var numbers = [1, 2, 3];
+            expect(numbers.lastIndexOf(4)).toEqual(-1);
+        });
+    });
 });

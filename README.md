@@ -25,6 +25,7 @@ QUnit tests to Jasmine specs for the Array methods.
  - difference
  - zip
  - indexOf (defers to native)
+ - lastIndexOf (defers to native)
 
 ###Function
 (not yet implemented)
