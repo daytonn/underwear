@@ -257,4 +257,62 @@ describe("Array", function() {
             expect(numbers.lastIndexOf(4)).toEqual(-1);
         });
     });
+
+    describe("range", function() {
+        it("returns an empty array when the range is 0", function() {
+            expect(Array.range(0)).toEqual([]);
+        });
+
+        it("returns an array of `n` numbers starting with 0", function() {
+            var n = 4;
+            expect(Array.range(n).join(', ')).toEqual('0, 1, 2, 3');
+        });
+
+        describe("with two arguments", function() {
+            it("returns an array of numbers staring with a `seed` up to a `limit`", function() {
+                var seed = 5;
+                var limit = 8;
+                expect(Array.range(seed, limit).join(', ')).toEqual('5, 6, 7');
+            });
+
+            it("returns an empty array when the `seed` is greater than the `limit`", function() {
+                var seed = 8;
+                var limit = 5;
+                expect(Array.range(seed, limit)).toEqual([]);
+            });
+        });
+
+        describe("with three arguments", function() {
+            it("returns an array of numbers starting with an `seed` number, up to a `limit` increasing by `increments`", function() {
+                var seed = 3;
+                var limit = 10;
+                var increment = 3;
+                expect(Array.range(seed, limit, increment).join(', ')).toEqual('3, 6, 9');
+            });
+
+            it("returns an array with one value when the `limit` is less than the `increment`", function() {
+                var seed = 3;
+                var limit = 10;
+                var increment = 15;
+                expect(Array.range(seed, limit, increment)).toEqual([3]);
+            });
+
+            it("returns an array of numbers starting with `seed` down to a `limit` by `increment` when the `increment` is negative and the `seed` is greater than 0", function() {
+                var seed = 12;
+                var limit = 7;
+                var increment = -2;
+                expect(Array.range(seed, limit, increment).join(', ')).toEqual('12, 10, 8');
+            });
+
+            it("returns an array of negative numbers starting with `seed` down to `limit` by `increment` when the `increment` is negative", function() {
+                var seed = 0;
+                var limit = -10;
+                var increment = -1;
+                expect(Array.range(seed, limit, increment).join(', ')).toEqual('0, -1, -2, -3, -4, -5, -6, -7, -8, -9');
+            });
+
+        });
+
+    });
+
 });

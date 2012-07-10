@@ -26,6 +26,7 @@ QUnit tests to Jasmine specs for the Array methods.
  - zip
  - indexOf (defers to native)
  - lastIndexOf (defers to native)
+ - range (Class method: Array.range(a, b, c))
 
 ###Function
 (not yet implemented)

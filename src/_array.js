@@ -146,4 +146,12 @@
             return _.lastIndexOf.apply(this, args);
         };
     }
+
+    //### range
+    if (typeof Array.prototype.range === "undefined") {
+        // A function to create flexibly-numbered lists of integers, handy for `each` and `map` loops. start, if omitted, defaults to 0; step defaults to 1. Returns a list of integers from start to stop, incremented (or decremented) by step, exclusive.
+        Array.range = function() {
+            return _.range.apply(this, arguments);
+        };
+    }
 })();
