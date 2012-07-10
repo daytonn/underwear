@@ -21,6 +21,10 @@ QUnit tests to Jasmine specs for the Array methods.
  - without
  - uniq
  - intersection
+ - union
+ - difference
+ - zip
+ - indexOf (defers to native)
 
 ###Function
 (not yet implemented)
