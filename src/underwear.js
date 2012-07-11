@@ -9,6 +9,6 @@
     }
 
     //= require "_underscore"
-    //= require "_array"
-    //= require "_object"
+    //= require "array"
+    //= require "object"
 })();
