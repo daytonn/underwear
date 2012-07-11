@@ -7,6 +7,8 @@ underscore methods.
 This is currently a work in progress. I've begun translating all the
 QUnit tests to Jasmine specs and making all the tests pass.
 
+[Source Documentation](http://daytonn.github.com/underwear/docs/underwear.html)
+
 ##Extended prototypes:
 
 ###Array:
