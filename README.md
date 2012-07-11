@@ -28,23 +28,23 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - lastIndexOf (defers to native)
  - range (Class method: Array.range(a, b, c))
 
-###Function
+###Function:
  - functions (Alias of Object.functions)
 
-###Object
+###Object:
  - keys
  - functions
  - extend
 
-###Number
+###Number:
 (not yet implemented)
 
 ##Custom prototypes
 
-###Template
+###Template:
 (not yet implemented)
 
-###UniqueID
+###UniqueID:
 (not yet implemented)
 
 ##Utilities
