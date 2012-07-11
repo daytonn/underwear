@@ -5,7 +5,7 @@ Underwear is a library to extend javascript built-in prototypes with the
 underscore methods.
 
 This is currently a work in progress. I've begun translating all the
-QUnit tests to Jasmine specs for the Array methods.
+QUnit tests to Jasmine specs and making all the tests pass.
 
 ##Extended prototypes:
 
