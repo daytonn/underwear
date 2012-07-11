@@ -34,6 +34,7 @@ QUnit tests to Jasmine specs for the Array methods.
 ###Object
  - keys
  - functions
+ - extend
 
 ###Number
 (not yet implemented)

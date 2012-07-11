@@ -37,6 +37,7 @@
         Object.prototype.functions = function() {
             var args = argsWithThis.call(this, arguments);
             var functions = _.functions.apply(this, args);
+            // We need to filter out the methods that underwear defines on the Object
             return functions.without('functions',
                                      'keys',
                                      'values',
@@ -65,4 +66,12 @@
         Function.prototype.functions = Object.prototype.functions;
     }
 
+    //### extend
+    if (typeof Object.prototype.extend === "undefined") {
+        // Copy all of the properties in the source objects over to the destination object, and return the destination object. It's in-order, so the last source will override properties of the same name in previous arguments.
+        Object.prototype.extend = function() {
+            var args = argsWithThis.call(this, arguments);
+            return _.extend.apply(this, args);
+        };
+    }
 })();
