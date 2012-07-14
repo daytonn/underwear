@@ -27,6 +27,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - lastIndexOf (defers to native)
  - map
  - range (Class method: Array.range(a, b, c))
+ - reduce
  - rest
  - tail
  - take
@@ -52,6 +53,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - isEmpty
  - keys
  - pick
+ - reduce
  - tap
 
 

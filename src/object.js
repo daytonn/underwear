@@ -42,6 +42,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'each',
                                  'extend',
                                  'forEach',
+                                 'inject',
                                  'isArguments',
                                  'isArray',
                                  'isBoolean',
@@ -60,6 +61,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'keys',
                                  'map',
                                  'pick',
+                                 'reduce',
                                  'tap',
                                  'values',
                                  'functions');

@@ -37,7 +37,7 @@ describe("Collection", function() {
     });
 
     describe("map", function() {
-        it("should", function() {
+        it("should map an array", function() {
             var doubled = [1, 2, 3].map(function(num){ return num * 2; });
             expect(doubled.join(', ')).toEqual('2, 4, 6');
         });
@@ -61,8 +61,13 @@ describe("Collection", function() {
                     li.id = 'id' + i;
                     map_test.appendChild(li);
                 });
-                var ids = map_test.children.map(function(n){ return n.id; });
-                expect(ids).toEqual(['id1', 'id2']);
+                try {
+                    var ids = map_test.childNodes.map(function(n){ return n.id; });
+                    expect(ids).toEqual(['id1', 'id2']);
+                }
+                catch(error) {
+                    console.log(error.message);
+                }
             });
 
             it("should", function() {
@@ -82,6 +87,33 @@ describe("Collection", function() {
             expect(doubled.join(', ')).toEqual('2, 4');
         });
 
+    });
+
+    describe("reduce", function() {
+        it("should sum an array", function() {
+            var sum = [1, 2, 3].reduce(function(sum, num){ return sum + num; }, 0);
+            expect(sum).toEqual(6);
+        });
+
+        it("should be aliased as inject", function() {
+            var sum = [1, 2, 3].inject(function(sum, num){ return sum + num; }, 0);
+            expect(sum).toEqual(6);
+        });
+
+        it("should reduce with a default initial value", function() {
+            var sum = [1, 2, 3].reduce(function(sum, num){ return sum + num; });
+            expect(sum).toEqual(6);
+        });
+
+        it("should reduce an empty array to undefined as a special case", function() {
+            expect([].reduce(function(){}, undefined)).toEqual(undefined);
+        });
+
+        it("should throw an error when reducing an empty array without the undefined flag", function() {
+            expect(function() {
+                _.reduce([], function(){});
+            }).toThrow('Reduce of empty array with no initial value');
+        });
     });
 
 });
