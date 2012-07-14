@@ -93,3 +93,11 @@ if (typeof Object.prototype.defaults === "undefined") {
         return _.defaults.apply(this, args);
     };
 }
+
+//### clone
+if (typeof Object.prototype.clone === "undefined") {
+    // Create a shallow-copied clone of the object. Any nested objects or arrays will be copied by reference, not duplicated.
+    Object.prototype.clone = function() {
+        return _.clone(this);
+    };
+}

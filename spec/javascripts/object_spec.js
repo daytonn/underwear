@@ -132,4 +132,32 @@ describe("Object", function() {
         });
 
     });
+
+    describe("clone", function() {
+
+        var moe;
+        var clone;
+
+        beforeEach(function() {
+            moe = { name: 'moe', lucky: [13, 27, 34] };
+            clone = moe.clone();
+        });
+
+        it("should clone the attributes of an object", function() {
+            expect(clone.name).toEqual('moe');
+        });
+
+        it("should not change the original object when changing shallow attributes", function() {
+            clone.name = 'curly';
+            expect(clone.name).toEqual('curly');
+            expect(moe.name).toEqual('moe');
+        });
+
+        it("changes the original object when changing deep attributes", function() {
+            clone.lucky.push(101);
+            expect(moe.lucky.last()).toEqual(101);
+        });
+
+    });
+
 });
