@@ -36,11 +36,13 @@ if (typeof Object.prototype.functions === "undefined") {
         var args = argsWithThis.call(this, arguments);
         var functions = _.functions.apply(this, args);
         // Filter out the methods that Underwear defines on the Object
-        return functions.without('clone',
+        return functions.without('all',
+                                 'clone',
                                  'collect',
                                  'defaults',
                                  'detect',
                                  'each',
+                                 'every',
                                  'extend',
                                  'filter',
                                  'find',

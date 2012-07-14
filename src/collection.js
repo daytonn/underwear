@@ -98,3 +98,16 @@ if (typeof Object.prototype.reject === "undefined") {
         return _.reject.apply(this, args);
     };
 }
+
+//### every, all
+// Returns true if all of the values in the list pass the iterator truth test. Delegates to the native method every, if present.
+if (typeof Object.prototype.every === "undefined") {
+    Object.prototype.every = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.every.apply(this, args);
+    };
+}
+
+if (typeof Object.prototype.all == 'undefined') {
+    Object.prototype.all = Object.prototype.every;
+}

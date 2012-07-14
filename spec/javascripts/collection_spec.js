@@ -163,7 +163,7 @@ describe("Collection", function() {
 
     describe("detect", function() {
         it("should find the first `2` and break the loop", function() {
-            var result = [1, 2, 3].detect(function(num){ return num * 2 == 4; });
+            var result = [1, 2, 3].detect(function(num){ return num * 2 === 4; });
             expect(result).toEqual(2);
         });
     });
@@ -175,7 +175,7 @@ describe("Collection", function() {
         });
 
         it("should be aliased as select", function() {
-            evens = [1, 2, 3, 4, 5, 6].filter(function(num){ return num % 2 == 0; });
+            evens = [1, 2, 3, 4, 5, 6].filter(function(num){ return num % 2 === 0; });
             expect(evens.join(', ')).toEqual('2, 4, 6');
         });
     });
@@ -185,6 +185,28 @@ describe("Collection", function() {
             var odds = [1, 2, 3, 4, 5, 6].reject(function(num){ return num % 2 === 0; });
             expect(odds.join(', ')).toEqual('1, 3, 5');
         });
+    });
+
+    describe("every", function() {
+        it("should return true if all elements in the array pass the truth test", function() {
+            expect([].every(_.identity)).toBeTruthy();
+            expect([true, true, true].every(_.identity)).toBeTruthy();
+            
+            expect([0, 10, 28].every(function(num){ return num % 2 === 0; })).toBeTruthy();
+            
+            expect([1].every(_.identity) === true).toBeTruthy();
+            expect([0].every(_.identity) === false).toBeTruthy();
+        });
+
+        it("should return false if every the elements in the array don't pass the truth test", function() {
+            expect([0, 11, 28].every(function(num){ return num % 2 === 0; })).toBeFalsy();
+            expect([true, false, true].every(_.identity)).toBeFalsy();
+        });
+
+        it("should be aliased as all", function() {
+            expect([true, true, true].all(_.identity)).toBeTruthy();
+        });
+
     });
 
 });

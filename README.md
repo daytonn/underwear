@@ -11,12 +11,14 @@ QUnit tests to Jasmine specs and making all the tests pass.
 
 ##Extended prototypes:
 
-###Array:
+### Array:
+ - all (alias of `every`)
  - collect
  - compact
  - detect (alias of `find`)
  - difference
  - each
+ - every (native if available)
  - first
  - find
  - filter
@@ -49,12 +51,14 @@ QUnit tests to Jasmine specs and making all the tests pass.
 ###Function:
  - functions
 
-###Object:
+### Object:
+ - all (alias of `every`)
  - clone
  - collect (alias of `map`)
  - defaults
  - detect (alias of `find`)
  - each
+ - every (native if available)
  - extend
  - find
  - filter
