@@ -30,7 +30,7 @@ describe("Collection", function() {
 
         it("should reference the original collection from inside the iterator", function() {
             answer = null;
-            [1, 2, 3].each(function(num, index, arr){ if (_(arr).include(num)) answer = true; });
+            [1, 2, 3].each(function(num, index, arr){ if (_(arr).include(num)) { answer = true; } });
             expect(answer).toBeTruthy();
         });
 

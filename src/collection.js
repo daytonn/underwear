@@ -13,3 +13,7 @@ if (typeof Object.prototype.each === "undefined") {
         return _.each.apply(this, args);
     };
 }
+
+if (typeof Object.prototype.forEach === "undefined") {
+    Object.prototype.forEach = Object.prototype.each;
+}

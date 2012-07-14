@@ -35,7 +35,7 @@ if (typeof Object.prototype.functions === "undefined") {
     Object.prototype.functions = function() {
         var args = argsWithThis.call(this, arguments);
         var functions = _.functions.apply(this, args);
-        // Filter out the methods that underwear defines on the Object
+        // Filter out the methods that Underwear defines on the Object
         return functions.without('functions',
                                  'keys',
                                  'values',
@@ -59,6 +59,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'isNull',
                                  'isUndefined',
                                  'tap',
+                                 'forEach',
                                  'each');
     };
 
