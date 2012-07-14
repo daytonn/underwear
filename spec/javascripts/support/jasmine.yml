@@ -46,8 +46,8 @@ helpers:
 # EXAMPLE:
 #
 # spec_files:
-#   - **/*[sS]pec.js
-#
+    - helpers/zepto.js
+    - helpers/spec_helper.js
 spec_files:
 
 # src_dir

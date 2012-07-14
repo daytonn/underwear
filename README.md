@@ -29,6 +29,10 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - indexOf (defers to native)
  - lastIndexOf (defers to native)
  - range (Class method: Array.range(a, b, c))
+ - isEmpty
+
+###String
+ - isEmpty
 
 ###Function:
  - functions (Alias of Object.functions)
@@ -40,6 +44,8 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - pick
  - defaults
  - clone
+ - isEmpty
+ - isElement
 
 ###Number:
 (not yet implemented)
@@ -53,12 +59,6 @@ QUnit tests to Jasmine specs and making all the tests pass.
 (not yet implemented)
 
 ##Utilities
-
-###identity
-(not yet implemented)
-
-###escape
-(not yet implemented)
-
-###result
-(not yet implemented)
+ - isEqual
+ - isEmpty
+ - isArguments
