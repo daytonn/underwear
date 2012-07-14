@@ -12,9 +12,12 @@ QUnit tests to Jasmine specs and making all the tests pass.
 ##Extended prototypes:
 
 ###Array:
+ - collect
  - compact
  - difference
+ - each
  - first
+ - forEach (defers to native)
  - flatten
  - indexOf (defers to native)
  - initial
@@ -22,6 +25,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - isEmpty
  - last
  - lastIndexOf (defers to native)
+ - map
  - range (Class method: Array.range(a, b, c))
  - rest
  - tail
@@ -41,7 +45,9 @@ QUnit tests to Jasmine specs and making all the tests pass.
 ###Object:
  - clone
  - defaults
+ - each
  - extend
+ - forEach
  - functions
  - isEmpty
  - keys

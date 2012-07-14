@@ -36,31 +36,33 @@ if (typeof Object.prototype.functions === "undefined") {
         var args = argsWithThis.call(this, arguments);
         var functions = _.functions.apply(this, args);
         // Filter out the methods that Underwear defines on the Object
-        return functions.without('functions',
-                                 'keys',
-                                 'values',
-                                 'extend',
-                                 'pick',
+        return functions.without('clone',
+                                 'collect',
                                  'defaults',
-                                 'clone',
-                                 'isEqual',
-                                 'isEmpty',
-                                 'isElement',
+                                 'each',
+                                 'extend',
+                                 'forEach',
                                  'isArguments',
-                                 'isObject',
                                  'isArray',
-                                 'isNumber',
                                  'isBoolean',
-                                 'isFunction',
                                  'isDate',
-                                 'isRegExp',
+                                 'isElement',
+                                 'isEmpty',
+                                 'isEqual',
                                  'isFinite',
+                                 'isFunction',
                                  'isNaN',
                                  'isNull',
+                                 'isNumber',
+                                 'isObject',
+                                 'isRegExp',
                                  'isUndefined',
+                                 'keys',
+                                 'map',
+                                 'pick',
                                  'tap',
-                                 'forEach',
-                                 'each');
+                                 'values',
+                                 'functions');
     };
 
     Function.prototype.functions = Object.prototype.functions;

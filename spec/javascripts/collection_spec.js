@@ -36,4 +36,52 @@ describe("Collection", function() {
 
     });
 
+    describe("map", function() {
+        it("should", function() {
+            var doubled = [1, 2, 3].map(function(num){ return num * 2; });
+            expect(doubled.join(', ')).toEqual('2, 4, 6');
+        });
+
+        it("should be aliased as collect", function() {
+            doubled = [1, 2, 3].collect(function(num){ return num * 2; });
+            expect(doubled.join(', ')).toEqual('2, 4, 6');
+        });
+
+        it("should map with a context", function() {
+            var tripled = [1, 2, 3].map(function(num){ return num * this.multiplier; }, { multiplier: 3 });
+            expect(tripled.join(', ')).toEqual('3, 6, 9');
+        });
+
+        if (typeof HTMLCollection !== "undefined") {
+            it("should collect node lists", function() {
+                var map_test = document.createElement('ul');
+                map_test.id = 'map-test';
+                Array.range(1, 3).each(function(i) {
+                    var li = document.createElement('li');
+                    li.id = 'id' + i;
+                    map_test.appendChild(li);
+                });
+                var ids = map_test.children.map(function(n){ return n.id; });
+                expect(ids).toEqual(['id1', 'id2']);
+            });
+
+            it("should", function() {
+                var nodes = document.links.map(function(n){ return n.nodeName; });
+                expect(nodes[0]).toEqual('A');
+            });
+        }
+
+        it("should map objects", function() {
+            var map_test = { one: 1, two: 2 };
+            var result = map_test.map(function(n) { return n; });
+            expect(result).toEqual([1, 2]);
+        });
+
+        it("should call collect on objects", function() {
+            doubled = { one: 1, two: 2 }.collect(function(num){ return num * 2; });
+            expect(doubled.join(', ')).toEqual('2, 4');
+        });
+
+    });
+
 });

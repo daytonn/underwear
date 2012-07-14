@@ -17,3 +17,16 @@ if (typeof Object.prototype.each === "undefined") {
 if (typeof Object.prototype.forEach === "undefined") {
     Object.prototype.forEach = Object.prototype.each;
 }
+
+//### map, collect
+// Produces a new array of values by mapping each value in list through a transformation function (iterator). If the native map method exists, it will be used instead. If list is a JavaScript object, iterator's arguments will be (value, key, list).
+if (typeof Object.prototype.map === "undefined") {
+    Object.prototype.map = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.map.apply(this, args);
+    };
+}
+
+if (typeof Object.prototype.collect === "undefined") {
+    Object.prototype.collect = Object.prototype.map;
+}
