@@ -50,3 +50,16 @@ if (typeof Object.prototype.reduce === "undefined") {
 if (typeof Object.prototype.inject === "undefined") {
     Object.prototype.inject = Object.prototype.reduce;
 }
+
+//### reduceRight, foldr
+// The right-associative version of reduce. Delegates to the JavaScript 1.8 version of reduceRight, if it exists. Foldr is not as useful in JavaScript as it would be in a language with lazy evaluation.
+if (typeof Object.prototype.reduceRight === "undefined") {
+    Object.prototype.reduceRight = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.reduceRight.apply(this, args);
+    };
+}
+
+if (typeof Object.prototype.foldr === "undefined") {
+    Object.prototype.foldr = Object.prototype.reduceRight;
+}

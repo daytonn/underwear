@@ -116,4 +116,31 @@ describe("Collection", function() {
         });
     });
 
+    describe("reduceRight", function() {
+        it("should perform right folds", function() {
+            var list = ["foo", "bar", "baz"].reduceRight(function(memo, str){ return memo + str; }, '');
+            expect(list).toEqual('bazbarfoo');
+        });
+
+        it("should be aliased as foldr", function() {
+            var list = ["foo", "bar", "baz"].foldr(function(memo, str){ return memo + str; }, '');
+            expect(list).toEqual('bazbarfoo');
+        });
+
+        it("should use a default initial value", function() {
+            var list = ["foo", "bar", "baz"].foldr(function(memo, str){ return memo + str; });
+            expect(list).toEqual('bazbarfoo');
+        });
+
+        it("should pass undefined as a special case", function() {
+            expect([].reduceRight(function(){}, undefined)).toEqual(undefined);
+        });
+
+        it("should throw an error for empty arrays with no initial value", function() {
+            expect(function() {
+                [].reduceRight(function(){});
+            }).toThrow('Reduce of empty array with no initial value');
+        });
+    });
+
 });
