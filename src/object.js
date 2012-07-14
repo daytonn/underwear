@@ -84,3 +84,12 @@ if (typeof Object.prototype.pick === "undefined") {
         return _.pick.apply(this, args);
     };
 }
+
+//### defaults
+if (typeof Object.prototype.defaults === "undefined") {
+    // Fill in missing properties in object with default values from the defaults objects, and return the object. As soon as the property is filled, further defaults will have no effect.
+    Object.prototype.defaults = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.defaults.apply(this, args);
+    };
+}

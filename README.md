@@ -38,6 +38,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - functions
  - extend
  - pick
+ - defaults
 
 ###Number:
 (not yet implemented)

@@ -104,4 +104,32 @@ describe("Object", function() {
         });
 
     });
+
+    describe("defaults", function() {
+
+        var options;
+
+        beforeEach(function() {
+            options = { zero: 0, one: 1, empty: "", nan: NaN, string: "string" };
+        });
+
+        it("should not overwrite existing properties", function() {
+            options.defaults({ zero: 1, one: 10, twenty: 20 });
+            expect(options.zero).toEqual(0);
+            expect(options.one).toEqual(1);
+        });
+
+        it("should fill in properties which don't exist in the object", function() {
+            options.defaults({ zero: 1, one: 10, twenty: 20 });
+            expect(options.twenty).toEqual(20);
+        });
+
+        it("should keep the first value a given key was set", function() {
+            options.defaults({ empty: "full" }, { nan: "nan" }, { word: "word" }, { word: "dog" });
+            expect(options.empty).toEqual("");
+            expect(_.isNaN(options.nan)).toBeTrue();
+            expect(options.word).toEqual("word");
+        });
+
+    });
 });
