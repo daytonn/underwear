@@ -39,6 +39,7 @@ if (typeof Object.prototype.functions === "undefined") {
         return functions.without('clone',
                                  'collect',
                                  'defaults',
+                                 'detect',
                                  'each',
                                  'extend',
                                  'find',

@@ -64,11 +64,15 @@ if (typeof Object.prototype.foldr === "undefined") {
     Object.prototype.foldr = Object.prototype.reduceRight;
 }
 
-//### find
+//### find, detect
 // Looks through each value in the list, returning the first one that passes a truth test (iterator). The function returns as soon as it finds an acceptable element, and doesn't traverse the entire list.
 if (typeof Object.prototype.find === "undefined") {
     Object.prototype.find = function() {
         var args = argsWithThis.call(this, arguments);
         return _.find.apply(this, args);
     };
+}
+
+if (typeof Object.prototype.detect === "undefined") {
+    Object.prototype.detect = Object.prototype.find;
 }

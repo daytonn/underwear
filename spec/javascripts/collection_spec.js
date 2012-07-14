@@ -144,12 +144,27 @@ describe("Collection", function() {
     });
 
     describe("find", function() {
-        it("should return first found `value`", function() {
+        it("should return first found `value` in an array", function() {
             expect([1, 2, 3, 4].find(function(n) { return n > 2; })).toEqual(3);
         });
 
-        it("should return `undefined` if `value` is not found", function() {
+        it("should return first found `value` in an object", function() {
+            expect({ one: 1, two: 2, three: 3 }.find(function(n) { return n > 2; })).toEqual(3);
+        });
+
+        it("should return `undefined` if `value` is not found in an array", function() {
             expect([1, 2, 3, 4].find(function() { return false; })).toEqual(void 0);
+        });
+
+        it("should return `undefined` if `value` is not found in an object", function() {
+            expect({ one: 1, two: 2, three: 3 }.find(function() { return false; })).toEqual(void 0);
+        });
+    });
+
+    describe("detect", function() {
+        it("should find the first `2` and break the loop", function() {
+            var result = [1, 2, 3].detect(function(num){ return num * 2 == 4; });
+            expect(result).toEqual(2);
         });
     });
 

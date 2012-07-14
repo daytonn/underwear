@@ -14,20 +14,23 @@ QUnit tests to Jasmine specs and making all the tests pass.
 ###Array:
  - collect
  - compact
+ - detect (alias of `find`)
  - difference
  - each
  - first
- - forEach (defers to native)
+ - find
+ - foldr (alias of `foldr`)
+ - forEach (native if available)
  - flatten
- - indexOf (defers to native)
+ - indexOf (native if available)
  - initial
  - intersection
  - isEmpty
  - last
- - lastIndexOf (defers to native)
- - map
+ - lastIndexOf (native if available)
+ - map (native if available)
  - range (Class method: Array.range(a, b, c))
- - reduce
+ - reduce (native if available)
  - rest
  - tail
  - take
@@ -41,20 +44,26 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - isEmpty
 
 ###Function:
- - functions (Alias of Object.functions)
+ - functions
 
 ###Object:
  - clone
+ - collect (alias of `map`)
  - defaults
+ - detect (alias of `find`)
  - each
  - extend
+ - find
  - forEach
+ - foldr (alias of `reduceRight`)
  - functions
  - isEmpty
  - keys
  - pick
  - reduce
+ - reduceRight
  - tap
+ - map
 
 
 ###Number:
