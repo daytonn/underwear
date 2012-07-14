@@ -168,4 +168,16 @@ describe("Collection", function() {
         });
     });
 
+    describe("select", function() {
+        it("should", function() {
+            var evens = [1, 2, 3, 4, 5, 6].filter(function(num){ return num % 2 === 0; });
+            expect(evens.join(', ')).toEqual('2, 4, 6');
+        });
+
+        it("should be aliased as select", function() {
+            evens = [1, 2, 3, 4, 5, 6].filter(function(num){ return num % 2 == 0; });
+            expect(evens.join(', ')).toEqual('2, 4, 6');
+        });
+    });
+
 });

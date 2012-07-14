@@ -42,6 +42,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'detect',
                                  'each',
                                  'extend',
+                                 'filter',
                                  'find',
                                  'forEach',
                                  'foldr',
@@ -66,6 +67,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'pick',
                                  'reduce',
                                  'reduceRight',
+                                 'select',
                                  'tap',
                                  'values',
                                  'functions');

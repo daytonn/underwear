@@ -76,3 +76,16 @@ if (typeof Object.prototype.find === "undefined") {
 if (typeof Object.prototype.detect === "undefined") {
     Object.prototype.detect = Object.prototype.find;
 }
+
+//### filter
+// Looks through each value in the list, returning an array of all the values that pass a truth test (iterator). Delegates to the native filter method, if it exists.
+if (typeof Object.prototype.filter === "undefined") {
+    Object.prototype.filter = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.select.apply(this, args);
+    };
+}
+
+if (typeof Object.prototype.select == 'undefined') {
+    Object.prototype.select = Object.prototype.filter;
+}

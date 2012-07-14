@@ -19,6 +19,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - each
  - first
  - find
+ - filter
  - foldr (alias of `foldr`)
  - forEach (native if available)
  - flatten
@@ -34,6 +35,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - rest
  - tail
  - take
+ - select (alias of `find`)
  - union
  - uniq
  - without
@@ -54,6 +56,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - each
  - extend
  - find
+ - filter
  - forEach
  - foldr (alias of `reduceRight`)
  - functions
@@ -62,6 +65,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - pick
  - reduce
  - reduceRight
+ - select (alias of `find`)
  - tap
  - map
 
