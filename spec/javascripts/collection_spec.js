@@ -180,4 +180,11 @@ describe("Collection", function() {
         });
     });
 
+    describe("reject", function() {
+        it("should reject values that return true from the callback", function() {
+            var odds = [1, 2, 3, 4, 5, 6].reject(function(num){ return num % 2 === 0; });
+            expect(odds.join(', ')).toEqual('1, 3, 5');
+        });
+    });
+
 });

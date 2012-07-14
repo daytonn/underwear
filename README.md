@@ -32,6 +32,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - map (native if available)
  - range (Class method: Array.range(a, b, c))
  - reduce (native if available)
+ - reject
  - rest
  - tail
  - take
@@ -65,6 +66,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - pick
  - reduce
  - reduceRight
+ - reject
  - select (alias of `find`)
  - tap
  - map

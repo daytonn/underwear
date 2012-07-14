@@ -82,10 +82,19 @@ if (typeof Object.prototype.detect === "undefined") {
 if (typeof Object.prototype.filter === "undefined") {
     Object.prototype.filter = function() {
         var args = argsWithThis.call(this, arguments);
-        return _.select.apply(this, args);
+        return _.filter.apply(this, args);
     };
 }
 
 if (typeof Object.prototype.select == 'undefined') {
     Object.prototype.select = Object.prototype.filter;
+}
+
+//### reject
+// Returns the values in list without the elements that the truth test (iterator) passes. The opposite of filter.
+if (typeof Object.prototype.reject === "undefined") {
+    Object.prototype.reject = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.reject.apply(this, args);
+    };
 }

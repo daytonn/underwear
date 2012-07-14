@@ -67,6 +67,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'pick',
                                  'reduce',
                                  'reduceRight',
+                                 'reject',
                                  'select',
                                  'tap',
                                  'values',
