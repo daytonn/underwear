@@ -456,4 +456,36 @@ describe("Utilities", function() {
         });
     });
 
+    describe("isDefined", function() {
+        it("should test for undefined", function() {
+            expect(isDefined(1)).toBeTruthy();
+            expect(isDefined(null)).toBeTruthy();
+            expect(isDefined(false)).toBeTruthy();
+            expect(isDefined(NaN)).toBeTruthy();
+            expect(isDefined()).toBeFalsy();
+            expect(isDefined(undefined)).toBeFalsy();
+        });
+    });
+
+    describe("tap", function() {
+        it("should", function() {
+            var intercepted = null;
+            var interceptor = function(obj) { intercepted = obj; };
+            var obj = { one: 1 };
+            var returned = obj.tap(interceptor);
+            expect(intercepted).toEqual({ one: 1 });
+            expect(returned).toEqual({ one: 1 });
+
+            // TODO remove the _().chain() method when the
+            // Collections.max method is implemented
+            returned = _([1,2,3]).chain().
+              map(function(n){ return n * 2; }).
+              max().
+              tap(interceptor).
+              value();
+            expect(returned).toEqual(6);
+            expect(intercepted).toEqual(6);
+        });
+    });
+
 });

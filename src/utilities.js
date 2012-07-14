@@ -35,27 +35,26 @@ isFunction = _.isFunction;
 isDate = _.isDate;
 
 //### isRegExp
-// Returns true if object is a isRegExp.
+// Returns true if object is a RegExp.
 isRegExp = _.isRegExp;
 
 //### isNaN
-// Returns true if object is a isNaN.
+// Returns true if object is NaN.
 isNaN = _.isNaN;
 
 //### isNull
-// Returns true if object is a isNull.
+// Returns true if object is null.
 isNull = _.isNull;
 
 //### isUndefined
-// Returns true if object is a isUndefined.
+// Returns true if object is undefined.
 isUndefined = _.isUndefined;
 
-//### Object.isEmpty
-if (typeof Object.prototype.isEmpty === "undefined") {
-    // Returns true if object contains no values.
-    Object.prototype.isEmpty = function() {
-        return _.isEmpty.call(this, this);
-    };
+//### isDefined
+// Returns true if object is not undefined.
+isUndefined = _.isUndefined;
+isDefined = function(suspect) {
+    return !_.isUndefined(suspect);
 }
 
 //### Array.isEmpty
@@ -79,5 +78,22 @@ if (typeof Object.prototype.isElement === "undefined") {
     // Returns true if object is a DOM element.
     Object.prototype.isElement = function() {
         return _.isElement.call(this, this);
+    };
+}
+
+//### Object.isEmpty
+if (typeof Object.prototype.isEmpty === "undefined") {
+    // Returns true if object contains no values.
+    Object.prototype.isEmpty = function() {
+        return _.isEmpty.call(this, this);
+    };
+}
+
+//### Object.tap
+if (typeof Object.prototype.tap === "undefined") {
+    // 
+    Object.prototype.tap = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.tap.apply(this, args);
     };
 }

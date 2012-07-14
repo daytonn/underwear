@@ -12,24 +12,25 @@ QUnit tests to Jasmine specs and making all the tests pass.
 ##Extended prototypes:
 
 ###Array:
- - first
- - take
- - rest
- - tail
- - initial
- - last
  - compact
- - flatten
- - without
- - uniq
- - intersection
- - union
  - difference
- - zip
+ - first
+ - flatten
  - indexOf (defers to native)
+ - initial
+ - intersection
+ - isEmpty
+ - last
  - lastIndexOf (defers to native)
  - range (Class method: Array.range(a, b, c))
- - isEmpty
+ - rest
+ - tail
+ - take
+ - union
+ - uniq
+ - without
+ - zip
+
 
 ###String
  - isEmpty
@@ -38,14 +39,16 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - functions (Alias of Object.functions)
 
 ###Object:
- - keys
- - functions
- - extend
- - pick
- - defaults
  - clone
- - isEmpty
+ - defaults
+ - extend
+ - functions
  - isElement
+ - isEmpty
+ - keys
+ - pick
+ - tap
+
 
 ###Number:
 (not yet implemented)
@@ -62,3 +65,13 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - isEqual
  - isEmpty
  - isArguments
+ - isBoolean
+ - isDate
+ - isFunction
+ - isNaN
+ - isNull
+ - isNumber
+ - isRegExp
+ - isString
+ - isUndefined
+ - isDefined (Underwear.js addition)
