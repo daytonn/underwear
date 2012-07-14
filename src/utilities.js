@@ -48,6 +48,10 @@ Namespace.isNull = _.isNull;
 
 //### isUndefined
 // Returns true if object is undefined.
+Namespace.isElement = _.isElement;
+
+//### isUndefined
+// Returns true if object is undefined.
 Namespace.isUndefined = _.isUndefined;
 
 //### isDefined
@@ -70,14 +74,6 @@ if (typeof String.prototype.isEmpty === "undefined") {
     // Returns true if object contains no values.
     String.prototype.isEmpty = function() {
         return _.isEmpty(this);
-    };
-}
-
-//### isElement
-if (typeof Object.prototype.isElement === "undefined") {
-    // Returns true if object is a DOM element.
-    Object.prototype.isElement = function() {
-        return _.isElement.call(this, this);
     };
 }
 

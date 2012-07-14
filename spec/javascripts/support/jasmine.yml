@@ -46,7 +46,6 @@ helpers:
 # EXAMPLE:
 #
 # spec_files:
-    - helpers/zepto.js
     - helpers/spec_helper.js
 spec_files:
 

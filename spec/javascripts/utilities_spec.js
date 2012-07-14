@@ -333,8 +333,11 @@ describe("Utilities", function() {
 
     describe("isElement", function() {
         it("should test for Elements", function() {
-            expect('div'.isElement()).toBeFalsy();
-            expect($('html')[0].isElement()).toBeTruthy();
+            expect(isElement('div')).toBeFalsy();
+            var element = document.getElementsByTagName ? document.getElementsByTagName('div')[0]
+                                                        : document.body.firstChild;
+
+            expect(isElement(element)).toBeTruthy();
         });
     });
 
@@ -353,7 +356,7 @@ describe("Utilities", function() {
         it("should test for objects", function() {
             expect(isObject(arguments)).toBeTruthy();
             expect(isObject([1, 2, 3])).toBeTruthy();
-            expect(isObject($('html')[0])).toBeTruthy();
+            expect(isObject(document.body)).toBeTruthy();
             expect(isObject(function () {})).toBeTruthy();
             expect(isObject(null)).toBeFalsy();
             expect(isObject(undefined)).toBeFalsy();

@@ -43,7 +43,6 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - defaults
  - extend
  - functions
- - isElement
  - isEmpty
  - keys
  - pick
@@ -67,6 +66,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - isArguments
  - isBoolean
  - isDate
+ - isElement
  - isFunction
  - isNaN
  - isNull
