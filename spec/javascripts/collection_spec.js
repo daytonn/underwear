@@ -143,4 +143,14 @@ describe("Collection", function() {
         });
     });
 
+    describe("find", function() {
+        it("should return first found `value`", function() {
+            expect([1, 2, 3, 4].find(function(n) { return n > 2; })).toEqual(3);
+        });
+
+        it("should return `undefined` if `value` is not found", function() {
+            expect([1, 2, 3, 4].find(function() { return false; })).toEqual(void 0);
+        });
+    });
+
 });

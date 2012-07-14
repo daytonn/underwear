@@ -63,3 +63,12 @@ if (typeof Object.prototype.reduceRight === "undefined") {
 if (typeof Object.prototype.foldr === "undefined") {
     Object.prototype.foldr = Object.prototype.reduceRight;
 }
+
+//### find
+// Looks through each value in the list, returning the first one that passes a truth test (iterator). The function returns as soon as it finds an acceptable element, and doesn't traverse the entire list.
+if (typeof Object.prototype.find === "undefined") {
+    Object.prototype.find = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.find.apply(this, args);
+    };
+}
