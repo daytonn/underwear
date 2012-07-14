@@ -1056,4 +1056,4 @@
     return this._wrapped;
   };
 
-}).call(this);
+}).call(Namespace);

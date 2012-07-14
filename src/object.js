@@ -1,6 +1,3 @@
-// Make a local reference to the argsWithThis method
-var argsWithThis = Underwear.argsWithThis;
-
 // Convenience method to filter out non objects and
 // throw an error on bad values
 function filterNonObjects(suspect, method) {
@@ -61,7 +58,8 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'isNaN',
                                  'isNull',
                                  'isUndefined',
-                                 'tap');
+                                 'tap',
+                                 'each');
     };
 
     Function.prototype.functions = Object.prototype.functions;
