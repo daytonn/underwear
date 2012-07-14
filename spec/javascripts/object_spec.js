@@ -84,4 +84,24 @@ describe("Object", function() {
         });
 
     });
+
+    describe("pick", function() {
+
+        it("should restrict propertiees to those named", function() {
+            var result;
+            result = { a:1, b:2, c:3 }.pick('a', 'c');
+            expect(result).toEqual({ a:1, c:3 });
+        });
+
+        it("should restrict properties to those named in an array", function() {
+            result = { a:1, b:2, c:3 }.pick(['b', 'c']);
+            expect(result).toEqual({ b:2, c:3 });
+        });
+
+        it("should restrict properties to those named in mixed args", function() {
+            result = { a:1, b:2, c:3 }.pick(['a'], 'b');
+            expect(result).toEqual({ a:1, b:2 });
+        });
+
+    });
 });

@@ -37,6 +37,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - keys
  - functions
  - extend
+ - pick
 
 ###Number:
 (not yet implemented)
