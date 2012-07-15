@@ -122,4 +122,13 @@ describe("Function", function() {
         });
     });
 
+    describe("delay", function() {
+        it("should delay a function call", function() {
+            var delayed = false;
+            (function() { delayed = true; }).delay(100);
+            setTimeout(function(){ expect(delayed).toBeFalsy(); }, 50);
+            setTimeout(function(){ expect(delayed).toBeTruthy(); start(); }, 150);
+        });
+    });
+
 });

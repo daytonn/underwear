@@ -29,3 +29,12 @@ if (typeof Function.prototype.memoize === "undefined") {
         return _.memoize.apply(this, args);
     };
 }
+
+//### delay
+if (typeof Function.prototype.delay === "undefined") {
+    // Much like setTimeout, invokes function after wait milliseconds. If you pass the optional arguments, they will be forwarded on to the function when it is invoked.
+    Function.prototype.delay = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.delay.apply(this, args);
+    };
+}
