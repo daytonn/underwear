@@ -65,11 +65,14 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - functions
  - bind (native if available)
  - bindAll
- - memoize
+ - compose
  - debounce
  - defer
  - delay
+ - memoize
+ - once
  - throttle
+ - wrap
 
 ### Object:
  - all (alias of `every`)
