@@ -8,6 +8,7 @@
     //= require "array"
     //= require "object"
     //= require "collection"
+    //= require "function"
 })(window,
     //### argsWithThis
     // Construct an array with the first item being `this` (Array instance) and the

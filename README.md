@@ -63,10 +63,14 @@ QUnit tests to Jasmine specs and making all the tests pass.
 
 ###Function:
  - functions
+ - bind (native if available)
+ - bindAll
 
 ### Object:
  - all (alias of `every`)
  - any (alias of `some`)
+ - bind
+ - bindAll
  - clone
  - collect (alias of `map`)
  - contains (alias of `include`)

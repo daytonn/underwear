@@ -38,6 +38,7 @@ if (typeof Object.prototype.functions === "undefined") {
         // Filter out the methods that Underwear defines on the Object
         return functions.without('all',
                                  'any',
+                                 'bindAll',
                                  'clone',
                                  'collect',
                                  'contains',
