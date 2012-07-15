@@ -4,8 +4,7 @@ Underwear [![](https://secure.travis-ci.org/daytonn/underwear.png?branch=master)
 Underwear is a library to extend javascript built-in prototypes with the
 underscore methods.
 
-This is currently a work in progress. I've begun translating all the
-QUnit tests to Jasmine specs and making all the tests pass.
+The entire Underscore,js library has been translated to extended prototypes. There are a few custom prototypes, and a handful of utility functions to provide an object oriented API for underscore methods.
 
 [Source Documentation](http://daytonn.github.com/underwear/docs/underwear.html)
 
