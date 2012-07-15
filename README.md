@@ -68,6 +68,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - memoize
  - defer
  - delay
+ - throttle
 
 ### Object:
  - all (alias of `every`)

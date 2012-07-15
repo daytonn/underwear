@@ -47,3 +47,12 @@ if (typeof Function.prototype.defer === "undefined") {
         return _.defer.apply(this, args);
     };
 }
+
+//### throttle
+if (typeof Function.prototype.throttle === "undefined") {
+    // Creates and returns a new, throttled version of the passed function, that, when invoked repeatedly, will only actually call the original function at most once per every wait milliseconds. Useful for rate-limiting events that occur faster than you can keep up with.
+    Function.prototype.throttle = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.throttle.apply(this, args);
+    };
+}
