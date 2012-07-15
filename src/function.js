@@ -74,3 +74,12 @@ if (typeof Function.prototype.once === "undefined") {
         return _.once.apply(this, args);
     };
 }
+
+//### wrap
+if (typeof Function.prototype.wrap === "undefined") {
+    // Wraps the first function inside of the wrapper function, passing it as the first argument. This allows the wrapper to execute code before and after the function runs, adjust the arguments, and execute it conditionally.
+    Function.prototype.wrap = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.wrap.apply(this, args);
+    };
+}

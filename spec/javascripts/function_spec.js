@@ -260,4 +260,26 @@ describe("Function", function() {
         });
     });
 
+    describe("wrap", function() {
+        it("should wrap a function with another function", function() {
+            var greet = function(name){ return "hi: " + name; };
+            var backwards = greet.wrap(function(func, name){ return func(name) + ' ' + name.split('').reverse().join(''); });
+            expect(backwards('moe')).toEqual('hi: moe eom');
+        });
+
+        it("should wrap the inner funciton around the root function", function() {
+            var inner = function(){ return "Hello "; };
+            var obj = { name : "Moe" };
+            obj.hi = inner.wrap(function(fn){ return fn() + this.name; });
+            expect(obj.hi()).toEqual("Hello Moe");
+        });
+        
+        it("should wrap an array prepending the function to the array", function() {
+            var noop = function(){};
+            var wrapped = noop.wrap(function(fn){ return Array.prototype.slice.call(arguments, 0); });
+            var ret = wrapped(['whats', 'your'], 'vector', 'victor');
+            expect(ret).toEqual([noop, ['whats', 'your'], 'vector', 'victor']);
+        });
+    });
+
 });
