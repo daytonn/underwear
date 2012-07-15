@@ -67,6 +67,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'select',
                                  'some',
                                  'sortBy',
+                                 'sortedIndex',
                                  'tap',
                                  'values',
                                  'functions');

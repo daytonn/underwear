@@ -365,4 +365,19 @@ describe("Collection", function() {
 
     });
 
+    describe("sortedIndex", function() {
+        it("should insert the value at index a given index", function() {
+            var numbers = [10, 20, 30, 40, 50];
+            var num = 35;
+            var indexForNum = numbers.sortedIndex(num);
+            expect(indexForNum).toEqual(3);
+        });
+
+        it("should not overwrite valus that exist in the object", function() {
+            var numbers = [10, 20, 30, 40, 50];
+            var indexFor30 = numbers.sortedIndex(30);
+            expect(indexFor30).toEqual(2);
+        });
+    });
+
 });

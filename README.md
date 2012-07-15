@@ -49,6 +49,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - select (alias of `find`)
  - some
  - sortBy
+ - sortedIndex
  - union
  - uniq
  - without
@@ -93,6 +94,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - select (alias of `find`)
  - some
  - sortBy
+ - sortedIndex
  - tap
 
 

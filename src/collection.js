@@ -191,3 +191,12 @@ if (typeof Object.prototype.groupBy === "undefined") {
         return _.groupBy.apply(this, args);
     };
 }
+
+//### sortedIndex
+// Uses a binary search to determine the index at which the value should be inserted into the list in order to maintain the list's sorted order. If an iterator is passed, it will be used to compute the sort ranking of each value.
+if (typeof Object.prototype.sortedIndex === "undefined") {
+    Object.prototype.sortedIndex = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.sortedIndex.apply(this, args);
+    };
+}
