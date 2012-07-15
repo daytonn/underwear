@@ -11,6 +11,7 @@
     //= require "function"
     //= require "number"
     //= require "uniqueid"
+    //= require "template"
 })(window,
     //### argsWithThis
     // Construct an array with the first item being `this` (Array instance) and the

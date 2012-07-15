@@ -117,15 +117,14 @@ QUnit tests to Jasmine specs and making all the tests pass.
 
 
 ###Number:
-(not yet implemented)
+ - times
 
 ##Custom prototypes
 
 ###Template:
-(not yet implemented)
+ - render
 
 ###UniqueID:
-(not yet implemented)
 
 ##Utilities
  - isEqual
