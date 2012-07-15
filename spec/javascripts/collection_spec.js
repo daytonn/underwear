@@ -307,4 +307,26 @@ describe("Collection", function() {
 
     });
 
+    describe("min", function() {
+        it("should perform a regular Math.min", function() {
+            expect([1, 2, 3].min()).toEqual(1);
+        });
+
+        it("should perform a computation based min", function() {
+            var neg = [1, 2, 3].min(function(num){ return -num; });
+            expect(neg).toEqual(3);
+        });
+        
+        it("should return Infinity on empty objects", function() {
+            expect({}.min()).toEqual(Infinity);
+            expect([].min()).toEqual(Infinity);
+        });
+
+        it("should return the minimum date", function() {
+            var now = new Date(9999999999);
+            var then = new Date(0);
+            expect([now, then].min()).toEqual(then);
+        });
+    });
+
 });

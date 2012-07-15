@@ -164,3 +164,12 @@ if (typeof Object.prototype.max === "undefined") {
         return _.max.apply(this, args);
     };
 }
+
+//### min
+// Returns the minimum value in list. If iterator is passed, it will be used on each value to generate the criterion by which the value is ranked.
+if (typeof Object.prototype.min === "undefined") {
+    Object.prototype.min = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.min.apply(this, args);
+    };
+}

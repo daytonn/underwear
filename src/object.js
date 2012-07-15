@@ -57,6 +57,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'keys',
                                  'map',
                                  'max',
+                                 'min',
                                  'pick',
                                  'pluck',
                                  'reduce',
