@@ -36,6 +36,8 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - last
  - lastIndexOf (native if available)
  - map (native if available)
+ - max
+ - pluck
  - range (Class method: Array.range(a, b, c))
  - reduce (native if available)
  - reject
@@ -76,14 +78,16 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - invoke
  - isEmpty
  - keys
+ - map (native if available)
+ - max
  - pick
+ - pluck
  - reduce
  - reduceRight
  - reject
  - select (alias of `find`)
  - some
  - tap
- - map
 
 
 ###Number:

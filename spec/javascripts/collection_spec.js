@@ -283,4 +283,28 @@ describe("Collection", function() {
         });
     });
 
+    describe("pluck", function() {
+        it("should pull names out of objects", function() {
+            var people = [{ name : 'moe', age : 30 }, { name : 'curly', age : 50 }];
+            expect(people.pluck('name').join(', ')).toEqual('moe, curly');
+        });
+    });
+
+    describe("max", function() {
+        it("should perform a regular Math.max", function() {
+            expect([1, 2, 3].max()).toEqual(3);
+        });
+        
+        it("should perform a computation based max", function() {
+            var neg = [1, 2, 3].max(function(num){ return -num; });
+            expect(neg).toEqual(1);
+        });
+
+        it("should return -Infinity on empty objects", function() {
+            expect({}.max()).toEqual(-Infinity);
+            expect([].max()).toEqual(-Infinity);
+        });
+
+    });
+
 });

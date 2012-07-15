@@ -146,3 +146,21 @@ if (typeof Object.prototype.invoke === "undefined") {
         return _.invoke.apply(this, args);
     };
 }
+
+//### pluck
+// A convenient version of what is perhaps the most common use-case for map: extracting a list of property values.
+if (typeof Object.prototype.pluck === "undefined") {
+    Object.prototype.pluck = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.pluck.apply(this, args);
+    };
+}
+
+//### max
+// Returns the maximum value in list. If iterator is passed, it will be used on each value to generate the criterion by which the value is ranked.
+if (typeof Object.prototype.max === "undefined") {
+    Object.prototype.max = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.max.apply(this, args);
+    };
+}
