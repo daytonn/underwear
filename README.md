@@ -31,6 +31,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - indexOf (native if available)
  - initial
  - intersection
+ - invoke
  - isEmpty
  - last
  - lastIndexOf (native if available)
@@ -72,6 +73,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - foldr (alias of `reduceRight`)
  - functions
  - include
+ - invoke
  - isEmpty
  - keys
  - pick

@@ -274,4 +274,13 @@ describe("Collection", function() {
         });
     });
 
+    describe("invoke", function() {
+        it("should invoke a method on each value of an array", function() {
+            var list = [[5, 1, 7], [3, 2, 1]];
+            var result = list.invoke('sort');
+            expect(result[0].join(', ')).toEqual('1, 5, 7');
+            expect(result[1].join(', ')).toEqual('1, 2, 3');
+        });
+    });
+
 });

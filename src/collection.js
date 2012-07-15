@@ -137,3 +137,12 @@ if (typeof Object.prototype.include === "undefined") {
 if (typeof Object.prototype.contains === "undefined") {
     Object.prototype.contains = Object.prototype.include;
 }
+
+//### invoke
+// Calls the method named by methodName on each value in the list. Any extra arguments passed to invoke will be forwarded on to the method invocation.
+if (typeof Object.prototype.invoke === "undefined") {
+    Object.prototype.invoke = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.invoke.apply(this, args);
+    };
+}

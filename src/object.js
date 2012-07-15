@@ -52,6 +52,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'foldr',
                                  'include',
                                  'inject',
+                                 'invoke',
                                  'isArguments',
                                  'isArray',
                                  'isBoolean',
