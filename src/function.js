@@ -83,3 +83,21 @@ if (typeof Function.prototype.wrap === "undefined") {
         return _.wrap.apply(this, args);
     };
 }
+
+//### compose
+if (typeof Function.prototype.compose === "undefined") {
+    // Returns the composition of a list of functions, where each function consumes the return value of the function that follows. In math terms, composing the functions f(), g(), and h() produces f(g(h())).
+    Function.prototype.compose = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.compose.apply(this, args);
+    };
+}
+
+//### after
+if (typeof Function.prototype.after === "undefined") {
+    // Creates a version of the function that will only be run after first being called count times. Useful for grouping asynchronous responses, where you want to be sure that all the async calls have finished, before proceeding.
+    Function.prototype.after = function() {
+        console.log(arguments[0]);
+        //return _.after.call(this, arguments[0], this);
+    };
+}

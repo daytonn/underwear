@@ -282,4 +282,16 @@ describe("Function", function() {
         });
     });
 
+    describe("compose", function() {
+        it("should compose a function that takes another", function() {
+            var greet = function(name){ return "hi: " + name; };
+            var exclaim = function(sentence){ return sentence + '!'; };
+            var composed = exclaim.compose(greet);
+            expect(composed('moe')).toEqual('hi: moe!');
+
+            composed = greet.compose(exclaim);
+            expect(composed('moe')).toEqual('hi: moe!');
+        });
+    });
+
 });
