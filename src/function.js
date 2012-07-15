@@ -65,3 +65,12 @@ if (typeof Function.prototype.debounce === "undefined") {
         return _.debounce.apply(this, args);
     };
 }
+
+//### once
+if (typeof Function.prototype.once === "undefined") {
+    // Creates a version of the function that can only be called one time. Repeated calls to the modified function will have no effect, returning the value from the original call. Useful for initialization functions, instead of having to set a boolean flag and then check it later.
+    Function.prototype.once = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.once.apply(this, args);
+    };
+}

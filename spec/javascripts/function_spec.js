@@ -157,7 +157,7 @@ describe("Function", function() {
                 setTimeout(throttledIncr, 220);
                 setTimeout(throttledIncr, 240);
                 (function(){ expect(counter).toEqual(1); }).delay(30);
-                (function(){ equal(counter, 4, "incr was throttled"); }).delay(400);
+                (function(){ expect(counter).toEqual(4); }).delay(400);
             });
         });
 
@@ -248,6 +248,16 @@ describe("Function", function() {
             (function(){ expect(counter).toEqual(1); }).delay(70);
         });
 
+    });
+
+    describe("once", function() {
+        it("should execute a function once", function() {
+            var num = 0;
+            var increment = (function(){ num++; }).once();
+            increment();
+            increment();
+            expect(num).toEqual(1);
+        });
     });
 
 });
