@@ -182,3 +182,12 @@ if (typeof Object.prototype.sortBy === "undefined") {
         return _.sortBy.apply(this, args);
     };
 }
+
+//### groupBy
+// Splits a collection into sets, grouped by the result of running each value through iterator. If iterator is a string instead of a function, groups by the property named by iterator on each of the values.
+if (typeof Object.prototype.groupBy === "undefined") {
+    Object.prototype.groupBy = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.groupBy.apply(this, args);
+    };
+}

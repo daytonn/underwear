@@ -27,6 +27,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - foldr (alias of `foldr`)
  - forEach (native if available)
  - flatten
+ - groupBy
  - include
  - indexOf (native if available)
  - initial
@@ -76,6 +77,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - forEach
  - foldr (alias of `reduceRight`)
  - functions
+ - groupBy
  - include
  - invoke
  - isEmpty

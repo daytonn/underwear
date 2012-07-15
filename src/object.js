@@ -50,6 +50,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'find',
                                  'forEach',
                                  'foldr',
+                                 'groupBy',
                                  'include',
                                  'inject',
                                  'invoke',

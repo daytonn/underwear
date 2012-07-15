@@ -348,4 +348,21 @@ describe("Collection", function() {
         });
     });
 
+    describe("groupBy", function() {
+        it("should group values by a comparator", function() {
+            var parity = [1, 2, 3, 4, 5, 6].groupBy(function(num){ return num % 2; });
+            expect(parity[0].join(', ')).toEqual('2, 4, 6');
+            expect(parity[1].join(', ')).toEqual('1, 3, 5');
+        });
+
+        it("should group by property values if given a string", function() {
+            var list = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+            var grouped = list.groupBy('length');
+            expect(grouped['3'].join(' ')).toEqual('one two six ten');
+            expect(grouped['4'].join(' ')).toEqual('four five nine');
+            expect(grouped['5'].join(' ')).toEqual('three seven eight');
+        });
+
+    });
+
 });
