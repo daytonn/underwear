@@ -15,6 +15,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - all (alias of `every`)
  - any (alias of `some`)
  - collect
+ - contains (alias of `include`)
  - compact
  - detect (alias of `find`)
  - difference
@@ -26,6 +27,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - foldr (alias of `foldr`)
  - forEach (native if available)
  - flatten
+ - include
  - indexOf (native if available)
  - initial
  - intersection
@@ -58,6 +60,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - any (alias of `some`)
  - clone
  - collect (alias of `map`)
+ - contains (alias of `include`)
  - defaults
  - detect (alias of `find`)
  - each
@@ -68,6 +71,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - forEach
  - foldr (alias of `reduceRight`)
  - functions
+ - include
  - isEmpty
  - keys
  - pick

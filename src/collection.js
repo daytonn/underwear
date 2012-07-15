@@ -124,3 +124,16 @@ if (typeof Object.prototype.some === "undefined") {
 if (typeof Object.prototype.any == 'undefined') {
     Object.prototype.any = Object.prototype.some;
 }
+
+//### include
+// Returns true if the value is present in the list, using === to test equality. Uses indexOf internally, if list is an Array.
+if (typeof Object.prototype.include === "undefined") {
+    Object.prototype.include = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.include.apply(this, args);
+    };
+}
+
+if (typeof Object.prototype.contains === "undefined") {
+    Object.prototype.contains = Object.prototype.include;
+}

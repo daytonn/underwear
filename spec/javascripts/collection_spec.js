@@ -256,4 +256,22 @@ describe("Collection", function() {
         });
     });
 
+    describe("include", function() {
+        it("should return true if a value exists in an array", function() {
+            expect([1,2,3].include(2)).toBeTruthy();
+        });
+
+        it("should return false if a value does not exist in the array", function() {
+            expect([1,3,9].include(2)).toBeFalsy();
+        });
+
+        it("should work on objects", function() {
+            expect({ moe:1, larry:3, curly:9 }.include(3)).toBeTruthy();
+        });
+
+        it("should be aliased as contain", function() {
+            expect({ moe:1, larry:3, curly:9 }.contains(3)).toBeTruthy();
+        });
+    });
+
 });
