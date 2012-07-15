@@ -9,6 +9,8 @@
     //= require "object"
     //= require "collection"
     //= require "function"
+    //= require "number"
+    //= require "uniqueid"
 })(window,
     //### argsWithThis
     // Construct an array with the first item being `this` (Array instance) and the

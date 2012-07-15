@@ -60,6 +60,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
 
 ###String
  - isEmpty
+ - escape
 
 ###Function:
  - functions

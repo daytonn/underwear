@@ -93,3 +93,12 @@ if (typeof Object.prototype.tap === "undefined") {
         return _.tap.apply(this, args);
     };
 }
+
+//### String.escape
+if (typeof String.prototype.escape === "undefined") {
+    // Escapes a string for insertion into HTML, replacing &, <, >, ", ', and / characters.
+    String.prototype.escape = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.escape.apply(this, args);
+    };
+}

@@ -491,4 +491,10 @@ describe("Utilities", function() {
         });
     });
 
+    describe("escape", function() {
+        it("should escape a string with esacapeable characters", function() {
+            expect('Curly, Larry & Moe'.escape()).toEqual("Curly, Larry &amp; Moe");
+        });
+    });
+
 });
