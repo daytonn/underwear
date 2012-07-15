@@ -160,6 +160,46 @@ describe("Function", function() {
                 (function(){ equal(counter, 4, "incr was throttled"); }).delay(400);
             });
         });
+
+        it("should throttle a function with arguments", function() {
+            runs(function() {
+                var value = 0;
+                var update = function(val) { value = val; };
+                var throttledUpdate = update.throttle(100);
+                throttledUpdate(1);
+                throttledUpdate(2);
+                throttledUpdate(3);
+                setTimeout(function(){ throttledUpdate(4); }, 120);
+                setTimeout(function(){ throttledUpdate(5); }, 140);
+                setTimeout(function(){ throttledUpdate(6); }, 250);
+                (function(){ expect(value).toEqual(1); }).delay(40);
+                (function(){ expect(value).toEqual(6); }).delay(400);
+            });
+        });
+
+        it("should throttle a function once", function() {
+            runs(function() {
+                var counter = 0;
+                var incr = function(){ return ++counter; };
+                var throttledIncr = incr.throttle(100);
+                var result = throttledIncr();
+                (function(){
+                  expect(result).toEqual(1);
+                  expect(counter).toEqual(1);
+                }).delay(220);
+            });
+        });
+
+        it("should throttle twice", function() {
+            runs(function() {
+                var counter = 0;
+                var incr = function(){ counter++; };
+                var throttledIncr = incr.throttle(100);
+                throttledIncr();
+                throttledIncr();
+                (function(){ expect(counter).toEqual(2); }).delay(220);
+            });
+        });
     });
 
 });
