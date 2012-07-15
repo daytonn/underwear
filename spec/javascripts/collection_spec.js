@@ -329,4 +329,23 @@ describe("Collection", function() {
         });
     });
 
+    describe("sortBy", function() {
+        it("should sort with a comparator", function() {
+            var people = [{ name : 'curly', age : 50 }, { name : 'moe', age : 30 }];
+            people = people.sortBy(function(person){ return person.age; });
+            expect(people.pluck('name').join(', ')).toEqual('moe, curly');
+        });
+
+        it("should sortBy with undefined values", function() {
+            var list = [undefined, 4, 1, undefined, 3, 2];
+            expect(list.sortBy(_.identity).join(',')).toEqual('1,2,3,4,,');
+        });
+
+        it("should sortBy property if passed a string", function() {
+            var list = ["one", "two", "three", "four", "five"];
+            var sorted = list.sortBy('length');
+            expect(sorted.join(' ')).toEqual('one two four five three');
+        });
+    });
+
 });

@@ -65,6 +65,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'reject',
                                  'select',
                                  'some',
+                                 'sortBy',
                                  'tap',
                                  'values',
                                  'functions');

@@ -173,3 +173,12 @@ if (typeof Object.prototype.min === "undefined") {
         return _.min.apply(this, args);
     };
 }
+
+//### sortBy
+// Returns a sorted copy of list, ranked in ascending order by the results of running each value through iterator. Iterator may also be the string name of the property to sort by (eg. length).
+if (typeof Object.prototype.sortBy === "undefined") {
+    Object.prototype.sortBy = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.sortBy.apply(this, args);
+    };
+}
