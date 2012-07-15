@@ -92,12 +92,3 @@ if (typeof Function.prototype.compose === "undefined") {
         return _.compose.apply(this, args);
     };
 }
-
-//### after
-if (typeof Function.prototype.after === "undefined") {
-    // Creates a version of the function that will only be run after first being called count times. Useful for grouping asynchronous responses, where you want to be sure that all the async calls have finished, before proceeding.
-    Function.prototype.after = function() {
-        console.log(arguments[0]);
-        //return _.after.call(this, arguments[0], this);
-    };
-}
