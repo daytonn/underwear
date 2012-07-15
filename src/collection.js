@@ -111,3 +111,16 @@ if (typeof Object.prototype.every === "undefined") {
 if (typeof Object.prototype.all == 'undefined') {
     Object.prototype.all = Object.prototype.every;
 }
+
+//### some, any
+// Returns true if any of the values in the list pass the iterator truth test. Short-circuits and stops traversing the list if a true element is found. Delegates to the native method some, if present.
+if (typeof Object.prototype.some === "undefined") {
+    Object.prototype.some = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.some.apply(this, args);
+    };
+}
+
+if (typeof Object.prototype.any == 'undefined') {
+    Object.prototype.any = Object.prototype.some;
+}

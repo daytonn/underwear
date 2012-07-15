@@ -37,6 +37,7 @@ if (typeof Object.prototype.functions === "undefined") {
         var functions = _.functions.apply(this, args);
         // Filter out the methods that Underwear defines on the Object
         return functions.without('all',
+                                 'any',
                                  'clone',
                                  'collect',
                                  'defaults',
@@ -71,6 +72,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'reduceRight',
                                  'reject',
                                  'select',
+                                 'some',
                                  'tap',
                                  'values',
                                  'functions');

@@ -13,6 +13,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
 
 ### Array:
  - all (alias of `every`)
+ - any (alias of `some`)
  - collect
  - compact
  - detect (alias of `find`)
@@ -39,6 +40,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - tail
  - take
  - select (alias of `find`)
+ - some
  - union
  - uniq
  - without
@@ -53,6 +55,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
 
 ### Object:
  - all (alias of `every`)
+ - any (alias of `some`)
  - clone
  - collect (alias of `map`)
  - defaults
@@ -72,6 +75,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - reduceRight
  - reject
  - select (alias of `find`)
+ - some
  - tap
  - map
 

@@ -209,4 +209,51 @@ describe("Collection", function() {
 
     });
 
+    describe("some", function() {
+        var has_value;
+
+        beforeEach(function() {
+            has_value = function(value) {
+                return !!value;
+            };
+        });
+
+        it("should return false on an empty array", function() {
+            expect([].some(has_value)).toBeFalsy();
+        });
+
+        it("should return false with all false values", function() {
+            expect([false, false, false].some(has_value)).toBeFalsy();
+        });
+
+        it("should return true with one true value", function() {
+            expect([false, false, true].some(has_value)).toBeTruthy();
+        });
+
+        it("should return true with one string present", function() {
+            expect([null, 0, 'yes', false].some(has_value)).toBeTruthy();
+        });
+
+        it("should return false with falsy all values", function() {
+            expect([null, 0, '', false].some(has_value), 'falsy values');
+        });
+
+        it("should return false is no values return true from the iterator", function() {
+            expect([1, 11, 29].some(function(num){ return num % 2 === 0; })).toBeFalsy();
+        });
+
+        it("should return true when at least one value returns true from the iterator", function() {
+            expect([1, 10, 29].some(function(num){ return num % 2 === 0; })).toBeTruthy();
+        });
+
+        it("should convert values to boolean", function() {
+            expect([1].some(_.identity)).toBeTruthy();
+            expect([0].some(_.identity)).toBeFalsy();
+        });
+
+        it("should be aliased as any", function() {
+            expect([false, false, true].any()).toBeTruthy();
+        });
+    });
+
 });
