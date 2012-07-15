@@ -124,10 +124,12 @@ describe("Function", function() {
 
     describe("delay", function() {
         it("should delay a function call", function() {
-            var delayed = false;
-            (function() { delayed = true; }).delay(100);
-            setTimeout(function(){ expect(delayed).toBeFalsy(); }, 50);
-            setTimeout(function(){ expect(delayed).toBeTruthy(); }, 150);
+            runs(function() {
+                var delayed = false;
+                (function() { delayed = true; }).delay(100);
+                setTimeout(function(){ expect(delayed).toBeFalsy(); }, 50);
+                setTimeout(function(){ expect(delayed).toBeTruthy(); }, 150);
+            });
         });
     });
 
@@ -141,20 +143,22 @@ describe("Function", function() {
 
     describe("throttle", function() {
         it("should throttle a function", function() {
-            var counter = 0;
-            var incr = function(){ counter++; };
-            var throttledIncr = incr.throttle(100);
-            throttledIncr();
-            throttledIncr();
-            throttledIncr();
-            setTimeout(throttledIncr, 70);
-            setTimeout(throttledIncr, 120);
-            setTimeout(throttledIncr, 140);
-            setTimeout(throttledIncr, 190);
-            setTimeout(throttledIncr, 220);
-            setTimeout(throttledIncr, 240);
-            (function(){ expect(counter).toEqual(1); }).delay(30);
-            (function(){ equal(counter, 4, "incr was throttled"); }).delay(400);
+            runs(function() {
+                var counter = 0;
+                var incr = function(){ counter++; };
+                var throttledIncr = incr.throttle(100);
+                throttledIncr();
+                throttledIncr();
+                throttledIncr();
+                setTimeout(throttledIncr, 70);
+                setTimeout(throttledIncr, 120);
+                setTimeout(throttledIncr, 140);
+                setTimeout(throttledIncr, 190);
+                setTimeout(throttledIncr, 220);
+                setTimeout(throttledIncr, 240);
+                (function(){ expect(counter).toEqual(1); }).delay(30);
+                (function(){ equal(counter, 4, "incr was throttled"); }).delay(400);
+            });
         });
     });
 
