@@ -202,4 +202,52 @@ describe("Function", function() {
         });
     });
 
+    describe("debounce", function() {
+        it("should debounce a function", function() {
+            runs(function() {
+                var counter = 0;
+                var incr = function(){ counter++; };
+                var debouncedIncr = incr.debounce(50);
+                debouncedIncr();
+                debouncedIncr();
+                debouncedIncr();
+                setTimeout(debouncedIncr, 30);
+                setTimeout(debouncedIncr, 60);
+                setTimeout(debouncedIncr, 90);
+                setTimeout(debouncedIncr, 120);
+                setTimeout(debouncedIncr, 150);
+                (function(){ expect(counter).toEqual(1); }).delay(220);
+            });
+        });
+
+        it("should debounce as soon as possible", function() {
+            var counter = 0;
+            var incr = function(){ counter++; };
+            var debouncedIncr = incr.debounce(50, true);
+            debouncedIncr();
+            debouncedIncr();
+            debouncedIncr();
+            expect(counter).toEqual(1);
+            setTimeout(debouncedIncr, 30);
+            setTimeout(debouncedIncr, 60);
+            setTimeout(debouncedIncr, 90);
+            setTimeout(debouncedIncr, 120);
+            setTimeout(debouncedIncr, 150);
+            (function(){ expect(counter).toEqual(1); }).delay(220);
+        });
+
+        it("should debounce asap recursively", function() {
+            var counter = 0;
+            var debouncedIncr = (function(){
+              counter++;
+              if (counter < 5) {
+                  debouncedIncr();
+              }
+            }).debounce(50, true);
+            debouncedIncr();
+            (function(){ expect(counter).toEqual(1); }).delay(70);
+        });
+
+    });
+
 });

@@ -56,3 +56,12 @@ if (typeof Function.prototype.throttle === "undefined") {
         return _.throttle.apply(this, args);
     };
 }
+
+//### debounce
+if (typeof Function.prototype.debounce === "undefined") {
+    // Creates and returns a new debounced version of the passed function that will postpone its execution until after wait milliseconds have elapsed since the last time it was invoked. Useful for implementing behavior that should only happen after the input has stopped arriving. For example: rendering a preview of a Markdown comment, recalculating a layout after the window has stopped being resized, and so on.
+    Function.prototype.debounce = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.debounce.apply(this, args);
+    };
+}
