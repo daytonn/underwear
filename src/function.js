@@ -20,3 +20,12 @@ if (typeof Function.prototype.bindAll === "undefined") {
 if (typeof Object.prototype.bindAll === "undefined") {
     Object.prototype.bindAll = Function.prototype.bindAll;
 }
+
+//### memoize
+if (typeof Function.prototype.memoize === "undefined") {
+    // Memoizes a given function by caching the computed result. Useful for speeding up slow-running computations. If passed an optional hashFunction, it will be used to compute the hash key for storing the result, based on the arguments to the original function. The default hashFunction just uses the first argument to the memoized function as the key.
+    Function.prototype.memoize = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.memoize.apply(this, args);
+    };
+}

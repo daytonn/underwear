@@ -97,4 +97,29 @@ describe("Function", function() {
         });
     });
 
+    describe("memoize", function() {
+        var fib;
+
+        beforeEach(function() {
+            fib = function(n) {
+              return n < 2 ? n : fib(n - 1) + fib(n - 2);
+            };
+        });
+
+        it("should should get the same results as using the unmemoized function", function() {
+            var fastFib = fib.memoize();
+            expect(fib(10)).toEqual(55);
+        });
+
+        it("should check hasOwnProperty", function() {
+            var o = function(str) {
+              return str;
+            };
+
+            var fastO = o.memoize();
+            expect(o('toString')).toEqual('toString');
+            expect(fastO('toString')).toEqual('toString');
+        });
+    });
+
 });

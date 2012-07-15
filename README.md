@@ -65,6 +65,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - functions
  - bind (native if available)
  - bindAll
+ - memoize
 
 ### Object:
  - all (alias of `every`)
