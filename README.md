@@ -6,6 +6,8 @@ underscore methods.
 
 The entire Underscore,js library has been translated to extended prototypes. There are a few custom prototypes, and a handful of utility functions to provide an object oriented API for underscore methods.
 
+All the original QUnit tests have been translated to Jasmine specs and are passing ;)
+
 [Source Documentation](http://daytonn.github.com/underwear/docs/underwear.html)
 
 ##Extended prototypes:
