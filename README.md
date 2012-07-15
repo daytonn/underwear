@@ -47,6 +47,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - tail
  - take
  - select (alias of `find`)
+ - shuffle
  - some
  - sortBy
  - sortedIndex
@@ -92,6 +93,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - reduceRight
  - reject
  - select (alias of `find`)
+ - shuffle
  - some
  - sortBy
  - sortedIndex

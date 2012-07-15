@@ -200,3 +200,12 @@ if (typeof Object.prototype.sortedIndex === "undefined") {
         return _.sortedIndex.apply(this, args);
     };
 }
+
+//### shuffle
+// Returns a shuffled copy of the list, using a version of the [Fisher-Yates](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle "Fisher-Yates") shuffle.
+if (typeof Object.prototype.shuffle === "undefined") {
+    Object.prototype.shuffle = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.shuffle.apply(this, args);
+    };
+}

@@ -380,4 +380,27 @@ describe("Collection", function() {
         });
     });
 
+    describe("shuffle", function() {
+
+        var numbers;
+        var shuffled;
+
+        beforeEach(function() {
+            numbers = Array.range(10);
+            shuffled = numbers.shuffle();
+        });
+
+        it("should not modify original object", function() {
+            expect(numbers.join(', ')).toEqual('0, 1, 2, 3, 4, 5, 6, 7, 8, 9');
+        });
+
+        it("should contain the same members before and after shuffle", function() {
+            expect(shuffled.sort().join(',')).toEqual(numbers.join(','));
+        });
+
+        it("should shuffle the object", function() {
+            expect(shuffled == numbers).toBeFalsy();
+        });
+    });
+
 });
