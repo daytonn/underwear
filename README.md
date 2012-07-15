@@ -51,6 +51,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - some
  - sortBy
  - sortedIndex
+ - size
  - union
  - uniq
  - without
@@ -97,7 +98,9 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - some
  - sortBy
  - sortedIndex
+ - size
  - tap
+ - toArray
 
 
 ###Number:

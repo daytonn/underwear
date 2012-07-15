@@ -209,3 +209,21 @@ if (typeof Object.prototype.shuffle === "undefined") {
         return _.shuffle.apply(this, args);
     };
 }
+
+//### toArray
+// Converts the list (anything that can be iterated over), into a real Array. Useful for transmuting the arguments object.
+if (typeof Object.prototype.toArray === "undefined") {
+    Object.prototype.toArray = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.values.apply(this, args);
+    };
+}
+
+//### size
+// Return the number of values in the list.
+if (typeof Object.prototype.size === "undefined") {
+    Object.prototype.size = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.size.apply(this, args);
+    };
+}

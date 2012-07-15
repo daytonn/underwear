@@ -69,7 +69,9 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'sortBy',
                                  'sortedIndex',
                                  'shuffle',
+                                 'size',
                                  'tap',
+                                 'toArray',
                                  'values',
                                  'functions');
     };

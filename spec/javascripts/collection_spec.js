@@ -403,4 +403,44 @@ describe("Collection", function() {
         });
     });
 
+    describe("toArray", function() {
+        it("should convert arguments object to array", function() {
+            expect(isArray(arguments)).toBeFalsy();
+            expect(isArray(arguments.toArray())).toBeTruthy();
+        });
+
+        it("should clone an array", function() {
+            var a = [1,2,3];
+            expect(a.toArray() === a).toBeFalsy();
+            expect(a.toArray().join(', ')).toEqual('1, 2, 3');
+        });
+
+        it("should collect an object into an array", function() {
+            var obj = { one : 1, two : 2, three : 3 };
+            var numbers = obj.toArray();
+            expect(numbers.join(', ')).toEqual('1, 2, 3');
+        });
+
+        it("should work on objects with a toArray method", function() {
+            var objectWithToArrayFunction = {
+                toArray: function() {
+                    return [1, 2, 3];
+                }
+            };
+            expect(objectWithToArrayFunction.toArray().join(', ')).toEqual('1, 2, 3');
+        });
+
+    });
+
+    describe("size", function() {
+        it("should compute the size of an object", function() {
+            expect({ one : 1, two : 2, three : 3 }.size()).toEqual(3);
+        });
+
+        it("should compute the size of an array", function() {
+            expect([1, 2, 3].size()).toEqual(3);
+        });
+
+    });
+
 });
