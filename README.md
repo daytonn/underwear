@@ -66,6 +66,7 @@ QUnit tests to Jasmine specs and making all the tests pass.
  - bind (native if available)
  - bindAll
  - memoize
+ - defer
  - delay
 
 ### Object:

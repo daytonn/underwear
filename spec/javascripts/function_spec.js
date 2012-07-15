@@ -131,4 +131,12 @@ describe("Function", function() {
         });
     });
 
+    describe("defer", function() {
+        it("should defer the function", function() {
+            var deferred = false;
+            (function(bool){ deferred = bool; }).defer(true);
+            (function(){ expect(deferred).toBeTruthy(); start(); }).delay(50);
+        });
+    });
+
 });

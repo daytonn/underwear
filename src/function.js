@@ -38,3 +38,12 @@ if (typeof Function.prototype.delay === "undefined") {
         return _.delay.apply(this, args);
     };
 }
+
+//### defer
+if (typeof Function.prototype.defer === "undefined") {
+    // Defers invoking the function until the current call stack has cleared, similar to using setTimeout with a delay of 0. Useful for performing expensive computations or HTML rendering in chunks without blocking the UI thread from updating. If you pass the optional arguments, they will be forwarded on to the function when it is invoked.
+    Function.prototype.defer = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.defer.apply(this, args);
+    };
+}
