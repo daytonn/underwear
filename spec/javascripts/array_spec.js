@@ -41,7 +41,7 @@ describe("Array", function() {
             expect(ary.rest(0).join(', ')).toEqual('1, 2, 3, 4');
         });
 
-        it("returns the rest fromthe a specified index", function() {
+        it("returns the rest from the a specified index", function() {
             expect(ary.rest(2).join(', ')).toEqual('3, 4');
         });
 
