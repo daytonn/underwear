@@ -51,6 +51,12 @@ describe("Object", function() {
             expect( person.functions() ).toEqual(['speak']);
             expect( animal.functions() ).toEqual(['run']);
         });
+
+        it("should be aliased as methods", function() {
+            var obj = { a: 'dash', b: _.map, c: (/yo/), d: _.reduce };
+            expect( obj.methods() ).toEqual(['b', 'd']);
+        });
+
     });
 
     describe("extend", function() {

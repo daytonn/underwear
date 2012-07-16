@@ -29,7 +29,7 @@ if (typeof Object.prototype.values === "undefined") {
     };
 }
 
-//### functions
+//### functions, methods
 if (typeof Object.prototype.functions === "undefined") {
     // Returns a sorted list of the names of every method in an object — that is to say, the name of every function property of the object.
     Object.prototype.functions = function() {
@@ -59,6 +59,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'keys',
                                  'map',
                                  'max',
+                                 'methods',
                                  'min',
                                  'pick',
                                  'pluck',
@@ -78,6 +79,10 @@ if (typeof Object.prototype.functions === "undefined") {
     };
 
     Function.prototype.functions = Object.prototype.functions;
+}
+
+if (typeof Object.prototype.methods === "undefined") {
+    Object.prototype.methods = Object.prototype.functions;
 }
 
 //### extend
