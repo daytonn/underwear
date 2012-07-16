@@ -72,6 +72,7 @@ All the original QUnit tests have been translated to Jasmine specs and are passi
  - defer
  - delay
  - memoize
+ - methods
  - once
  - throttle
  - wrap
@@ -101,6 +102,7 @@ All the original QUnit tests have been translated to Jasmine specs and are passi
  - keys
  - map (native if available)
  - max
+ - methods
  - min
  - pick
  - pluck
