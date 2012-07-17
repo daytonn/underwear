@@ -36,7 +36,9 @@ task :publish do
   FileUtils.cp_r "lib/underwear.js", "#{tmpdir}/underwear.min.js"
   `git commit -am "Publish commit #{Time.now}"`
   `git checkout gh-pages`
-  FileUtils.cp_r "#{tmpdir}/*", target_dir
+  FileUtils.cp_r "#{tmpdir}/docs", target_dir
+  FileUtils.cp_r "#{tmpdir}/underwear.js", target_dir
+  FileUtils.cp_r "#{tmpdir}/underwear.min.js", target_dir
   FileUtils.rm_rf tmpdir
   `git commit -am "Publish commit #{Time.now}"`
   `git checkout master`
