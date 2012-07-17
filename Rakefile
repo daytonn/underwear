@@ -35,10 +35,10 @@ task :publish do
   FileUtils.cp_r "lib/underwear.js", build_dir
   `architect compile -c`
   FileUtils.cp_r "lib/underwear.js", "#{build_dir}/underwear.min.js"
-  FileUtils.rm_rf build_dir
   `git commit -am "Publish commit #{Time.now}"`
   `git checkout gh-pages`
   FileUtils.cp_r build_dir, target_dir
+  FileUtils.rm_rf build_dir
   `git commit -am "Publish commit #{Time.now}"`
   `git checkout master`
   puts "Underwear.js built in #{Time.now - begin_time}"
