@@ -27,7 +27,7 @@ task :publish do
   begin_time = Time.now
   tmpdir = Dir.mktmpdir
   build_dir = FileUtils.mkdir("#{tmpdir}/underwear").first
-  target_dir = File.expand_path '~/Downloads'
+  target_dir = File.expand_path '~/Development/underwear'
 
   `docco src/*.js`
   FileUtils.cp_r "docs", build_dir
@@ -39,5 +39,7 @@ task :publish do
   `git commit -am "Publish commit #{Time.now}"`
   `git checkout gh-pages`
   FileUtils.cp_r build_dir, target_dir
+  `git commit -am "Publish commit #{Time.now}"`
+  `git checkout master`
   puts "Underwear.js built in #{Time.now - begin_time}"
 end
