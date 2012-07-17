@@ -9,6 +9,7 @@ The entire Underscore,js library has been translated to extended prototypes. The
 All the original QUnit tests have been translated to Jasmine specs and are passing ;)
 
 [Source Documentation](http://daytonn.github.com/underwear/docs/underwear.html)
+[Documentation](https://github.com/daytonn/underwear/wiki)
 
 ##Extended prototypes:
 
@@ -141,4 +142,5 @@ All the original QUnit tests have been translated to Jasmine specs and are passi
  - isString
  - isUndefined
  - isDefined (Underwear.js addition)
+ - sequence
  - uniqueID
