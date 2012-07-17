@@ -1,4 +1,3 @@
-#require 'fileutils'
 begin
   require 'jasmine'
   load 'jasmine/tasks/jasmine.rake'
@@ -41,6 +40,7 @@ task :publish do
   FileUtils.cp_r "#{tmpdir}/underwear.min.js", target_dir
   FileUtils.rm_rf tmpdir
   `git commit -am "Publish commit #{Time.now}"`
+  `git push origin gh-pages`
   `git checkout master`
   puts "Underwear.js built in #{Time.now - begin_time}"
 end
