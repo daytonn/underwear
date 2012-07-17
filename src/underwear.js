@@ -10,7 +10,6 @@
     //= require "collection"
     //= require "function"
     //= require "number"
-    //= require "uniqueid"
     //= require "template"
 })(window,
     //### argsWithThis

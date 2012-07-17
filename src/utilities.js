@@ -57,6 +57,25 @@ Namespace.isUndefined = _.isUndefined;
 //### isDefined
 // Returns true if object is not undefined.
 Namespace.isUndefined = _.isUndefined;
+
+//### sequence
+// Starts a sequence starting at 0 and increments by 1 every time it's called.
+// In underwear.js `uniqueID` has a different implementation than `_.uniqueId`
+// To avoid confusion _.uniqueId has been renamed to `sequence` which is closer
+// to what it actually does
+Namespace.sequence = _.uniqueId;
+
+//## UniqueID
+Namespace.uniqueID = function() {
+
+    function S4() {
+       return ( ( ( 1 + Math.random() ) * 0x10000 ) | 0 ).toString(16).substring(1);
+    }
+
+    return S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4();
+
+};
+
 Namespace.isDefined = function(suspect) {
     return !_.isUndefined(suspect);
 }

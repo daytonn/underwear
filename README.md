@@ -123,12 +123,8 @@ All the original QUnit tests have been translated to Jasmine specs and are passi
 ###Number:
  - times
 
-##Custom prototypes
-
 ###Template:
  - render
-
-###UniqueID:
 
 ##Utilities
  - isEqual
@@ -145,3 +141,4 @@ All the original QUnit tests have been translated to Jasmine specs and are passi
  - isString
  - isUndefined
  - isDefined (Underwear.js addition)
+ - uniqueID
