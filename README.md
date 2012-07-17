@@ -96,6 +96,7 @@ All the original QUnit tests have been translated to Jasmine specs and are passi
  - foldr (alias of `reduceRight`)
  - functions
  - groupBy
+ - has
  - include
  - invoke
  - isEmpty

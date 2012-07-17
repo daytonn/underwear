@@ -166,4 +166,17 @@ describe("Object", function() {
 
     });
 
+    describe("has", function() {
+        it("should have an alias for hasOwnProperty", function() {
+            var foo = {
+                test: 'Hello',
+                method: function() {
+                    
+                }
+            };
+            expect(foo.has('test')).toBeTruthy();
+            expect(foo.has('method')).toBeTruthy();
+        });
+    });
+
 });

@@ -52,6 +52,7 @@ if (typeof Object.prototype.functions === "undefined") {
                                  'forEach',
                                  'foldr',
                                  'groupBy',
+                                 'has',
                                  'include',
                                  'inject',
                                  'invoke',
@@ -117,5 +118,14 @@ if (typeof Object.prototype.clone === "undefined") {
     // Create a shallow-copied clone of the object. Any nested objects or arrays will be copied by reference, not duplicated.
     Object.prototype.clone = function() {
         return _.clone(this);
+    };
+}
+
+//### has
+if (typeof Object.prototype.has === "undefined") {
+    // Does the object contain the given key? Identical to object.hasOwnProperty(key), but uses a safe reference to the hasOwnProperty function, in case it's been overridden accidentally.
+    Object.prototype.has = function() {
+        var args = argsWithThis.call(this, arguments);
+        return _.has.apply(this, args);
     };
 }
