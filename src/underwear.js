@@ -1,7 +1,7 @@
 // Pass a namespace (defaults to `window`) and an argsWithThis method into the closure.
 // This keeps Underwear's only method out of the global namespace and provides the
 // ability to namespace all global functions created by Underwear.
-(function(Namespace, argsWithThis) {
+;(function(Namespace, argsWithThis) {
     //= require "_underscore"
     var _ = Namespace._;
     //= require "utilities"
