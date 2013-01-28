@@ -4,143 +4,126 @@ Underwear [![](https://secure.travis-ci.org/daytonn/underwear.png?branch=master)
 Underwear is a library to extend javascript built-in prototypes with the
 underscore methods.
 
-The entire Underscore,js library has been translated to extended prototypes. There are a few custom prototypes, and a handful of utility functions to provide an object oriented API for underscore methods.
+The entire Underscore,js library has been translated to extended prototypes.
 
-All the original QUnit tests have been translated to Jasmine specs and are passing ;)
+All the original QUnit tests have been translated to Jasmine specs ;)
 
 * [Source Documentation](http://daytonn.github.com/underwear/docs/underwear.html)
-* [Documentation](https://github.com/daytonn/underwear/wiki)
 
 ##Extended prototypes:
 
 ### Array:
- - all (alias of `every`)
- - any (alias of `some`)
- - collect
- - contains (alias of `include`)
- - compact
- - detect (alias of `find`)
- - difference
- - each
- - every (native if available)
- - first
- - find
- - filter
- - foldr (alias of `foldr`)
- - forEach (native if available)
- - flatten
- - groupBy
- - include
- - indexOf (native if available)
- - initial
- - intersection
- - invoke
- - isEmpty
- - last
- - lastIndexOf (native if available)
- - map (native if available)
- - max
- - min
- - pluck
- - range (Class method: Array.range(a, b, c))
- - reduce (native if available)
- - reject
- - rest
- - tail
- - take
- - select (alias of `find`)
- - shuffle
- - some
- - sortBy
- - sortedIndex
- - size
- - union
- - uniq
- - without
- - zip
+ - [all](http://underscorejs.org/#every)
+ - [any](http://underscorejs.org/#some)
+ - [collect](http://underscorejs.org/#map)
+ - [compact](http://underscorejs.org/#compact)
+ - [contains](http://underscorejs.org/#contains)
+ - [countBy](http://underscorejs.org/#countBy)
+ - [detect](http://underscorejs.org/#find)
+ - [difference](http://underscorejs.org/#difference)
+ - [each](http://underscorejs.org/#each)
+ - [every](http://underscorejs.org/#every)
+ - [filter](http://underscorejs.org/#filter)
+ - [find](http://underscorejs.org/#find)
+ - [first](http://underscorejs.org/#first)
+ - [flatten](http://underscorejs.org/#flatten)
+ - [foldr](http://underscorejs.org/#reduceRight)
+ - [groupBy](http://underscorejs.org/#groupBy)
+ - [include](http://underscorejs.org/#contains)
+ - [indexOf](http://underscorejs.org/#indexOf)
+ - [initial](http://underscorejs.org/#initial)
+ - [inject](http://underscorejs.org/#reduce)
+ - [intersection](http://underscorejs.org/#intersection)
+ - [invoke](http://underscorejs.org/#invoke)
+ - [isEmpty](http://underscorejs.org/#isEmpty)
+ - [last](http://underscorejs.org/#last)
+ - [lastIndexOf](http://underscorejs.org/#lastIndexOf)
+ - [map](http://underscorejs.org/#map)
+ - [max](http://underscorejs.org/#max)
+ - [min](http://underscorejs.org/#min)
+ - [pluck](http://underscorejs.org/#pluck)
+ - [reduce](http://underscorejs.org/#reduce)
+ - [reduceRight](http://underscorejs.org/#reduceRight)
+ - [reject](http://underscorejs.org/#reject)
+ - [rest](http://underscorejs.org/#rest)
+ - [select](http://underscorejs.org/#map)
+ - [shuffle](http://underscorejs.org/#shuffle)
+ - [size](http://underscorejs.org/#size)
+ - [some](http://underscorejs.org/#some)
+ - [sortBy](http://underscorejs.org/#sortBy)
+ - [sortedIndex](http://underscorejs.org/#sortedIndex)
+ - [tail](http://underscorejs.org/#rest)
+ - [take](http://underscorejs.org/#first)
+ - [union](http://underscorejs.org/#union)
+ - [uniq](http://underscorejs.org/#uniq)
+ - [without](http://underscorejs.org/#without)
+ - [zip](http://underscorejs.org/#zip)
 
 
 ###String
- - isEmpty
- - escape
+ - isEmpty - (custom method that tests a string for emptiness)
+ - [escape](http://underscorejs.org/#escape)
 
 ###Function:
- - functions
- - bind (native if available)
- - bindAll
- - compose
- - debounce
- - defer
- - delay
- - memoize
- - methods
- - once
- - throttle
- - wrap
+ - [bind](http://underscorejs.org/#bind)
+ - [compose](http://underscorejs.org/#compose)
+ - [debounce](http://underscorejs.org/#debounce)
+ - [defer](http://underscorejs.org/#defer)
+ - [delay](http://underscorejs.org/#delay)
+ - [memoize](http://underscorejs.org/#memoize)
+ - [once](http://underscorejs.org/#once)
+ - [throttle](http://underscorejs.org/#throttle)
+ - [wrap](http://underscorejs.org/#wrap)
 
 ### Object:
- - all (alias of `every`)
- - any (alias of `some`)
- - bind
- - bindAll
- - clone
- - collect (alias of `map`)
- - contains (alias of `include`)
- - defaults
- - detect (alias of `find`)
- - each
- - every (native if available)
- - extend
- - find
- - filter
- - forEach
- - foldr (alias of `reduceRight`)
- - functions
- - groupBy
- - has
- - include
- - invoke
- - isEmpty
- - keys
- - map (native if available)
- - max
- - methods
- - min
- - pick
- - pluck
- - reduce
- - reduceRight
- - reject
- - select (alias of `find`)
- - shuffle
- - some
- - sortBy
- - sortedIndex
- - size
- - tap
- - toArray
-
-
-###Number:
- - times
+ - [all](http://underscorejs.org/#every)
+ - [any](http://underscorejs.org/#some)
+ - [bindAll](http://underscorejs.org/#bindAll)
+ - [clone](http://underscorejs.org/#clone)
+ - [collect](http://underscorejs.org/#map)
+ - [defaults](http://underscorejs.org/#defaults)
+ - [detect](http://underscorejs.org/#detect)
+ - [every](http://underscorejs.org/#every)
+ - [filter](http://underscorejs.org/#filter)
+ - [find](http://underscorejs.org/#find)
+ - [foldr](http://underscorejs.org/#reduceRight)
+ - [groupBy](http://underscorejs.org/#groupBy)
+ - [has](http://underscorejs.org/#has),
+ - [include](http://underscorejs.org/#contains)
+ - [inject](http://underscorejs.org/#reduce)
+ - [invoke](http://underscorejs.org/#invoke)
+ - [keys](http://underscorejs.org/#keys)
+ - [map](http://underscorejs.org/#map)
+ - [max](http://underscorejs.org/#max)
+ - [min](http://underscorejs.org/#min)
+ - [pick](http://underscorejs.org/#pick)
+ - [pluck](http://underscorejs.org/#pluck)
+ - [reduce](http://underscorejs.org/#reduce)
+ - [reduceRight](http://underscorejs.org/#reduceRight)
+ - [reject](http://underscorejs.org/#reject)
+ - [select](http://underscorejs.org/#map)
+ - [shuffle](http://underscorejs.org/#shuffle)
+ - [some](http://underscorejs.org/#some)
+ - [sortBy](http://underscorejs.org/#sortBy)
+ - [values](http://underscorejs.org/#values)
 
 ###Template:
- - render
+ - render - (custom Base class based on the [template](http://underscorejs.org/#template) function)
 
 ##Utilities
- - isEqual
- - isEmpty
- - isArguments
- - isBoolean
- - isDate
- - isElement
- - isFunction
- - isNaN
- - isNull
- - isNumber
- - isRegExp
- - isString
- - isUndefined
- - isDefined (Underwear.js addition)
- - sequence
- - uniqueID
+ - [isEqual](http://underscorejs.org/#isEqual)
+ - [isEmpty](http://underscorejs.org/#isEmpty)
+ - [isArguments](http://underscorejs.org/#isArguments)
+ - [isBoolean](http://underscorejs.org/#isBoolean)
+ - [isDate](http://underscorejs.org/#isDate)
+ - [isElement](http://underscorejs.org/#isElement)
+ - [isFunction](http://underscorejs.org/#isFunction)
+ - [isNaN](http://underscorejs.org/#isNaN)
+ - [isNull](http://underscorejs.org/#isNull)
+ - [isNumber](http://underscorejs.org/#isNumber)
+ - [isRegExp](http://underscorejs.org/#isRegExp)
+ - [isString](http://underscorejs.org/#isString)
+ - [isUndefined](http://underscorejs.org/#isUndefined)
+ - isDefined - (Underwear.js additional convenience method)
+ - [sequence](http://underscorejs.org/#uniqueId)
+ - uniqueID - Custom method to generate a unique-enough identifier

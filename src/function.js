@@ -1,18 +1,19 @@
 (function() {
 
+    // List of function methods we want to steal from Underscore
     var methods = [
         'bind',
-        'memoize',
-        'delay',
-        'defer',
-        'throttle',
+        'compose',
         'debounce',
+        'defer',
+        'delay',
+        'memoize',
         'once',
-        'wrap',
-        'compose'
+        'throttle',
+        'wrap'
     ];
 
-    // Copy each method to `Function.prototype`
+    // Copy methods to `Function.prototype`
     _.each(methods, function(method) {
       if (!Function.prototype[method]) {
           Function.prototype[method] = function() {

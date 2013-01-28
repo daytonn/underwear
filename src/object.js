@@ -42,14 +42,16 @@
       };
     });
 
-    // Filter out customed defined functions when listing an objects functions
+    //### functions
     Object.prototype.functions = function() {
+      // Filter out custom defined functions when listing an objects functions
       return _(_.functions.call(this, this)).reject(customDefinedMethods);
     };
 
-    // Return a list of all prototype methods
+    //### methods
     Object.prototype.methods = function() {
       var m = [];
+      // Return a list of all prototype methods
       for (var prop in Object.prototype) {
         if (this[prop].constructor == Function) {
           m.push(prop);
@@ -58,12 +60,15 @@
       return m;
     };
 
-    // Alias underscore's extend as `merge` to keep jQuery from crying
+    //### merge
     Object.prototype.merge = function() {
+      // Alias underscore's `extend` as `merge` to keep jQuery from crying
       return _.extend.apply(this, [this].concat(_.toArray(arguments)));
     };
 
     // Utility methods
+
+    //### isEmpty
     if (typeof Object.prototype.isEmpty === "undefined") {
         // Returns true if object contains no values.
         Object.prototype.isEmpty = function() {
@@ -71,6 +76,7 @@
         };
     }
 
+    //### tap
     if (typeof Object.prototype.tap === "undefined") {
         Object.prototype.tap = function() {
             return _.tap.apply(this, [this].concat(_.toArray(arguments)));

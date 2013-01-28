@@ -19,7 +19,8 @@ task :default => 'travis'
 
 
 task :docs do
-  puts `docco src/*.js`
+  FileUtils.rm_rf('docs') if File.exists? 'docs'
+  puts %x[docco #{Dir.glob('src/**/*.js').reject { |f| f.match(/^src\/under/) }.join(' ') }]
 end
 
 task :publish do

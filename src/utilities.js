@@ -65,7 +65,7 @@ isUndefined = _.isUndefined;
 // to what it actually does
 sequence = _.uniqueId;
 
-//## UniqueID
+//### uid
 function uid () {
 
     function S4() {
@@ -76,11 +76,12 @@ function uid () {
 
 };
 
+//### isDefined
 var isDefined = function(suspect) {
     return !_.isUndefined(suspect);
 }
 
-// String.isEmpty
+//### String.isEmpty
 if (typeof String.prototype.isEmpty === "undefined") {
     // Returns true if object contains no values.
     String.prototype.isEmpty = function() {
