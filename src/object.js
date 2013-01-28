@@ -1,131 +1,85 @@
-// Convenience method to filter out non objects and
-// throw an error on bad values
-function filterNonObjects(suspect, method) {
-    if (suspect.constructor == Object) {
-        return suspect;
-    }
-    else {
-        throw new Error(method + " called on a non-object");
-    }
-}
+(function() {
 
-//### keys
-if (typeof Object.prototype.keys === "undefined") {
-    // Retrieve all the names of the object's properties.
-    Object.prototype.keys = function() {
-        filterNonObjects(this, "Object.keys()");
-        var args = argsWithThis.call(this, arguments);
-        return _.keys.apply(this, args);
-    };
-}
+    // List of Underscore methods we want Object to have
+    var methods = [
+      'all',
+      'any',
+      'bindAll',
+      'clone',
+      'collect',
+      'defaults',
+      'detect',
+      'every',
+      'filter',
+      'find',
+      'foldr',
+      'groupBy',
+      'has',
+      'include',
+      'inject',
+      'invoke',
+      'keys',
+      'map',
+      'max',
+      'min',
+      'pick',
+      'pluck',
+      'reduce',
+      'reduceRight',
+      'reject',
+      'select',
+      'shuffle',
+      'some',
+      'sortBy',
+      'values'
+    ];
 
-//### values
-if (typeof Object.prototype.values === "undefined") {
-    // Return all of the values of the object's properties.
-    Object.prototype.values = function() {
-        filterNonObjects(this, "Object.values()");
-        var args = argsWithThis.call(this, arguments);
-        return _.values.apply(this, args);
-    };
-}
+    // Copy the Underscore methods to the `Object.prototype`
+    _.each(methods, function(method) {
+      if (Object.prototype[method]) { return; }
+      Object.prototype[method] = function() {
+        return _[method].apply(this, [this].concat(_.toArray(arguments)));
+      };
+    });
 
-//### functions, methods
-if (typeof Object.prototype.functions === "undefined") {
-    // Returns a sorted list of the names of every method in an object — that is to say, the name of every function property of the object.
+    // Filter out customed defined functions when listing an objects functions
     Object.prototype.functions = function() {
-        var args = argsWithThis.call(this, arguments);
-        var functions = _.functions.apply(this, args);
-        // Filter out the methods that Underwear defines on the Object
-        return functions.without('all',
-                                 'any',
-                                 'bindAll',
-                                 'clone',
-                                 'collect',
-                                 'contains',
-                                 'defaults',
-                                 'detect',
-                                 'each',
-                                 'every',
-                                 'extend',
-                                 'filter',
-                                 'find',
-                                 'forEach',
-                                 'foldr',
-                                 'groupBy',
-                                 'has',
-                                 'include',
-                                 'inject',
-                                 'invoke',
-                                 'isEmpty',
-                                 'keys',
-                                 'map',
-                                 'max',
-                                 'methods',
-                                 'min',
-                                 'pick',
-                                 'pluck',
-                                 'reduce',
-                                 'reduceRight',
-                                 'reject',
-                                 'select',
-                                 'some',
-                                 'sortBy',
-                                 'sortedIndex',
-                                 'shuffle',
-                                 'size',
-                                 'tap',
-                                 'toArray',
-                                 'values',
-                                 'functions');
+      return _(_.functions.call(this, this)).reject(customDefinedMethods);
     };
 
-    Function.prototype.functions = Object.prototype.functions;
-}
-
-if (typeof Object.prototype.methods === "undefined") {
-    Object.prototype.methods = Object.prototype.functions;
-}
-
-//### extend
-if (typeof Object.prototype.extend === "undefined") {
-    // Copy all of the properties in the source objects over to the destination object, and return the destination object. It's in-order, so the last source will override properties of the same name in previous arguments.
-    Object.prototype.extend = function() {
-        var args = argsWithThis.call(this, arguments);
-        return _.extend.apply(this, args);
+    // Return a list of all prototype methods
+    Object.prototype.methods = function() {
+      var m = [];
+      for (var prop in Object.prototype) {
+        if (this[prop].constructor == Function) {
+          m.push(prop);
+        }
+      }
+      return m;
     };
-}
 
-//### pick
-if (typeof Object.prototype.pick === "undefined") {
-    // Return a copy of the object, filtered to only have values for the whitelisted keys (or array of valid keys).
-    Object.prototype.pick = function() {
-        var args = argsWithThis.call(this, arguments);
-        return _.pick.apply(this, args);
+    // Alias underscore's extend as `merge` to keep jQuery from crying
+    Object.prototype.merge = function() {
+      return _.extend.apply(this, [this].concat(_.toArray(arguments)));
     };
-}
 
-//### defaults
-if (typeof Object.prototype.defaults === "undefined") {
-    // Fill in missing properties in object with default values from the defaults objects, and return the object. As soon as the property is filled, further defaults will have no effect.
-    Object.prototype.defaults = function() {
-        var args = argsWithThis.call(this, arguments);
-        return _.defaults.apply(this, args);
-    };
-}
+    // Utility methods
+    if (typeof Object.prototype.isEmpty === "undefined") {
+        // Returns true if object contains no values.
+        Object.prototype.isEmpty = function() {
+            return _.isEmpty.call(this, this);
+        };
+    }
 
-//### clone
-if (typeof Object.prototype.clone === "undefined") {
-    // Create a shallow-copied clone of the object. Any nested objects or arrays will be copied by reference, not duplicated.
-    Object.prototype.clone = function() {
-        return _.clone(this);
-    };
-}
+    if (typeof Object.prototype.tap === "undefined") {
+        Object.prototype.tap = function() {
+            return _.tap.apply(this, [this].concat(_.toArray(arguments)));
+        };
+    }
 
-//### has
-if (typeof Object.prototype.has === "undefined") {
-    // Does the object contain the given key? Identical to object.hasOwnProperty(key), but uses a safe reference to the hasOwnProperty function, in case it's been overridden accidentally.
-    Object.prototype.has = function() {
-        var args = argsWithThis.call(this, arguments);
-        return _.has.apply(this, args);
-    };
-}
+    function customDefinedMethods(func) {
+      var custom_methods = [methods, 'functions', 'methods', 'merge', 'each', 'forEach', 'isEmpty', 'tap'].flatten();
+      return _(custom_methods).contains(func);
+    }
+
+})();
