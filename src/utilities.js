@@ -1,72 +1,72 @@
 //### isEqual
 // Performs an optimized deep comparison between the two objects, to determine if they should be considered equal.
-Namespace.isEqual = _.isEqual;
+isEqual = _.isEqual;
 
 //### isArguments
 // Returns true if object is an Arguments object.
-Namespace.isArguments = _.isArguments;
+isArguments = _.isArguments;
 
 //### isObject
 // Returns true if value is an Object.
-Namespace.isObject = _.isObject;
+isObject = _.isObject;
 
 //### isArray
 // Returns true if object is an Array.
-Namespace.isArray = _.isArray;
+isArray = _.isArray;
 
 //### isString
 // Returns true if object is a String.
-Namespace.isString = _.isString;
+isString = _.isString;
 
 //### isNumber
 // Returns true if object is a Number (including NaN).
-Namespace.isNumber = _.isNumber;
+isNumber = _.isNumber;
 
 //### isBoolean
 // Returns true if object is either true or false.
-Namespace.isBoolean = _.isBoolean;
+isBoolean = _.isBoolean;
 
 //### isFunction
 // Returns true if object is a Function.
-Namespace.isFunction = _.isFunction;
+isFunction = _.isFunction;
 
 //### isDate
 // Returns true if object is a Date.
-Namespace.isDate = _.isDate;
+isDate = _.isDate;
 
 //### isRegExp
 // Returns true if object is a RegExp.
-Namespace.isRegExp = _.isRegExp;
+isRegExp = _.isRegExp;
 
 //### isNaN
 // Returns true if object is NaN.
-Namespace.isNaN = _.isNaN;
+isNaN = _.isNaN;
 
 //### isNull
 // Returns true if object is null.
-Namespace.isNull = _.isNull;
+isNull = _.isNull;
 
 //### isUndefined
 // Returns true if object is undefined.
-Namespace.isElement = _.isElement;
+isElement = _.isElement;
 
 //### isUndefined
 // Returns true if object is undefined.
-Namespace.isUndefined = _.isUndefined;
+isUndefined = _.isUndefined;
 
 //### isDefined
 // Returns true if object is not undefined.
-Namespace.isUndefined = _.isUndefined;
+isUndefined = _.isUndefined;
 
 //### sequence
 // Starts a sequence starting at 0 and increments by 1 every time it's called.
 // In underwear.js `uniqueID` has a different implementation than `_.uniqueId`
 // To avoid confusion _.uniqueId has been renamed to `sequence` which is closer
 // to what it actually does
-Namespace.sequence = _.uniqueId;
+sequence = _.uniqueId;
 
 //## UniqueID
-Namespace.uniqueID = function() {
+function uid () {
 
     function S4() {
        return ( ( ( 1 + Math.random() ) * 0x10000 ) | 0 ).toString(16).substring(1);
@@ -76,19 +76,11 @@ Namespace.uniqueID = function() {
 
 };
 
-Namespace.isDefined = function(suspect) {
+var isDefined = function(suspect) {
     return !_.isUndefined(suspect);
 }
 
-//### Array.isEmpty
-if (typeof Array.prototype.isEmpty === "undefined") {
-    // Returns true if object contains no values.
-    Array.prototype.isEmpty = function() {
-        return _.isEmpty.call(this, this);
-    };
-}
-
-//### String.isEmpty
+// String.isEmpty
 if (typeof String.prototype.isEmpty === "undefined") {
     // Returns true if object contains no values.
     String.prototype.isEmpty = function() {
@@ -96,28 +88,10 @@ if (typeof String.prototype.isEmpty === "undefined") {
     };
 }
 
-//### Object.isEmpty
-if (typeof Object.prototype.isEmpty === "undefined") {
-    // Returns true if object contains no values.
-    Object.prototype.isEmpty = function() {
-        return _.isEmpty.call(this, this);
-    };
-}
-
-//### Object.tap
-if (typeof Object.prototype.tap === "undefined") {
-    // 
-    Object.prototype.tap = function() {
-        var args = argsWithThis.call(this, arguments);
-        return _.tap.apply(this, args);
-    };
-}
-
 //### String.escape
 if (typeof String.prototype.escape === "undefined") {
     // Escapes a string for insertion into HTML, replacing &, <, >, ", ', and / characters.
     String.prototype.escape = function() {
-        var args = argsWithThis.call(this, arguments);
-        return _.escape.apply(this, args);
+        return _.escape.apply(this, [this].concat(_.toArray(arguments)));
     };
 }
