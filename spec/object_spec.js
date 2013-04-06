@@ -38,9 +38,7 @@ describe("Object", function() {
     describe("methods", function() {
 
         var prototypeMethods = [
-            'all',
             'any',
-            'bindAll',
             'clone',
             'collect',
             'defaults',
@@ -49,18 +47,13 @@ describe("Object", function() {
             'filter',
             'find',
             'foldr',
-            'functions',
             'groupBy',
             'has',
             'include',
             'inject',
-            'invoke',
-            'isEmpty',
             'keys',
             'map',
             'max',
-            'merge',
-            'methods',
             'min',
             'pick',
             'pluck',
@@ -71,13 +64,11 @@ describe("Object", function() {
             'shuffle',
             'some',
             'sortBy',
-            'tap',
             'values'
         ];
 
         it("returns the prototype methods excluding the instance methods", function() {
             var obj = { a: 'dash', b: _.map, c: (/yo/), d: _.reduce };
-            expect(obj.methods().length).toEqual(prototypeMethods.length);
             expect(_(obj.methods()).contains('b')).toBeFalse();
             expect(_(obj.methods()).contains('d')).toBeFalse();
         });
@@ -664,49 +655,6 @@ describe("Object", function() {
                 expect(Boundf().hello).toEqual("moe curly");
             });
         });
-
-        describe("bindAll", function() {
-            var curly;
-            var moe;
-
-            beforeEach(function() {
-                curly = { name: 'curly' };
-                moe = {
-                  name: 'moe',
-                  getName: function() { return 'name: ' + this.name; },
-                  sayHi: function() { return 'hi: ' + this.name; }
-                };
-            });
-
-            it("should bind an unbound function to the current object", function() {
-                curly.getName = moe.getName;
-                moe.bindAll('getName', 'sayHi');
-                curly.sayHi = moe.sayHi;
-                expect(curly.getName()).toEqual('name: curly');
-            });
-
-            it("should remain bound to the original object", function() {
-                curly.getName = moe.getName;
-                moe.bindAll('getName', 'sayHi');
-                curly.sayHi = moe.sayHi;
-                expect(curly.sayHi()).toEqual('hi: moe');
-            });
-
-            it("should bind all functions to the object with no arguments", function() {
-                curly.getName = moe.getName;
-                moe.bindAll('getName', 'sayHi');
-                curly.sayHi = moe.sayHi;
-                curly = {name : 'curly'};
-                moe = {
-                  name    : 'moe',
-                  getName : function() { return 'name: ' + this.name; },
-                  sayHi   : function() { return 'hi: ' + this.name; }
-                };
-                moe.bindAll();
-                curly.sayHi = moe.sayHi;
-                expect(curly.sayHi()).toEqual('hi: moe');
-            });
-        });
     });
 
 
@@ -718,28 +666,14 @@ describe("Object", function() {
                 expect({}.isEmpty()).toBeTruthy();
             });
         });
+    });
 
-        describe("tap", function() {
-            it("should", function() {
-                var intercepted = null;
-                var interceptor = function(obj) { intercepted = obj; };
-                var obj = { one: 1 };
-                var returned = obj.tap(interceptor);
-                expect(intercepted).toEqual({ one: 1 });
-                expect(returned).toEqual({ one: 1 });
-
-                // TODO remove the _().chain() method when the
-                // Collections.max method is implemented
-                returned = _([1,2,3]).chain().
-                  map(function(n){ return n * 2; }).
-                  max().
-                  tap(interceptor).
-                  value();
-                expect(returned).toEqual(6);
-                expect(intercepted).toEqual(6);
-            });
-        });
-
+    describe("Backbone compatability", function() {
+      it("should work with backbone", function() {
+        expect(function() {
+            var Model = Backbone.Model.extend();
+        }).not.toThrow();
+      });
     });
 
 });

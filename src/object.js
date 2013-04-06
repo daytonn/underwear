@@ -2,9 +2,8 @@
 
     // List of Underscore methods we want Object to have
     var methods = [
-      'all',
       'any',
-      'bindAll',
+      'all',
       'clone',
       'collect',
       'defaults',
@@ -76,15 +75,8 @@
         };
     }
 
-    //### tap
-    if (typeof Object.prototype.tap === "undefined") {
-        Object.prototype.tap = function() {
-            return _.tap.apply(this, [this].concat(_.toArray(arguments)));
-        };
-    }
-
     function customDefinedMethods(func) {
-      var custom_methods = [methods, 'functions', 'methods', 'merge', 'each', 'forEach', 'isEmpty', 'tap'].flatten();
+      var custom_methods = [methods, 'functions', 'methods', 'merge', 'isEmpty'].flatten();
       return _(custom_methods).contains(func);
     }
 

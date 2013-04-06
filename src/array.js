@@ -1,5 +1,4 @@
 (function() {
-
   // List of Underscore methods we want to copy to `Array.prototype`
   var methods = [
     "all",
@@ -10,7 +9,6 @@
     "countBy",
     "detect",
     "difference",
-    "each",
     "every",
     "filter",
     "find",
