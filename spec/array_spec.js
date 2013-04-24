@@ -283,7 +283,7 @@ describe("Array", function() {
         });
 
         describe("with three arguments", function() {
-            it("returns an array of numbers starting with an `seed` number, up to a `limit` increasing by `increments`", function() {
+            it("returns an array of numbers starting with a `seed` number, up to a `limit` increasing by `increments`", function() {
                 var seed = 3;
                 var limit = 10;
                 var increment = 3;
