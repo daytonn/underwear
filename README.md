@@ -117,7 +117,7 @@ All the utility methods have been created as global utility methods. These look 
  - [isUndefined](http://underscorejs.org/#isUndefined)
  - isDefined - (Underwear.js additional convenience method)
  - [sequence](http://underscorejs.org/#uniqueId)(More accurate naming of _.uniqueId)
- - uniqueID - (Underwear.js additional convenience method which generates a unique-enough identifier)
+ - uid - (Underwear.js additional convenience method which generates a unique-enough identifier)
 
  ```js
    var declaredVariable;
@@ -125,4 +125,8 @@ All the utility methods have been created as global utility methods. These look 
 
    isDefined(declaredVariable); // false
    isDefined(assignedVariable); // true
+ ```
+
+ ```js
+  uid(); // 675b8a07-f27f-ab7a-9905-496ac89b1eac
  ```
