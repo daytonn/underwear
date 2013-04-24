@@ -658,6 +658,13 @@ describe("Array", function() {
             });
         });
 
+        describe("isNotEmpty", function() {
+            it("should test arrays for fullness", function() {
+                expect([1].isNotEmpty()).toBeTrue();
+                expect([].isNotEmpty()).toBeFalse();
+            });
+        });
+
     });
 
 });

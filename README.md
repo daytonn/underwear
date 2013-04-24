@@ -66,6 +66,8 @@ becomes
  - [uniq](http://underscorejs.org/#uniq)
  - [without](http://underscorejs.org/#without)
  - [zip](http://underscorejs.org/#zip)
+ - [isEmpty](http://underscorejs.org/#isEmpty)
+ - isNotEmpty(Underwear.js additional convenience method which is the negated version of `isEmpty`)
 
 
 ###String

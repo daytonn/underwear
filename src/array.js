@@ -91,4 +91,11 @@
     };
   }
 
+  if (typeof Array.prototype.isNotEmpty === "undefined") {
+    // Returns true if object contains values.
+    Array.prototype.isNotEmpty = function() {
+        return !_.isEmpty.call(this, this);
+    };
+  }
+
 })();
