@@ -30,8 +30,8 @@ describe("Function", function() {
             runs(function() {
                 var delayed = false;
                 (function() { delayed = true; }).delay(100);
-                setTimeout(function(){ expect(delayed).toBeFalsy(); }, 50);
-                setTimeout(function(){ expect(delayed).toBeTruthy(); }, 150);
+                setTimeout(function(){ expect(delayed).toBeFalse(); }, 50);
+                setTimeout(function(){ expect(delayed).toBeTrue(); }, 150);
             });
         });
     });
@@ -40,7 +40,7 @@ describe("Function", function() {
         it("should defer the function", function() {
             var deferred = false;
             (function(bool){ deferred = bool; }).defer(true);
-            (function(){ expect(deferred).toBeTruthy(); }).delay(50);
+            (function(){ expect(deferred).toBeTrue(); }).delay(50);
         });
     });
 

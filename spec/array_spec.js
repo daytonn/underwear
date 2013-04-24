@@ -447,22 +447,22 @@ describe("Array", function() {
 
         describe("every", function() {
             it("returns true if all elements pass the truth test", function() {
-                expect([].every(_.identity)).toBeTruthy();
-                expect([true, true, true].every(_.identity)).toBeTruthy();
+                expect([].every(_.identity)).toBeTrue();
+                expect([true, true, true].every(_.identity)).toBeTrue();
 
-                expect([0, 10, 28].every(function(num){ return num % 2 === 0; })).toBeTruthy();
+                expect([0, 10, 28].every(function(num){ return num % 2 === 0; })).toBeTrue();
 
-                expect([1].every(_.identity) === true).toBeTruthy();
-                expect([0].every(_.identity) === false).toBeTruthy();
+                expect([1].every(_.identity) === true).toBeTrue();
+                expect([0].every(_.identity) === false).toBeTrue();
             });
 
             it("returns false if every element doesn't pass the truth test", function() {
-                expect([0, 11, 28].every(function(num){ return num % 2 === 0; })).toBeFalsy();
-                expect([true, false, true].every(_.identity)).toBeFalsy();
+                expect([0, 11, 28].every(function(num){ return num % 2 === 0; })).toBeFalse();
+                expect([true, false, true].every(_.identity)).toBeFalse();
             });
 
             it("is aliased as all", function() {
-                expect([true, true, true].all(_.identity)).toBeTruthy();
+                expect([true, true, true].all(_.identity)).toBeTrue();
             });
         });
 
@@ -476,19 +476,19 @@ describe("Array", function() {
             });
 
             it("returns false on an empty array", function() {
-                expect([].some(has_value)).toBeFalsy();
+                expect([].some(has_value)).toBeFalse();
             });
 
             it("returns false with all false values", function() {
-                expect([false, false, false].some(has_value)).toBeFalsy();
+                expect([false, false, false].some(has_value)).toBeFalse();
             });
 
             it("returns true with one true value", function() {
-                expect([false, false, true].some(has_value)).toBeTruthy();
+                expect([false, false, true].some(has_value)).toBeTrue();
             });
 
             it("returns true with one string present", function() {
-                expect([null, 0, 'yes', false].some(has_value)).toBeTruthy();
+                expect([null, 0, 'yes', false].some(has_value)).toBeTrue();
             });
 
             it("returns false with falsy all values", function() {
@@ -496,30 +496,30 @@ describe("Array", function() {
             });
 
             it("returns false if no values return true from the iterator", function() {
-                expect([1, 11, 29].some(function(num){ return num % 2 === 0; })).toBeFalsy();
+                expect([1, 11, 29].some(function(num){ return num % 2 === 0; })).toBeFalse();
             });
 
             it("returns true when at least one value returns true from the iterator", function() {
-                expect([1, 10, 29].some(function(num){ return num % 2 === 0; })).toBeTruthy();
+                expect([1, 10, 29].some(function(num){ return num % 2 === 0; })).toBeTrue();
             });
 
             it("converts values to boolean", function() {
-                expect([1].some(_.identity)).toBeTruthy();
-                expect([0].some(_.identity)).toBeFalsy();
+                expect([1].some(_.identity)).toBeTrue();
+                expect([0].some(_.identity)).toBeFalse();
             });
 
             it("is aliased as any", function() {
-                expect([false, false, true].any()).toBeTruthy();
+                expect([false, false, true].any()).toBeTrue();
             });
         });
 
         describe("include", function() {
             it("returns true if a value exists", function() {
-                expect([1,2,3].include(2)).toBeTruthy();
+                expect([1,2,3].include(2)).toBeTrue();
             });
 
             it("returns false if a value does not exist", function() {
-                expect([1,3,9].include(2)).toBeFalsy();
+                expect([1,3,9].include(2)).toBeFalse();
             });
         });
 
@@ -643,7 +643,7 @@ describe("Array", function() {
             });
 
             it("shuffles the array", function() {
-                expect(shuffled == numbers).toBeFalsy();
+                expect(shuffled == numbers).toBeFalse();
             });
         });
 
@@ -653,8 +653,8 @@ describe("Array", function() {
 
         describe("isEmpty", function() {
             it("should test arrays for emptiness", function() {
-                expect([1].isEmpty()).toBeFalsy();
-                expect([].isEmpty()).toBeTruthy();
+                expect([1].isEmpty()).toBeFalse();
+                expect([].isEmpty()).toBeTrue();
             });
         });
 
