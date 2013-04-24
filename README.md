@@ -13,6 +13,14 @@ All the original QUnit tests have been translated to Jasmine specs ;)
 ##Extended prototypes:
 
 ### Array:
+All the underscore Array methods can be used directly on an Array without the distracting `_` prefix. For example:
+
+`_.each([1, 2, 3], iterator)` or `_([1, 2, 3]).each(iterator)`
+
+becomes
+
+`[1, 2, 3].each(iterator)`
+
  - [all](http://underscorejs.org/#every)
  - [any](http://underscorejs.org/#some)
  - [collect](http://underscorejs.org/#map)
@@ -64,6 +72,11 @@ All the original QUnit tests have been translated to Jasmine specs ;)
  - isEmpty - (custom method that tests a string for emptiness)
  - [escape](http://underscorejs.org/#escape)
 
+ ```js
+   isEmpty(''); // true
+   isEmpty('Hello World'); //false
+ ```
+
 ###Function:
  - [bind](http://underscorejs.org/#bind)
  - [compose](http://underscorejs.org/#compose)
@@ -76,10 +89,15 @@ All the original QUnit tests have been translated to Jasmine specs ;)
  - [wrap](http://underscorejs.org/#wrap)
 
 ### Object:
-No Object methods are ported from underscore to the Object prototype. This is a terrible idea that pretty much fucks up any other js lib.
+No Object methods are ported from underscore to the Object prototype. Extending `Object.prototype` pretty much fucks every other js library up. This is why people tell you extending the prototype is bad.
 
 ###Template:
  - render - (custom Base class based on the [template](http://underscorejs.org/#template) function)
+
+ ```js
+   var myTemplate = new Template('Hello <%= subject %>!');
+   myTemplate.render({ subject: 'World' }); // Hello World!
+ ```
 
 ##Utilities
 All the utility methods have been created as global utility methods. These look much cleaner in conditionals.
@@ -100,3 +118,11 @@ All the utility methods have been created as global utility methods. These look 
  - isDefined - (Underwear.js additional convenience method)
  - [sequence](http://underscorejs.org/#uniqueId)(More accurate naming of _.uniqueId)
  - uniqueID - (Underwear.js additional convenience method which generates a unique-enough identifier)
+
+ ```js
+   var declaredVariable;
+   var assignedVariable = 'assigned';
+
+   isDefined(declaredVariable); // false
+   isDefined(assignedVariable); // true
+ ```
