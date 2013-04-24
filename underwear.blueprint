@@ -2,7 +2,7 @@ blueprint: default
 src_dir: src
 build_dir: lib
 asset_root: ../
-output: expanded
+output: compressed
 template_dir: templates
 template_namespace: templates
 name: underwear
