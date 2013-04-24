@@ -64,33 +64,31 @@
   if (!Array.range) {
     Array.range = function() {
       return _.range.apply([], arguments);
-    }
+    };
   }
 
   // List of native functions we wish to defer to
-  var nativeMethods = [
-    {
-        // ### each
-        // each is an alias of forEach if it exists
-        func: Array.prototype.forEach,
-        alias: 'each'
-    }
-  ];
+  var nativeMethods = [{
+    // ### each
+    // each is an alias of forEach if it exists
+    func: Array.prototype.forEach,
+    alias: 'each'
+  }];
 
   // Create aliases of native methods
   _.each(nativeMethods, function(nativeMethod) {
     if (nativeMethod.func) {
-        Array.prototype[nativeMethod.alias] = nativeMethod.func;
+      Array.prototype[nativeMethod.alias] = nativeMethod.func;
     }
   });
 
 // ## Utility methods
 
   if (typeof Array.prototype.isEmpty === "undefined") {
-      // Returns true if object contains no values.
-      Array.prototype.isEmpty = function() {
-          return _.isEmpty.call(this, this);
-      };
+    // Returns true if object contains no values.
+    Array.prototype.isEmpty = function() {
+        return _.isEmpty.call(this, this);
+    };
   }
 
 })();
