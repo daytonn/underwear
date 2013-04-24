@@ -76,41 +76,14 @@ All the original QUnit tests have been translated to Jasmine specs ;)
  - [wrap](http://underscorejs.org/#wrap)
 
 ### Object:
- - [all](http://underscorejs.org/#every)
- - [any](http://underscorejs.org/#some)
- - [bindAll](http://underscorejs.org/#bindAll)
- - [clone](http://underscorejs.org/#clone)
- - [collect](http://underscorejs.org/#map)
- - [defaults](http://underscorejs.org/#defaults)
- - [detect](http://underscorejs.org/#detect)
- - [every](http://underscorejs.org/#every)
- - [filter](http://underscorejs.org/#filter)
- - [find](http://underscorejs.org/#find)
- - [foldr](http://underscorejs.org/#reduceRight)
- - [groupBy](http://underscorejs.org/#groupBy)
- - [has](http://underscorejs.org/#has),
- - [include](http://underscorejs.org/#contains)
- - [inject](http://underscorejs.org/#reduce)
- - [invoke](http://underscorejs.org/#invoke)
- - [keys](http://underscorejs.org/#keys)
- - [map](http://underscorejs.org/#map)
- - [max](http://underscorejs.org/#max)
- - [min](http://underscorejs.org/#min)
- - [pick](http://underscorejs.org/#pick)
- - [pluck](http://underscorejs.org/#pluck)
- - [reduce](http://underscorejs.org/#reduce)
- - [reduceRight](http://underscorejs.org/#reduceRight)
- - [reject](http://underscorejs.org/#reject)
- - [select](http://underscorejs.org/#map)
- - [shuffle](http://underscorejs.org/#shuffle)
- - [some](http://underscorejs.org/#some)
- - [sortBy](http://underscorejs.org/#sortBy)
- - [values](http://underscorejs.org/#values)
+No Object methods are ported from underscore to the Object prototype. This is a terrible idea that pretty much fucks up any other js lib.
 
 ###Template:
  - render - (custom Base class based on the [template](http://underscorejs.org/#template) function)
 
 ##Utilities
+All the utility methods have been created as global utility methods. These look much cleaner in conditionals.
+
  - [isEqual](http://underscorejs.org/#isEqual)
  - [isEmpty](http://underscorejs.org/#isEmpty)
  - [isArguments](http://underscorejs.org/#isArguments)
@@ -125,5 +98,5 @@ All the original QUnit tests have been translated to Jasmine specs ;)
  - [isString](http://underscorejs.org/#isString)
  - [isUndefined](http://underscorejs.org/#isUndefined)
  - isDefined - (Underwear.js additional convenience method)
- - [sequence](http://underscorejs.org/#uniqueId)
- - uniqueID - Custom method to generate a unique-enough identifier
+ - [sequence](http://underscorejs.org/#uniqueId)(More accurate naming of _.uniqueId)
+ - uniqueID - (Underwear.js additional convenience method which generates a unique-enough identifier)
