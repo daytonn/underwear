@@ -370,7 +370,7 @@ describe("Array", function() {
       it("throws an error when reducing an empty array without the undefined flag", function() {
         expect(function() {
           [].reduce(function(){ });
-        }).toThrow('Reduce of empty array with no initial value');
+        }).toThrow();
       });
     });
 
@@ -397,7 +397,7 @@ describe("Array", function() {
       it("throws an error on empty arrays with no initial value", function() {
         expect(function() {
           [].reduceRight(function(){});
-        }).toThrow('Reduce of empty array with no initial value');
+        }).toThrow();
       });
 
       it("returns the first found `value`", function() {

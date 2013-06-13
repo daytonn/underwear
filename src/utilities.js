@@ -87,7 +87,7 @@ function uid () {
 
     return S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4();
 
-};
+}
 
 //### isDefined
 var isDefined = function(suspect) {
