@@ -1,3 +1,16 @@
+// Type checking methods that check the `suspect` against
+// the `constructor` and return a boolean value.
+
+//### isTypeof
+function isTypeof(constructor, suspect) {
+  return suspect.constructor == constructor;
+}
+
+//### isNotTypeof
+function isNotTypeof(constructor, suspect) {
+  return suspect.constructor != constructor;
+}
+
 //### isEqual
 // Performs an optimized deep comparison between the two objects, to determine if they should be considered equal.
 isEqual = _.isEqual;

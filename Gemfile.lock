@@ -23,6 +23,7 @@ GEM
     multi_json (1.7.2)
     rack (1.5.2)
     rake (10.0.4)
+    rb-fsevent (0.9.3)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -46,3 +47,4 @@ DEPENDENCIES
   architecture-js
   jasmine
   rake
+  rb-fsevent

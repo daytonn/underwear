@@ -1,5 +1,29 @@
 describe("Utilities", function() {
 
+    describe("isTypeof", function() {
+
+      it("can detect a string", function() {
+        expect(isTypeof(String, '')).toBeTrue();
+      });
+
+      it("can distinguish between an Array and an Object", function() {
+        expect(isTypeof(Array, [])).toBeTrue();
+        expect(isTypeof(Object, [])).toBeFalse();
+      });
+
+    });
+
+    describe("isNotTypeof", function() {
+      it("inverts detection", function() {
+        expect(isNotTypeof(Array, '')).toBeTrue();
+      });
+
+      it("can distinguish between an Array and an Object", function() {
+        expect(isNotTypeof(Object, [])).toBeTrue();
+        expect(isNotTypeof(Array, [])).toBeFalse();
+      });
+    });
+
     describe("isEqual", function() {
         function First() {
             this.value = 1;

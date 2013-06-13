@@ -52,19 +52,41 @@
   // Copy each method to `Array.prototype`
   _.each(methods, function(method) {
     if (Array.prototype[method]) { return; }
-    Array.prototype[method] = function() {
-      return _[method].apply(_, [this].concat(_.toArray(arguments)));
-    };
+    Object.defineProperty(Array.prototype, method, {
+      writeable: false,
+      configurable: false,
+      enumerable: false,
+      value: function() {
+        return _[method].apply(_, [this].concat(_.toArray(arguments)));
+      }
+    });
   });
 
+  if (!Array.prototype.sum) {
+    Object.defineProperty(Array.prototype, 'sum', {
+      writeable: false,
+      configurable: false,
+      enumerable: false,
+      value: function() {
+        return _.reduce(this, function(memo, num) {
+          return memo + num;
+        }, 0);
+      }
+    });
+  }
 
   // ### Array.range
   // `Array.range` is a "class" method on Array,
   // it's not meant to be used with the `new` keyword
   if (!Array.range) {
-    Array.range = function() {
-      return _.range.apply([], arguments);
-    };
+    Object.defineProperty(Array, 'range', {
+      writeable: false,
+      configurable: false,
+      enumerable: false,
+      value: function() {
+        return _.range.apply([], arguments);
+      }
+    });
   }
 
   // List of native functions we wish to defer to
@@ -78,7 +100,12 @@
   // Create aliases of native methods
   _.each(nativeMethods, function(nativeMethod) {
     if (nativeMethod.func) {
-      Array.prototype[nativeMethod.alias] = nativeMethod.func;
+      Object.defineProperty(Array.prototype, nativeMethod.alias, {
+        writeable: false,
+        configurable: false,
+        enumerable: false,
+        value: nativeMethod.func
+      });
     }
   });
 
@@ -86,16 +113,24 @@
 
   if (typeof Array.prototype.isEmpty === "undefined") {
     // Returns true if object contains no values.
-    Array.prototype.isEmpty = function() {
-        return _.isEmpty.call(this, this);
-    };
+    Object.defineProperty(Array.prototype, 'isEmpty', {
+      writeable: false,
+      configurable: false,
+      enumerable: false,
+      value: _.isEmpty.call(this, this)
+    });
   }
 
   if (typeof Array.prototype.isNotEmpty === "undefined") {
     // Returns true if object contains values.
-    Array.prototype.isNotEmpty = function() {
+    Object.defineProperty(Array.prototype, 'isNotEmpty', {
+      writeable: false,
+      configurable: false,
+      enumerable: false,
+      value: function() {
         return !_.isEmpty.call(this, this);
-    };
+      }
+    });
   }
 
 })();
