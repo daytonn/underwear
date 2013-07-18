@@ -91,7 +91,7 @@ becomes
  - [wrap](http://underscorejs.org/#wrap)
 
 ### Object:
-No Object methods are ported from underscore to the Object prototype. Extending `Object.prototype` pretty much fucks every other js library up. This is why people tell you extending the prototype is bad.
+Object method documentation is forthcoming
 
 ###Template:
  - render - (custom Base class based on the [template](http://underscorejs.org/#template) function)
