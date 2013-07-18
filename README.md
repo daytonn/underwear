@@ -111,7 +111,6 @@ All the utility methods have been created as global utility methods. These look 
  - [isDate](http://underscorejs.org/#isDate)
  - [isElement](http://underscorejs.org/#isElement)
  - [isFunction](http://underscorejs.org/#isFunction)
- - [isNaN](http://underscorejs.org/#isNaN)
  - [isNull](http://underscorejs.org/#isNull)
  - [isNumber](http://underscorejs.org/#isNumber)
  - [isRegExp](http://underscorejs.org/#isRegExp)
