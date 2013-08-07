@@ -1,6 +1,7 @@
 (function() {
 
   var methods = [
+    'each',
     'keys',
     'values',
     'pairs',

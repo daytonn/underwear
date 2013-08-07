@@ -10,6 +10,14 @@ describe("Object", function() {
     };
   });
 
+  describe("each", function() {
+    it("iterates over each value", function() {
+      obj.each(function(value, key) {
+        expect(value).toEqual(obj[key]);
+      });
+    });
+  });
+
   describe("keys", function() {
     it("returns an array of the object's keys", function() {
       expect(obj.keys()).toEqual(['one', 'two', 'three']);
