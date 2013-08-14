@@ -1,5 +1,5 @@
 //= require "utilities"
-//= require "array"
 //= require "object"
+//= require "array"
 //= require "function"
 //= require "template"
