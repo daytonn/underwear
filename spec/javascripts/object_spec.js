@@ -80,35 +80,4 @@ describe("Object", function() {
     });
   });
 
-  describe("tap", function() {
-
-    var intercepted;
-    var returned;
-    var interceptor;
-
-    beforeEach(function() {
-      interceptor = function(value) {
-        intercepted = value;
-      };
-      returned = obj.pick('one', 'two').tap(interceptor).omit('two');
-    });
-
-    it("taps into a method chain", function() {
-      expect(intercepted).toEqual({ one: 1, two: 2 });
-    });
-
-    it("can use tapped objects in a chain", function() {
-      returned = obj.values().map(function(n){ return n * 2; }).max().tap(interceptor).toString();
-      expect(returned).toEqual('6');
-      expect(intercepted).toEqual(6);
-    });
-  });
-
-  describe("defines", function() {
-    it("determines if an object contains a given key", function() {
-      expect(obj.defines('one')).toBeTrue();
-      expect(obj.defines('five')).toBeFalse();
-    });
-  });
-
 });

@@ -48,10 +48,24 @@
     "zip"
   ];
 
+  var deferredNativeMethods = [
+    "every",
+    "filter",
+    "indexOf",
+    "lastIndexOf",
+    "map",
+    "reduce",
+    "reduceRight",
+    "some"
+  ];
 
   // Copy each method to `Array.prototype`
   _.each(methods, function(method) {
-    if (Array.prototype[method]) { return; }
+    // Warn if we're going to overwrite a method that exists
+    if (Array.prototype[method] && !_(deferredNativeMethods).contains(method)) {
+      console.warn("Array.prototype." + method + " is being overwritten by underwear.js");
+    }
+
     Object.defineProperty(Array.prototype, method, {
       writeable: false,
       configurable: false,
@@ -89,7 +103,7 @@
     });
   }
 
-  // List of native functions we wish to defer to
+  // List of native functions we wish to alias
   var nativeMethods = [{
     // ### each
     // each is an alias of forEach if it exists
