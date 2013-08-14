@@ -62,7 +62,8 @@
   // Copy each method to `Array.prototype`
   _.each(methods, function(method) {
     // Warn if we're going to overwrite a method that exists
-    if (Array.prototype[method] && !_(deferredNativeMethods).contains(method)) {
+    if (Array.prototype[method]) {
+      if (!_(deferredNativeMethods).contains(method)) return;
       console.warn("Array.prototype." + method + " is being overwritten by underwear.js");
     }
 
