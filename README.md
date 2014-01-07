@@ -1,4 +1,4 @@
-Underwear [![](https://secure.travis-ci.org/daytonn/underwear.png?branch=master)](http://travis-ci.org/daytonn/underwear)
+Underwear
 =========
 
 Underwear is a library to extend javascript built-in prototypes with the
