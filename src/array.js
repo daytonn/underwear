@@ -90,6 +90,28 @@
     });
   }
 
+  if (!Array.prototype.second) {
+    Object.defineProperty(Array.prototype, 'second', {
+      writeable: false,
+      configurable: false,
+      enumerable: false,
+      value: function() {
+        return this[1];
+      }
+    });
+  }
+
+  if (!Array.prototype.third) {
+    Object.defineProperty(Array.prototype, 'third', {
+      writeable: false,
+      configurable: false,
+      enumerable: false,
+      value: function() {
+        return this[2];
+      }
+    });
+  }
+
   // ### Array.range
   // `Array.range` is a "class" method on Array,
   // it's not meant to be used with the `new` keyword
@@ -124,8 +146,7 @@
     }
   });
 
-// ## Utility methods
-
+  // ## Utility methods
   if (typeof Array.prototype.isEmpty === "undefined") {
     // Returns true if object contains no values.
     Object.defineProperty(Array.prototype, 'isEmpty', {

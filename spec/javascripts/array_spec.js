@@ -22,6 +22,28 @@ describe("Array", function() {
     });
   });
 
+  describe("second", function() {
+    var subject;
+    beforeEach(function() {
+      subject = [1,2,3];
+    });
+
+    it("returns the second element of the array", function() {
+      expect(subject.second()).toEqual(2);
+    });
+  });
+
+  describe("third", function() {
+    var subject;
+    beforeEach(function() {
+      subject = [1,2,3];
+    });
+
+    it("returns the third element of the array", function() {
+      expect(subject.third()).toEqual(3);
+    });
+  });
+
   describe("rest", function() {
     var ary;
 
