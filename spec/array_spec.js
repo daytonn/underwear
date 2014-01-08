@@ -338,12 +338,6 @@ describe("Array", function() {
         arry = [1, 2, 3];
       });
 
-      if (Array.prototype.forEach) {
-        it("it is an alias of forEach", function() {
-          expect(Array.prototype.each).toEqual(Array.prototype.forEach);
-        });
-      }
-
       it("provides a value and iteration count", function() {
         arry.each(function(num, i) {
           expect(num).toEqual(i + 1);

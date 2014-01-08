@@ -73,39 +73,20 @@ isUndefined = _.isUndefined;
 
 //### sequence
 // Starts a sequence starting at 0 and increments by 1 every time it's called.
-// In underwear.js `uniqueID` has a different implementation than `_.uniqueId`
+// In underwear.js `uid` has a different implementation than `_.uniqueId`
 // To avoid confusion _.uniqueId has been renamed to `sequence` which is closer
 // to what it actually does
 sequence = _.uniqueId;
 
 //### uid
-function uid () {
-
-    function S4() {
-       return ( ( ( 1 + Math.random() ) * 0x10000 ) | 0 ).toString(16).substring(1);
-    }
-
-    return S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4();
-
+function uid() {
+  function S4() {
+    return ((( 1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+  }
+  return S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4();
 }
 
 //### isDefined
-var isDefined = function(suspect) {
-    return !_.isUndefined(suspect);
-}
-
-//### String.isEmpty
-if (typeof String.prototype.isEmpty === "undefined") {
-    // Returns true if object contains no values.
-    String.prototype.isEmpty = function() {
-        return _.isEmpty(this);
-    };
-}
-
-//### String.escape
-if (typeof String.prototype.escape === "undefined") {
-    // Escapes a string for insertion into HTML, replacing &, <, >, ", ', and / characters.
-    String.prototype.escape = function() {
-        return _.escape.apply(this, [this].concat(_.toArray(arguments)));
-    };
+function isDefined(suspect) {
+  return !_.isUndefined(suspect);
 }
