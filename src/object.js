@@ -5,7 +5,7 @@
   // play nicely on the prototype
   var methods = [
     'each', 'keys', 'values', 'pairs', 'invert',
-    'functions', 'pick', 'omit', 'defaults'
+    'functions', 'pick', 'omit', 'defaults', 'map'
   ];
 
   // Copy each method to `Object.prototype`
@@ -36,4 +36,16 @@
 
   // `obj.defines("one"); // true`
 
+  //### bindAll
+  // This method binds all of the objects functions to it's own
+  // `this` context. Making `_.bindAll(this, [...methods]);` obsolute
+  uw.defineMethod(Object.prototype, "bindAll", function() {
+    var context = this;
+    _.functions(this).each(function(func) {
+      var original = context[func];
+      context[func] = function() {
+        return original.apply(context, arguments);
+      };
+    });
+  });
 })();
