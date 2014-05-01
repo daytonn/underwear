@@ -1,6 +1,7 @@
 var browserify = require('gulp-browserify');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
+var docco = require('gulp-docco');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
@@ -19,6 +20,12 @@ function compileLib(lib) {
     .pipe(gulp.dest('dist'));
 }
 
+function buildDocs() {
+  return gulp.src("lib/*.js")
+    .pipe(docco({ layout: 'linear' }))
+    .pipe(gulp.dest('docs'));
+}
+
 gulp.task('build', function() {
   [
     "array",
@@ -30,4 +37,5 @@ gulp.task('build', function() {
     compileLib(lib);
     minifyLib(lib);
   });
+  return buildDocs();
 });
