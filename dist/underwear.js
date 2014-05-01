@@ -1,3 +1,144 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var uw = require('./underwear-util');
+
+//## Array methods
+// List of Underscore's [Array methods](http://underscorejs.org/#arrays) we want to copy to `Array.prototype`
+var methods = [
+  "all", "any", "collect", "compact", "contains", "countBy",
+  "detect", "difference", "each", "every", "filter", "find", "first",
+  "flatten", "foldr", "groupBy", "include", "indexOf", "initial",
+  "inject", "intersection", "invoke", "isEmpty", "last", "lastIndexOf",
+  "map", "max", "min", "pluck", "reduce", "reduceRight", "reject",
+  "rest", "select", "shuffle", "size", "some", "sortBy", "sortedIndex",
+  "tail", "take", "toArray", "union", "uniq", "without", "zip"
+];
+
+// Copy each method to `Array.prototype`
+_.each(methods, function(method) {
+  uw.defineMethod(Array.prototype, method, function() {
+    return _[method].apply(_, [this].concat(_.toArray(arguments)));
+  });
+});
+
+//### sum
+uw.defineMethod(Array.prototype, 'sum', function() {
+  // `[1, 2, 3].sum(); // 6`
+  return _.reduce(this, function(memo, num) {
+    return memo + num;
+  }, 0);
+});
+
+//### second
+// Because the getting at the second item is usually as handy as `first`
+uw.defineMethod(Array.prototype, 'second', function() {
+  // `[1, 2, 3].second(); // 2`
+  return this[1];
+});
+
+//### third
+// Because it just seems right to have a `third` method
+uw.defineMethod(Array.prototype, 'third', function() {
+  // `[1, 2, 3].third(); // 3`
+  return this[2];
+});
+
+//### isEmpty
+uw.defineMethod(Array.prototype, 'isEmpty', function() {
+  // `[].isEmpty(); // true`
+  //
+  // `[1, 2, 3].isEmpty(); // false`
+  return _.isEmpty.call(this, this);
+});
+
+//### isNotEmpty
+uw.defineMethod(Array.prototype, 'isNotEmpty', function() {
+  // `[].isNotEmpty(); // false`
+  //
+  // `[1, 2, 3].isNotEmpty(); // true`
+  return !_.isEmpty.call(this, this);
+});
+
+// ### Array.range
+// `Array.range` is a "class" method on Array,
+// it's not meant to be used with the `new` keyword
+uw.defineMethod(Array, 'range', function() {
+  // `Array.range(3); // [0, 1, 2]`
+  return _.range.apply([], arguments);
+});
+
+},{"./underwear-util":6}],2:[function(require,module,exports){
+//### defineProperty polyfill
+// Blatantly stolen from [https://github.com/inexorabletash/polyfill](https://github.com/inexorabletash/polyfill)
+// ES 15.2.3.6 Object.defineProperty ( O, P, Attributes )
+// Partial support for most common case - getters, setters, and values
+if (!Object.defineProperty || !(function () { try { Object.defineProperty({}, 'x', {}); return true; } catch (e) { return false; } } ())) {
+  var orig = Object.defineProperty;
+  Object.defineProperty = function (o, prop, desc) {
+    // In IE8 try built-in implementation for defining properties on DOM prototypes.
+    if (orig) {
+      try { return orig(o, prop, desc); } catch (e) {}
+    }
+    if (o !== Object(o)) { throw new Error("Object.defineProperty called on non-object"); }
+    if (Object.prototype.__defineGetter__ && ('get' in desc)) {
+      Object.prototype.__defineGetter__.call(o, prop, desc.get);
+    }
+    if (Object.prototype.__defineSetter__ && ('set' in desc)) {
+      Object.prototype.__defineSetter__.call(o, prop, desc.set);
+    }
+    if ('value' in desc) {
+      o[prop] = desc.value;
+    }
+    return o;
+  };
+}
+
+},{}],3:[function(require,module,exports){
+require('./define-property');
+require('./utilities');
+require('./object');
+require('./array');
+require('./string');
+
+},{"./array":1,"./define-property":2,"./object":4,"./string":5,"./utilities":7}],4:[function(require,module,exports){
+var uw = require('./underwear-util');
+//## Object methods
+// Only a limited number of Underscore's
+// [Object methods](http://underscorejs.org/#objects)
+// play nicely on the prototype
+var methods = [
+  'keys', 'values', 'pairs', 'invert',
+  'functions', 'pick', 'omit', 'defaults', 'map'
+];
+
+// Copy each method to `Object.prototype`
+_.each(methods, function(method) {
+  uw.defineMethod(Object.prototype, method, function() {
+    return _[method].apply(this, [this].concat(_.toArray(arguments)));
+  });
+});
+
+//### aliases
+// These methods do not play nicely with other libriaries
+// but are too handy to forego, so we make aliases
+var aliases = { extend: 'mixin', clone: 'dup', has: 'defines' };
+
+// Iterate over the aliases and copy them to the prototype
+_.each(aliases, function(alias, method) {
+  uw.defineMethod(Object.prototype, alias, function() {
+    return _[method].apply(this, [this].concat(_.toArray(arguments)));
+  });
+});
+
+//#### Examples
+// `var obj = { one: 1 };`
+
+// `obj.mixin({ two: 2 }); // { one: 1, two: 2 }`
+
+// `obj.clone(); // { one: 1 }`
+
+// `obj.defines("one"); // true`
+
+},{"./underwear-util":6}],5:[function(require,module,exports){
 var uw = require('./underwear-util');
 //## String methods
 
@@ -318,3 +459,139 @@ uw.defineAlias(String.prototype, "ltrim", "lstrip");
 // `" hello ".rtrim(); // ' hello'`
 uw.defineAlias(String.prototype, "rtrim", "rstrip");
 
+
+},{"./underwear-util":6}],6:[function(require,module,exports){
+module.exports = {
+  //### defineMethod
+  // Defines a method on the given object with the defineProperty
+  // method with the appropriate properties for an inherited method
+  //
+  // `uw.defineMethod(Object.prototype, "foo", function() {});`
+  defineMethod: function(prototype, method, func) {
+    if (!prototype[method]) {
+      Object.defineProperty(prototype, method, {
+        writeable: false,
+        configurable: false,
+        enumerable: false,
+        value: func
+      });
+    }
+  },
+
+  //### defineMethod
+  // Defines an alias of a given method on the given object
+  // with the defineProperty method with the appropriate
+  // properties for an inherited method
+  //
+  // `uw.defineAlias(Arrat.prototype, "reverse", "backwards");`
+  defineAlias: function(prototype, method, alias) {
+    if (prototype[method]) {
+      Object.defineProperty(prototype, alias, {
+        writeable: false,
+        configurable: false,
+        enumerable: false,
+        value: prototype[method]
+      });
+    }
+  },
+
+  //### requiresUnderscore
+  // Throw an error if underscore is required for a given method
+  //
+  // uw.requiresUnderscore("foo");
+  requiresUnderscore: function(method) {
+    if (typeof _ === 'undefined') {
+      throw new Error(method + ' requires underscore.js');
+    }
+  }
+};
+
+},{}],7:[function(require,module,exports){
+(function (global){
+// Type checking methods that check the `suspect` against
+// the `constructor` and return a boolean value.
+
+//### isTypeof
+global.isTypeof = function isTypeof(constructor, suspect) {
+  return suspect.constructor === constructor;
+};
+
+//### isNotTypeof
+global.isNotTypeof = function isNotTypeof(constructor, suspect) {
+  return suspect.constructor !== constructor;
+};
+
+//### isDefined
+global.isDefined = function isDefined(suspect) {
+  return !_.isUndefined(suspect);
+};
+
+//### isEqual
+// Performs an optimized deep comparison between the two objects, to determine if they should be considered equal.
+global.isEqual = _.isEqual;
+
+//### isArguments
+// Returns true if object is an Arguments object.
+global.isArguments = _.isArguments;
+
+//### isObject
+// Returns true if value is an Object.
+global.isObject = _.isObject;
+
+//### isArray
+// Returns true if object is an Array.
+global.isArray = _.isArray;
+
+//### isString
+// Returns true if object is a String.
+global.isString = _.isString;
+
+//### isNumber
+// Returns true if object is a Number (including NaN).
+global.isNumber = _.isNumber;
+
+//### isBoolean
+// Returns true if object is either true or false.
+global.isBoolean = _.isBoolean;
+
+//### isFunction
+// Returns true if object is a Function.
+global.isFunction = _.isFunction;
+
+//### isDate
+// Returns true if object is a Date.
+global.isDate = _.isDate;
+
+//### isRegExp
+// Returns true if object is a RegExp.
+global.isRegExp = _.isRegExp;
+
+//### isNaN
+// Returns true if object is NaN.
+global.isNaN = _.isNaN;
+
+//### isNull
+// Returns true if object is null.
+global.isNull = _.isNull;
+
+//### isUndefined
+// Returns true if object is undefined.
+global.isElement = _.isElement;
+
+//### isUndefined
+// Returns true if object is undefined.
+global.isUndefined = _.isUndefined;
+
+//### isDefined
+// Returns true if object is not undefined.
+global.isUndefined = _.isUndefined;
+
+//### sequence
+// Starts a sequence starting at 0 and increments by 1 every time it's called.
+// In underwear.js `uid` has a different implementation than `_.uniqueId`
+// To avoid confusion _.uniqueId has been renamed to `sequence` which is closer
+// to what it actually does
+global.sequence = _.uniqueId;
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}]},{},[3])

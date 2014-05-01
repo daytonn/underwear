@@ -1,0 +1,27 @@
+{
+  "name": "underwear",
+  "version": "0.5.0",
+  "homepage": "https://github.com/daytonn/underwear",
+  "authors": [
+    "Dayton Nolan <daytonn@gmail.com>"
+  ],
+  "description": "Underwear translates most of the Underscore methods to the native JavaScript prototypes.",
+  "main": "lib/underwear.js",
+  "keywords": [
+    "underscore",
+    "utility",
+    "enumeration",
+    "functional"
+  ],
+  "license": "Apache 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "underscore": "~1.6.0"
+  }
+}

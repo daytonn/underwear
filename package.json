@@ -1,0 +1,45 @@
+{
+  "name": "underwear",
+  "version": "0.5.0",
+  "description": "Underwear translates most of the Underscore methods to the native JavaScript prototypes.",
+  "main": "lib/underwear.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "mocha spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/daytonn/underwear.git"
+  },
+  "keywords": [
+    "underscore",
+    "utility",
+    "enumeration",
+    "functional"
+  ],
+  "author": "Dayton Nolan",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/daytonn/underwear/issues"
+  },
+  "homepage": "https://github.com/daytonn/underwear",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "chai-fuzzy": "^1.4.0",
+    "gulp": "^3.6.2",
+    "gulp-browserify": "^0.5.0",
+    "gulp-clean": "^0.2.4",
+    "gulp-concat": "^2.2.0",
+    "gulp-docco": "0.0.4",
+    "gulp-if": "^1.1.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-tar": "^0.3.0",
+    "gulp-uglify": "^0.2.1",
+    "gulp-util": "^2.2.14",
+    "mocha": "^1.18.2",
+    "node-inspector": "^0.7.3",
+    "underscore": "^1.6.0"
+  }
+}
