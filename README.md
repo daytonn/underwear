@@ -1,5 +1,6 @@
 Underwear
 =========
+![image](https://www.codeship.io/projects/d5afe640-b3bd-0131-22f9-120d16a45ad0/status)
 
 Underwear started as a library to extend javascript built-in prototypes with underscore methods. It has evolved into a library that extends javascript with underscore and other custom methods and helpers. 
 
