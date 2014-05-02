@@ -1,7 +1,3 @@
-require("./spec_helper");
-var _ = require("underscore");
-require("../lib/utilities");
-
 describe("Utilities", function() {
   describe("isTypeof", function() {
     it("can detect a string", function() {

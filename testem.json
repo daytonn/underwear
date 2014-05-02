@@ -1,0 +1,5 @@
+{
+  "test_page": "tmp/runner.html",
+  "launch_in_dev": ["Chrome", "Safari", "Firefox", "Opera"],
+  "launch_in_ci": ["Chrome"]
+}

@@ -1,5 +1,3 @@
-require("./spec_helper");
-
 describe("String extensions", function() {
   describe("capitalize", function() {
     it("capitalizes a string", function() {

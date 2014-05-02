@@ -1,6 +1,3 @@
-require("./spec_helper");
-var uw = require("../lib/underwear-util");
-
 describe("uw", function() {
   var subject;
   beforeEach(function() {

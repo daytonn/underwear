@@ -1,9 +1,11 @@
-global._ = require('underscore');
 var chai = require('chai');
-global.expect = chai.expect;
-global.should = chai.should();
+var context = global || this;
+context._ = require("underscore");
+context.expect = chai.expect;
+context.should = chai.should();
+context.uw = require("../lib/underwear-util");
 chai.use(require('chai-fuzzy'));
-require('../dist/utilities');
-require('../dist/object');
-require('../dist/array');
-require('../dist/string');
+require("../lib/array");
+require("../lib/object");
+require("../lib/string");
+require("../lib/utilities");
