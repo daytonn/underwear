@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>underwear-util.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>underwear-util.js</h1>
+        
+
+        
+      </div>
+
+      
+        
+        
+        
+          <div class='highlight'><pre>module.exports = {</pre></div>
+        
+      
+        
+        <h3 id="definemethod">defineMethod</h3>
+<p>Defines a method on the given object with the defineProperty
+method with the appropriate properties for an inherited method</p>
+<p><code>uw.defineMethod(Object.prototype, &quot;foo&quot;, function() {});</code></p>
+
+        
+          <div class='highlight'><pre>  defineMethod: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(prototype, method, func)</span> {</span>
+    <span class="hljs-keyword">if</span> (!prototype[method]) {
+      <span class="hljs-built_in">Object</span>.defineProperty(prototype, method, {
+        writeable: <span class="hljs-literal">false</span>,
+        configurable: <span class="hljs-literal">false</span>,
+        enumerable: <span class="hljs-literal">false</span>,
+        value: func
+      });
+    }
+  },</pre></div>
+        
+      
+        
+        <h3 id="definemethod">defineMethod</h3>
+<p>Defines an alias of a given method on the given object
+with the defineProperty method with the appropriate
+properties for an inherited method</p>
+<p><code>uw.defineAlias(Arrat.prototype, &quot;reverse&quot;, &quot;backwards&quot;);</code></p>
+
+        
+          <div class='highlight'><pre>  defineAlias: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(prototype, method, alias)</span> {</span>
+    <span class="hljs-keyword">if</span> (prototype[method]) {
+      <span class="hljs-built_in">Object</span>.defineProperty(prototype, alias, {
+        writeable: <span class="hljs-literal">false</span>,
+        configurable: <span class="hljs-literal">false</span>,
+        enumerable: <span class="hljs-literal">false</span>,
+        value: prototype[method]
+      });
+    }
+  },</pre></div>
+        
+      
+        
+        <h3 id="requiresunderscore">requiresUnderscore</h3>
+<p>Throw an error if underscore is required for a given method</p>
+<p>uw.requiresUnderscore(“foo”);</p>
+
+        
+          <div class='highlight'><pre>  requiresUnderscore: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(method)</span> {</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> _ === <span class="hljs-string">'undefined'</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(method + <span class="hljs-string">' requires underscore.js'</span>);
+    }
+  }
+};</pre></div>
+        
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>string.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>string.js</h1>
+        
+
+        
+      </div>
+
+      
+        
+        
+        
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> uw = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./underwear-util'</span>);</pre></div>
+        
+      
+        
+        <h2 id="string-methods">String methods</h2>
+
+        
+      
+        
+        <h3 id="capitalize">capitalize</h3>
+<p>Capitalizes the string</p>
+<p><code>&quot;hello&quot;.capitalize(); // Hello</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"capitalize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  uw.requiresUnderscore(<span class="hljs-string">"capitalize"</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.charAt(<span class="hljs-number">0</span>).toUpperCase() + <span class="hljs-keyword">this</span>.slice(<span class="hljs-number">1</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="trim">trim</h3>
+<p>Trims whitespace on either side of the string</p>
+<p><code>&quot; hello &quot;.trim(); // &#39;hello&#39;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"trim"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/^\s+(.+)\s+$/</span>, <span class="hljs-string">"$1"</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="ltrim">ltrim</h3>
+<p>Trims whitespace on the left-hand side of the string</p>
+<p><code>&quot; hello &quot;.ltrim(); // &#39;hello &#39;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"ltrim"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/^\s+/</span>, <span class="hljs-string">""</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="rtrim">rtrim</h3>
+<p>Trims whitespace on the right-hand side of the string</p>
+<p><code>&quot; hello &quot;.rtrim(); // &#39; hello&#39;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"rtrim"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">""</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="compact">compact</h3>
+<p>Removes all white space in the string</p>
+<p><code>&quot; he ll o &quot;.compact(); // &#39;hello&#39;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"compact"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/\s/g</span>, <span class="hljs-string">""</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="singlespace">singleSpace</h3>
+<p>Removes any double spacing, and trims the string</p>
+<p><code>&quot; hello    world &quot;.singleSpace(); // &#39;hello world&#39;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"singleSpace"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.trim().replace(<span class="hljs-regexp">/\s{1,}/g</span>, <span class="hljs-string">" "</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="titleize">titleize</h3>
+<p>Capitalizes all the words and replaces some characters in the string to create a nicer looking title</p>
+<p><code>&quot;hello-world this_is a GreatTitle&quot;.titleize(); // Hello World This Is A Great Title</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"titleize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  uw.requiresUnderscore(<span class="hljs-string">"titleize"</span>);
+  <span class="hljs-keyword">return</span> _(<span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/([A-Z])/g</span>, <span class="hljs-string">" $1"</span>).replace(<span class="hljs-regexp">/-|_/g</span>, <span class="hljs-string">" "</span>).split(<span class="hljs-regexp">/\s/</span>)).map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(s)</span> {</span>
+    <span class="hljs-keyword">return</span> s.capitalize();
+  }).join(<span class="hljs-string">" "</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="titlecase">titleCase</h3>
+<p>Alias of <code>titleize</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineAlias(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"titleize"</span>, <span class="hljs-string">"titleCase"</span>);</pre></div>
+        
+      
+        
+        <h3 id="dasherize">dasherize</h3>
+<p>Replaces underscores with dashes in the string</p>
+<p><code>&quot;hello_world&quot;.dasherize(); // hello-world</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"dasherize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/_/g</span>, <span class="hljs-string">'-'</span>).toLowerCase();
+});</pre></div>
+        
+      
+        
+        <h3 id="humanize">humanize</h3>
+<p>capitalizes the first word and turns underscores into spaces and strips a trailing “_id”, if any</p>
+<p><code>&quot;this is-a_test String&quot;.humanize(); //</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"humanize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/_/g</span>, <span class="hljs-string">' '</span>).replace(<span class="hljs-regexp">/^\s?/</span>, <span class="hljs-string">""</span>).toLowerCase().capitalize();
+});</pre></div>
+        
+      
+        
+        <h3 id="hyphenate">hyphenate</h3>
+<p>Adds dashes between all spaces, underscores, and camel-cased words</p>
+<p><code>&quot;hello_there BigWorld&quot;.hyphenate(); // hello-there-big-world</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"hyphenate"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/([A-Z])/g</span>, <span class="hljs-string">" $1"</span>).toLowerCase().replace(<span class="hljs-regexp">/\s|_/g</span>, <span class="hljs-string">'-'</span>).toLowerCase();
+});</pre></div>
+        
+      
+        
+        <h3 id="isblank">isBlank</h3>
+<p>Determines if a string is blank</p>
+<p><code>&quot; &quot;.isBlank(); // true</code></p>
+<p><code>&quot;\n&quot;.isBlank(); // true</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"isBlank"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> (<span class="hljs-regexp">/^(\s?)+$/</span>).test(<span class="hljs-keyword">this</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="ispresent">isPresent</h3>
+<p>Determines if the string is not blank</p>
+<p><code>&quot; &quot;.isPresent(); // false</code></p>
+<p><code>&quot;hello&quot;.isPresent(); // true</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"isPresent"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.length &gt; <span class="hljs-number">0</span> &amp;&amp; !<span class="hljs-keyword">this</span>.isBlank();
+});</pre></div>
+        
+      
+        
+        <h3 id="truncate">truncate</h3>
+<p>Truncates the string at a given length and adds elipses points</p>
+<p><code>&quot;hello&quot;.truncate(2); // he...</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"truncate"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(length)</span> {</span>
+  <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.length &gt; length) ? <span class="hljs-keyword">this</span>.substring(<span class="hljs-number">0</span>, length) + <span class="hljs-string">'...'</span> : <span class="hljs-keyword">this</span>;
+});</pre></div>
+        
+      
+        
+        <h3 id="tonumber">toNumber</h3>
+<p>Converts the string to a number</p>
+<p><code>&quot;1&quot;.toNumber(); // 1</code></p>
+<p><code>&quot;1.23&quot;.toNumber(); // 1.23</code></p>
+<p><code>&quot;-1&quot;.toNumber(); // -1</code></p>
+<p><code>&quot;-1.23&quot;.toNumber(); // -1.23</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"toNumber"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> * <span class="hljs-number">1</span> || <span class="hljs-number">0</span>;
+});</pre></div>
+        
+      
+        
+        <h3 id="camelize">camelize</h3>
+<p>Removes spaces, underscores, and dashes and uppercases each word</p>
+<p><code>&quot;hello_great big-world&quot;.camelize(); // HelloGreatBigWorld</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"camelize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  uw.requiresUnderscore(<span class="hljs-string">"camelize"</span>);
+  <span class="hljs-keyword">return</span> _(<span class="hljs-keyword">this</span>.split(<span class="hljs-regexp">/_|-|\s/g</span>)).map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(part, i)</span> {</span>
+    <span class="hljs-keyword">return</span> (i &gt; <span class="hljs-number">0</span>) ? part.capitalize() : part.toLowerCase();
+  }).join(<span class="hljs-string">''</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="constantize">constantize</h3>
+<p><code>&quot;hello&quot;.constantize(); //</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"constantize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.camelize().capitalize();
+});</pre></div>
+        
+      
+        
+        <h3 id="each">each</h3>
+<p>Executes an iterator function on each character</p>
+<p><code>&quot;hello&quot;.each(function(character) { alert(character); }); // alerts h-e-l-l-o respectively</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"each"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(iterator)</span> {</span>
+  uw.requiresUnderscore(<span class="hljs-string">"each"</span>);
+  <span class="hljs-keyword">return</span> _.each.call(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>.split(<span class="hljs-string">''</span>), iterator);
+});</pre></div>
+        
+      
+        
+        <h3 id="underscore">underscore</h3>
+<p>Makes an underscored, lowercase form from the expression in the string</p>
+<p><code>&quot;Hello World&quot;.underscore(); // hello_world</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"underscore"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/([A-Z])/g</span>, <span class="hljs-string">" $1"</span>).replace(<span class="hljs-regexp">/^\s?/</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-regexp">/-|\s/g</span>, <span class="hljs-string">"_"</span>).toLowerCase();
+});</pre></div>
+        
+      
+        
+        <h3 id="isempty">isEmpty</h3>
+<p>Determines emptiness of the string</p>
+<p><code>&quot;hello&quot;.isEmpty(); // false</code></p>
+<p><code>&quot;&quot;.isEmpty(); // true</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"isEmpty"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.length === <span class="hljs-number">0</span>;
+});</pre></div>
+        
+      
+        
+        <h3 id="isnotempty">isNotEmpty</h3>
+<p>Determines ‘fullness’ of the string</p>
+<p><code>&quot;hello&quot;.isNotEmpty(); // true</code></p>
+<p><code>&quot;&quot;.isNotEmpty(); // false</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"isNotEmpty"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.length &gt; <span class="hljs-number">0</span>;
+});</pre></div>
+        
+      
+        
+        <h3 id="includes">includes</h3>
+<p>Determines if a sub-string is within the string</p>
+<p><code>&quot;hello&quot;.includes(&quot;el&quot;); // true</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"includes"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(string)</span> {</span>
+  <span class="hljs-keyword">var</span> s = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(string, <span class="hljs-string">'g'</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.match(s) ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;
+});</pre></div>
+        
+      
+        
+        <h3 id="chunk">chunk</h3>
+<p>Splits the string into chunks of <code>n</code></p>
+<p><code>&quot;hello&quot;.chunk(2); // [&quot;he&quot;, &quot;ll&quot;, &quot;o&quot;]</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"chunk"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(chunkSize)</span> {</span>
+  chunkSize = chunkSize ? chunkSize : <span class="hljs-keyword">this</span>.length;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.match(<span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">'.{1,'</span> + chunkSize + <span class="hljs-string">'}'</span>, <span class="hljs-string">'g'</span>));
+});</pre></div>
+        
+      
+        
+        <h3 id="swapcase">swapCase</h3>
+<p>Switches the case of each character</p>
+<p><code>&quot;Hello&quot;.swapCase(); // hELLO</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"swapCase"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/[A-Za-z]/g</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(s)</span> {</span>
+    <span class="hljs-keyword">return</span> (<span class="hljs-regexp">/[A-Z]/</span>).test(s) ? s.toLowerCase() : s.toUpperCase();
+  });
+});</pre></div>
+        
+      
+        
+        <h3 id="striptags">stripTags</h3>
+<p>Strips HTML tags</p>
+<p><code>&quot;&lt;p&gt;hello&lt;/p&gt;&quot;.stripTags(); // hello</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"stripTags"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-regexp">/&lt;\w+(\s+("[^"]*"|'[^']*'|[^&gt;])+)?&gt;|&lt;\/\w+&gt;/gi</span>, <span class="hljs-string">''</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="wordcount">wordCount</h3>
+<p>Counts the number of words in the string, given
+a word it counts the occurences of that word</p>
+<p><code>&quot;hello world&quot;.wordCount(); // 2</code></p>
+<p><code>&quot;hello world&quot;.wordCount(&quot;hello&quot;); // 1</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"wordCount"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(word)</span> {</span>
+  uw.requiresUnderscore(<span class="hljs-string">"wordCount"</span>);
+  <span class="hljs-keyword">var</span> matches;
+  <span class="hljs-keyword">var</span> string = <span class="hljs-keyword">this</span>.stripTags();
+  matches = (word) ? string.match(<span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(word, <span class="hljs-string">"g"</span>)) : string.match(<span class="hljs-regexp">/\b[A-Za-z_]+\b/g</span>);
+  <span class="hljs-keyword">return</span> matches ? matches.length : <span class="hljs-number">0</span>;
+});</pre></div>
+        
+      
+        
+        <h3 id="wrap">wrap</h3>
+<p>Wraps the string in a given string</p>
+<p><code>&quot;hello&quot;.wrap(&quot;&#39;&quot;); // &#39;hello&#39;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"wrap"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(wrapper)</span> {</span>
+  <span class="hljs-keyword">return</span> wrapper.concat(<span class="hljs-keyword">this</span>, wrapper);
+});</pre></div>
+        
+      
+        
+        <h3 id="unwrap">unwrap</h3>
+<p>Removes the given string from either side of the string</p>
+<p><code>&quot;&#39;hello&#39;&quot;.unwrap(&quot;&#39;&quot;); // hello</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"unwrap"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(wrapper)</span> {</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.replace(<span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">"^"</span> + wrapper + <span class="hljs-string">"(.+)"</span> + wrapper + <span class="hljs-string">"$"</span>), <span class="hljs-string">"$1"</span>);
+});</pre></div>
+        
+      
+        
+        <h3 id="escape">escape</h3>
+<p>Escapes a string for insertion into HTML, replacing &amp;, &lt;, &gt;, “, and ‘ characters</p>
+<p><code>&quot;&lt;p&gt;hello &amp; world&lt;/p&gt;&quot;.escape();</code></p>
+<p><code>&amp;lt;p&amp;gt;hello &amp;amp; world&amp;lt;/p&amp;gt;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"escape"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> _.escape.apply(<span class="hljs-keyword">this</span>, [<span class="hljs-keyword">this</span>].concat(_.toArray(<span class="hljs-built_in">arguments</span>)));
+});</pre></div>
+        
+      
+        
+        <h3 id="unescape">unescape</h3>
+<p>Escapes a string for insertion into HTML, replacing &amp;, &lt;, &gt;, “, and ‘ characters</p>
+<p><code>&quot;&amp;lt;p&amp;gt;hello &amp;amp; world&amp;lt;/p&amp;gt;&quot;.unescape();</code></p>
+<p><code>&lt;p&gt;hello &amp; world&lt;/p&gt;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"unescape"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">return</span> _.unescape.apply(<span class="hljs-keyword">this</span>, [<span class="hljs-keyword">this</span>].concat(_.toArray(<span class="hljs-built_in">arguments</span>)));
+});</pre></div>
+        
+      
+        
+        <h3 id="toboolean">toBoolean</h3>
+<p>Converts truthy english words to boolean values</p>
+<p><code>&quot;true&quot;.toBoolean(); // true</code></p>
+<p><code>&quot;yes&quot;.toBoolean(); // true</code></p>
+<p><code>&quot;on&quot;.toBoolean(); // true</code></p>
+<p><code>&quot;y&quot;.toBoolean(); // true</code></p>
+<p><code>&quot;false&quot;.toBoolean(); // false</code></p>
+<p><code>&quot;no&quot;.toBoolean(); // false</code></p>
+<p><code>&quot;off&quot;.toBoolean(); // false</code></p>
+<p><code>&quot;n&quot;.toBoolean(); // false</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineMethod(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"toBoolean"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+  <span class="hljs-keyword">var</span> truthyStrings = [<span class="hljs-string">"true"</span>, <span class="hljs-string">"yes"</span>, <span class="hljs-string">"on"</span>, <span class="hljs-string">"y"</span>];
+  <span class="hljs-keyword">var</span> falseyStrings = [<span class="hljs-string">"false"</span>, <span class="hljs-string">"no"</span>, <span class="hljs-string">"off"</span>, <span class="hljs-string">"n"</span>];
+  <span class="hljs-keyword">if</span> (_(truthyStrings).contains(<span class="hljs-keyword">this</span>.toLowerCase())) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (_(falseyStrings).contains(<span class="hljs-keyword">this</span>.toLowerCase())) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.isNotEmpty() ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;
+  }
+});</pre></div>
+        
+      
+        
+        <h3 id="trim">trim</h3>
+<p>Alias for <code>strip</code></p>
+<p><code>&quot; hello &quot;.trim(); // &#39;hello&#39;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineAlias(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"trim"</span>, <span class="hljs-string">"strip"</span>);</pre></div>
+        
+      
+        
+        <h3 id="ltrim">ltrim</h3>
+<p>Alias for <code>lstrip</code></p>
+<p><code>&quot; hello &quot;.ltrim(); // &#39;hello &#39;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineAlias(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"ltrim"</span>, <span class="hljs-string">"lstrip"</span>);</pre></div>
+        
+      
+        
+        <h3 id="rtrim">rtrim</h3>
+<p>Alias for <code>rstrip</code></p>
+<p><code>&quot; hello &quot;.rtrim(); // &#39; hello&#39;</code></p>
+
+        
+          <div class='highlight'><pre>uw.defineAlias(<span class="hljs-built_in">String</span>.prototype, <span class="hljs-string">"rtrim"</span>, <span class="hljs-string">"rstrip"</span>);</pre></div>
+        
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>

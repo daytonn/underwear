@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>utilities.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>utilities.js</h1>
+        
+
+        
+      </div>
+
+      
+        
+        <p>Type checking methods that check the <code>suspect</code> against
+the <code>constructor</code> and return a boolean value.</p>
+
+        
+      
+        
+        <h3 id="istypeof">isTypeof</h3>
+
+        
+          <div class='highlight'><pre>global.isTypeof = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isTypeof</span><span class="hljs-params">(constructor, suspect)</span> {</span>
+  <span class="hljs-keyword">return</span> suspect.constructor === constructor;
+};</pre></div>
+        
+      
+        
+        <h3 id="isnottypeof">isNotTypeof</h3>
+
+        
+          <div class='highlight'><pre>global.isNotTypeof = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNotTypeof</span><span class="hljs-params">(constructor, suspect)</span> {</span>
+  <span class="hljs-keyword">return</span> suspect.constructor !== constructor;
+};</pre></div>
+        
+      
+        
+        <h3 id="isdefined">isDefined</h3>
+
+        
+          <div class='highlight'><pre>global.isDefined = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDefined</span><span class="hljs-params">(suspect)</span> {</span>
+  <span class="hljs-keyword">return</span> !_.isUndefined(suspect);
+};</pre></div>
+        
+      
+        
+        <h3 id="isequal">isEqual</h3>
+<p>Performs an optimized deep comparison between the two objects, to determine if they should be considered equal.</p>
+
+        
+          <div class='highlight'><pre>global.isEqual = _.isEqual;</pre></div>
+        
+      
+        
+        <h3 id="isarguments">isArguments</h3>
+<p>Returns true if object is an Arguments object.</p>
+
+        
+          <div class='highlight'><pre>global.isArguments = _.isArguments;</pre></div>
+        
+      
+        
+        <h3 id="isobject">isObject</h3>
+<p>Returns true if value is an Object.</p>
+
+        
+          <div class='highlight'><pre>global.isObject = _.isObject;</pre></div>
+        
+      
+        
+        <h3 id="isarray">isArray</h3>
+<p>Returns true if object is an Array.</p>
+
+        
+          <div class='highlight'><pre>global.isArray = _.isArray;</pre></div>
+        
+      
+        
+        <h3 id="isstring">isString</h3>
+<p>Returns true if object is a String.</p>
+
+        
+          <div class='highlight'><pre>global.isString = _.isString;</pre></div>
+        
+      
+        
+        <h3 id="isnumber">isNumber</h3>
+<p>Returns true if object is a Number (including NaN).</p>
+
+        
+          <div class='highlight'><pre>global.isNumber = _.isNumber;</pre></div>
+        
+      
+        
+        <h3 id="isboolean">isBoolean</h3>
+<p>Returns true if object is either true or false.</p>
+
+        
+          <div class='highlight'><pre>global.isBoolean = _.isBoolean;</pre></div>
+        
+      
+        
+        <h3 id="isfunction">isFunction</h3>
+<p>Returns true if object is a Function.</p>
+
+        
+          <div class='highlight'><pre>global.isFunction = _.isFunction;</pre></div>
+        
+      
+        
+        <h3 id="isdate">isDate</h3>
+<p>Returns true if object is a Date.</p>
+
+        
+          <div class='highlight'><pre>global.isDate = _.isDate;</pre></div>
+        
+      
+        
+        <h3 id="isregexp">isRegExp</h3>
+<p>Returns true if object is a RegExp.</p>
+
+        
+          <div class='highlight'><pre>global.isRegExp = _.isRegExp;</pre></div>
+        
+      
+        
+        <h3 id="isnan">isNaN</h3>
+<p>Returns true if object is NaN.</p>
+
+        
+          <div class='highlight'><pre>global.isNaN = _.isNaN;</pre></div>
+        
+      
+        
+        <h3 id="isnull">isNull</h3>
+<p>Returns true if object is null.</p>
+
+        
+          <div class='highlight'><pre>global.isNull = _.isNull;</pre></div>
+        
+      
+        
+        <h3 id="isundefined">isUndefined</h3>
+<p>Returns true if object is undefined.</p>
+
+        
+          <div class='highlight'><pre>global.isElement = _.isElement;</pre></div>
+        
+      
+        
+        <h3 id="isundefined">isUndefined</h3>
+<p>Returns true if object is undefined.</p>
+
+        
+          <div class='highlight'><pre>global.isUndefined = _.isUndefined;</pre></div>
+        
+      
+        
+        <h3 id="isdefined">isDefined</h3>
+<p>Returns true if object is not undefined.</p>
+
+        
+          <div class='highlight'><pre>global.isUndefined = _.isUndefined;</pre></div>
+        
+      
+        
+        <h3 id="sequence">sequence</h3>
+<p>Starts a sequence starting at 0 and increments by 1 every time it’s called.
+In underwear.js <code>uid</code> has a different implementation than <code>_.uniqueId</code>
+To avoid confusion _.uniqueId has been renamed to <code>sequence</code> which is closer
+to what it actually does</p>
+
+        
+          <div class='highlight'><pre>global.sequence = _.uniqueId;</pre></div>
+        
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>
