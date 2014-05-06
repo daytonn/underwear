@@ -35,7 +35,7 @@ gulp.task('copy-mocha-files', function() {
   ]).pipe(gulp.dest('tmp'));
 });
 
-gulp.task('compile-spec-files', function() {
+gulp.task('compile-spec-files', ['build'], function() {
   mkTmpDir();
   gulp.src(distLibs)
     .pipe(gulp.dest('tmp'));
@@ -78,7 +78,7 @@ gulp.task('clean', function() {
       .pipe(clean());
 });
 
-gulp.task('build-specs', ['build', 'copy-spec-runner', 'copy-mocha-files', 'compile-spec-files']);
+gulp.task('build-specs', ['copy-spec-runner', 'copy-mocha-files', 'compile-spec-files']);
 
 gulp.task('spec', ['build-specs'], function() {
   var mochaResult = sh.exec('mocha spec');
