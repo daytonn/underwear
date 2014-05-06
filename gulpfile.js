@@ -8,28 +8,13 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
-var components = [
+var libs = [
   'array',
   'object',
   'string',
   'utilities',
 ];
-var distComponents = components.map(function(component) {
-  return 'dist/' + component + '.js';
-});
-
-function minifyLib(lib) {
-  return gulp.src('dist/' + lib + '.js')
-    .pipe(uglify())
-    .pipe(rename(lib + '.min.js'))
-    .pipe(gulp.dest('dist'));
-}
-
-function compileLib(lib) {
-  return gulp.src('lib/' + lib + '/*.js')
-    .pipe(concat(lib + '.js'))
-    .pipe(gulp.dest('dist'));
-}
+var distLibs = libs.map(function(component) { return 'dist/' + component + '.js'; });
 
 function mkTmpDir() {
   if (!fs.existsSync('tmp')) fs.mkdirSync('tmp');
@@ -52,7 +37,7 @@ gulp.task('copy-mocha-files', function() {
 
 gulp.task('compile-spec-files', function() {
   mkTmpDir();
-  gulp.src(distComponents)
+  gulp.src(distLibs)
     .pipe(gulp.dest('tmp'));
   gulp.src('node_modules/underscore/underscore.js')
     .pipe(gulp.dest('tmp'));
@@ -63,11 +48,34 @@ gulp.task('compile-spec-files', function() {
     .pipe(gulp.dest('tmp'));
 });
 
-gulp.task('build', function() {
-  return components.forEach(function(lib) {
-    compileLib(lib);
-    return minifyLib(lib);
+gulp.task('compile-components', ['compile-libs'], function() {
+  return gulp.src('lib/**/*.js')
+    .pipe(rename(function(path) {
+      path.basename = path.basename.replace(/^_/, '');
+    }))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('compile-libs', ['clean'], function() {
+  return libs.forEach(function(lib) {
+    return gulp.src('lib/' + lib + '/*.js')
+      .pipe(concat(lib + '.js'))
+      .pipe(gulp.dest('dist'));
   });
+});
+
+gulp.task('build', ['compile-components'], function() {
+  return gulp.src('dist/**/*.js')
+    .pipe(uglify())
+    .pipe(rename(function(path) {
+      path.basename = path.basename += '.min';
+    }))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('clean', function() {
+  return gulp.src(['dist/**/*', 'tmp'])
+      .pipe(clean());
 });
 
 gulp.task('build-specs', ['copy-spec-runner', 'copy-mocha-files', 'compile-spec-files']);

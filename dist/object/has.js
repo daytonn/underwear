@@ -1,0 +1,3 @@
+Object.prototype._has = function() {
+  return _.has.apply(this, [this].concat(_.toArray(arguments)));
+};

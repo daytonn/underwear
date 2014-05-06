@@ -1,0 +1,14 @@
+Object.prototype._functions = function() {
+  return _(_.functions.apply(this, [this].concat(_.toArray(arguments)))).reject(function(func) {
+    return _([
+      '_keys', '_values', '_pairs', '_invert',
+      '_functions', '_pick', '_omit', '_defaults', '_map',
+      "_clone",
+      "_defined",
+      "_dup",
+      "_extend",
+      "_has",
+      "_mixin"
+    ]).contains(func);
+  });
+};
