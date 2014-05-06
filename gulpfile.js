@@ -1,14 +1,22 @@
 var browserify = require('gulp-browserify');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
-var docco = require('gulp-docco');
-var exec = require("child_process").exec;
+var exec = require('child_process').exec;
 var sh = require('execSync');
-var fs = require("fs");
+var fs = require('fs');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var components = [
+  'array',
+  'object',
+  'string',
+  'utilities',
+];
+var distComponents = components.map(function(component) {
+  return 'dist/' + component + '.js';
+});
 
 function minifyLib(lib) {
   return gulp.src('dist/' + lib + '.js')
@@ -18,15 +26,9 @@ function minifyLib(lib) {
 }
 
 function compileLib(lib) {
-  return gulp.src('lib/' + lib + '.js')
-    .pipe(browserify())
+  return gulp.src('lib/' + lib + '/*.js')
+    .pipe(concat(lib + '.js'))
     .pipe(gulp.dest('dist'));
-}
-
-function buildDocs() {
-  return gulp.src('lib/*.js')
-    .pipe(docco({ layout: 'linear' }))
-    .pipe(gulp.dest('docs'));
 }
 
 function mkTmpDir() {
@@ -50,23 +52,22 @@ gulp.task('copy-mocha-files', function() {
 
 gulp.task('compile-spec-files', function() {
   mkTmpDir();
-  return gulp.src('spec/*.js')
-    .pipe(browserify())
+  gulp.src(distComponents)
+    .pipe(gulp.dest('tmp'));
+  gulp.src('node_modules/underscore/underscore.js')
+    .pipe(gulp.dest('tmp'));
+  gulp.src('node_modules/chai-fuzzy/index.js')
+    .pipe(rename('chai-fuzzy.js'))
+    .pipe(gulp.dest('tmp'));
+  return gulp.src('spec/*_spec.js')
     .pipe(gulp.dest('tmp'));
 });
 
 gulp.task('build', function() {
-  [
-    'array',
-    'object',
-    'string',
-    'utilities',
-    'underwear'
-  ].forEach(function(lib) {
+  return components.forEach(function(lib) {
     compileLib(lib);
-    minifyLib(lib);
+    return minifyLib(lib);
   });
-  return buildDocs();
 });
 
 gulp.task('build-specs', ['copy-spec-runner', 'copy-mocha-files', 'compile-spec-files']);
@@ -77,7 +78,7 @@ gulp.task('spec', ['build', 'build-specs'], function() {
   var testemResult = sh.exec('testem ci');
   console.log(testemResult.stdout);
 
-  gulp.src("tmp")
+  gulp.src('tmp')
     .pipe(clean());
   return (testemResult.code && mochaResult.code) ? 1 : 0;
 });

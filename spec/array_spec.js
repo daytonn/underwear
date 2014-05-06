@@ -1,3 +1,8 @@
+if (typeof require !== 'undefined') {
+  require('./spec_helper');
+  require("../dist/array");
+}
+
 describe("Array", function() {
 
   describe("first", function() {

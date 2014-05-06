@@ -1,3 +1,8 @@
+if (typeof require !== 'undefined') {
+  require('./spec_helper');
+  require("../dist/string");
+}
+
 describe("String extensions", function() {
   describe("capitalize", function() {
     it("capitalizes a string", function() {

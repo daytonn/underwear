@@ -1,3 +1,8 @@
+if (typeof require !== 'undefined') {
+  require('./spec_helper');
+  require("../dist/utilities");
+}
+
 describe("Utilities", function() {
   describe("isTypeof", function() {
     it("can detect a string", function() {
@@ -257,8 +262,8 @@ describe("Utilities", function() {
 
   describe("isEmpty", function() {
     it("should test strings for emptiness", function() {
-      expect(''.isEmpty()).to.equal(true);
-      expect('moe'.isEmpty()).to.equal(false);
+      expect(isEmpty('')).to.equal(true);
+      expect(isEmpty('moe')).to.equal(false);
     });
   });
 
@@ -411,7 +416,7 @@ describe("Utilities", function() {
 
   describe("sequence", function() {
     it("should generate sequential numbers", function() {
-      Array.range(1, 10).each(function(i) {
+      _(_.range(1, 10)).each(function(i) {
         expect(sequence()).to.equal(i.toString());
       });
     });
