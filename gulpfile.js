@@ -78,9 +78,9 @@ gulp.task('clean', function() {
       .pipe(clean());
 });
 
-gulp.task('build-specs', ['copy-spec-runner', 'copy-mocha-files', 'compile-spec-files']);
+gulp.task('build-specs', ['build', 'copy-spec-runner', 'copy-mocha-files', 'compile-spec-files']);
 
-gulp.task('spec', ['build', 'build-specs'], function() {
+gulp.task('spec', ['build-specs'], function() {
   var mochaResult = sh.exec('mocha spec');
   console.log(mochaResult.stdout);
   var testemResult = sh.exec('testem ci');
