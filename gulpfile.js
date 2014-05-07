@@ -65,7 +65,7 @@ gulp.task('compile-libs', ['clean'], function() {
 });
 
 gulp.task('build', ['compile-components'], function() {
-  return gulp.src('dist/**/*.js')
+  return gulp.src(distLibs)
     .pipe(uglify())
     .pipe(rename(function(path) {
       path.basename = path.basename += '.min';
