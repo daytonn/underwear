@@ -24,7 +24,7 @@ if (!Object.defineProperty || !(function () { try { Object.defineProperty({}, 'x
 }
 
 var Underwear = Underwear || {
-  version: '2.0.3',
+  version: '2.0.4',
 
   //### defineMethod
   // Defines a method on the given object with the defineProperty
@@ -60,6 +60,6 @@ var Underwear = Underwear || {
   }
 };
 
-Underwear.defineMethod(Object.prototype, '_defaults', function() {
-  return _.defaults.apply(this, [this].concat(_.toArray(arguments)));
+Underwear.defineMethod(Object.prototype, '_omit', function() {
+  return _.omit.apply(this, [this].concat(_.toArray(arguments)));
 });

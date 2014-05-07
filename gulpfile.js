@@ -8,6 +8,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var _ = require("underscore");
 var libs = [
   'array',
   'object',
@@ -21,36 +22,23 @@ function mkTmpDir() {
   if (!fs.existsSync('tmp')) fs.mkdirSync('tmp');
 }
 
-gulp.task('copy-spec-runner', function() {
-  mkTmpDir();
-  return gulp.src('spec/runner.html')
-    .pipe(gulp.dest('tmp'));
-});
-
-gulp.task('copy-mocha-files', function() {
+gulp.task('build-specs', ['build'], function() {
   mkTmpDir();
   return gulp.src([
+    'dist/underwear.js',
+    'spec/runner.html',
     'node_modules/mocha/mocha.js',
     'node_modules/mocha/mocha.css',
-    'node_modules/chai/chai.js'
-  ]).pipe(gulp.dest('tmp'));
-});
-
-gulp.task('compile-spec-files', ['build'], function() {
-  mkTmpDir();
-  gulp.src(distLibs)
-    .pipe(gulp.dest('tmp'));
-  gulp.src('node_modules/underscore/underscore.js')
-    .pipe(gulp.dest('tmp'));
-  gulp.src('node_modules/chai-fuzzy/index.js')
-    .pipe(rename('chai-fuzzy.js'))
-    .pipe(gulp.dest('tmp'));
-  return gulp.src('spec/*_spec.js')
+    'node_modules/chai/chai.js',
+    'node_modules/underscore/underscore.js',
+    'node_modules/chai-fuzzy/index.js',
+    'spec/*_spec.js'
+  ])
     .pipe(gulp.dest('tmp'));
 });
 
 gulp.task('compile-underwear', ['clean'], function() {
-  gulp.src('lib/**/*.js')
+  return gulp.src('lib/**/*.js')
     .pipe(concat('underwear.js'))
     .pipe(gulp.dest('dist'));
 });
@@ -75,21 +63,28 @@ gulp.task('compile-libs', ['compile-underwear'], function() {
   });
 });
 
-gulp.task('build', ['compile-methods'], function() {
-  return gulp.src(distLibs)
+gulp.task('minify', ['compile-methods'], function() {
+  gulp.src(['lib/**/*.js'])
+    .pipe(concat('underwear.min.js'))
     .pipe(uglify())
-    .pipe(rename(function(path) {
-      path.basename = path.basename += '.min';
-    }))
     .pipe(gulp.dest('dist'));
+  return libs.forEach(function(lib) {
+    return gulp.src(['lib/underwear.js', 'lib/' + lib + '/*.js'])
+      .pipe(concat(lib + '.js'))
+      .pipe(uglify())
+      .pipe(rename(function(path) {
+        path.basename = path.basename += '.min';
+      }))
+      .pipe(gulp.dest('dist'));
+  });
 });
+
+gulp.task('build', ['minify']);
 
 gulp.task('clean', function() {
   return gulp.src(['dist/**/*', 'tmp'])
       .pipe(clean());
 });
-
-gulp.task('build-specs', ['copy-spec-runner', 'copy-mocha-files', 'compile-spec-files']);
 
 gulp.task('spec', ['build-specs'], function() {
   var mochaResult = sh.exec('mocha spec');
@@ -97,7 +92,7 @@ gulp.task('spec', ['build-specs'], function() {
   var testemResult = sh.exec('testem ci');
   console.log(testemResult.stdout);
 
-  gulp.src('tmp')
+  gulp.src('tmp/**/*')
     .pipe(clean());
   return (testemResult.code && mochaResult.code) ? 1 : 0;
 });

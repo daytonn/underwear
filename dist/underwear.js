@@ -24,7 +24,7 @@ if (!Object.defineProperty || !(function () { try { Object.defineProperty({}, 'x
 }
 
 var Underwear = Underwear || {
-  version: '2.0.3',
+  version: '2.0.4',
 
   //### defineMethod
   // Defines a method on the given object with the defineProperty
@@ -263,6 +263,46 @@ Underwear.defineMethod(Array.prototype, 'zip', function() {
   return _.zip.apply(_, [this].concat(_.toArray(arguments)));
 });
 
+Underwear.defineMethod(Object.prototype, '_clone', function() {
+  return _.clone.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_defaults', function() {
+  return _.defaults.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_extend', function() {
+  return _.extend.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_functions', function() {
+  return _.functions.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_keys', function() {
+  return _.keys.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_map', function() {
+  return _.map.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_omit', function() {
+  return _.omit.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_pairs', function() {
+  return _.pairs.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_pick', function() {
+  return _.pick.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_values', function() {
+  return _.values.apply(this, [this].concat(_.toArray(arguments)));
+});
+
 Underwear.defineMethod(String.prototype, 'camelize', function() {
   return _(this.split(/_|-|\s/g)).map(function(part, i) {
     return (i > 0) ? part.charAt(0).toUpperCase() + part.slice(1) : part.toLowerCase();
@@ -422,46 +462,6 @@ Underwear.defineMethod(String.prototype, 'wordCount', function(word) {
 
 Underwear.defineMethod(String.prototype, 'wrap', function(wrapper) {
   return wrapper.concat(this, wrapper);
-});
-
-Underwear.defineMethod(Object.prototype, '_clone', function() {
-  return _.clone.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_defaults', function() {
-  return _.defaults.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_extend', function() {
-  return _.extend.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_functions', function() {
-  return _.functions.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_keys', function() {
-  return _.keys.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_map', function() {
-  return _.map.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_omit', function() {
-  return _.omit.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_pairs', function() {
-  return _.pairs.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_pick', function() {
-  return _.pick.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_values', function() {
-  return _.values.apply(this, [this].concat(_.toArray(arguments)));
 });
 
 (function(global) {
