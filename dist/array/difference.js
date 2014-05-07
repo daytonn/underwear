@@ -1,3 +1,3 @@
-Array.prototype.difference = function() {
+Underwear.defineMethod(Array.prototype, 'difference', function() {
   return _.difference.apply(_, [this].concat(_.toArray(arguments)));
-};
+});

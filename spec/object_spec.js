@@ -31,12 +31,6 @@ describe("Object", function() {
     });
   });
 
-  describe("invert", function() {
-    it("inverts the keys and values", function() {
-      expect(subject._invert()).to.be.like({ 1: 'one', 2: 'two', 3: 'three'});
-    });
-  });
-
   describe("functions", function() {
     it("returns all the function properties of the object", function() {
       subject.test = function() {};
@@ -58,10 +52,7 @@ describe("Object", function() {
 
   describe("omit", function() {
     it("returns a copy of the object with the blacklisted keys omitted", function() {
-      var ommitted = subject._omit('one', 'three');
-      expect(ommitted.two).to.equal(2);
-      expect(ommitted.one).to.equal(undefined);
-      expect(ommitted.three).to.equal(undefined);
+      expect(subject._omit('one', 'three')).to.be.like({ two: 2 });
     });
   });
 
@@ -74,9 +65,7 @@ describe("Object", function() {
   describe("clone", function() {
     it("creates a shallow copy of the object", function() {
       var clone = subject._clone();
-      expect(clone.one).to.equal(1);
-      expect(clone.two).to.equal(2);
-      expect(clone.three).to.equal(3);
+      expect(clone).to.be.like({ one: 1, two: 2, three: 3});
       expect(clone === subject).to.equal(false);
     });
   });

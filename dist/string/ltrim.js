@@ -1,3 +1,3 @@
-String.prototype.ltrim = function() {
+Underwear.defineMethod(String.prototype, 'ltrim', function() {
   return this.replace(/^\s+/, "");
-};
+});

@@ -1,3 +1,3 @@
-String.prototype.isEmpty = function() {
+Underwear.defineMethod(String.prototype, 'isEmpty', function() {
   return this.length === 0;
-};
+});

@@ -15,6 +15,7 @@ var libs = [
   'utilities',
 ];
 var distLibs = libs.map(function(component) { return 'dist/' + component + '.js'; });
+distLibs.push('dist/underwear.js');
 
 function mkTmpDir() {
   if (!fs.existsSync('tmp')) fs.mkdirSync('tmp');
@@ -48,23 +49,33 @@ gulp.task('compile-spec-files', ['build'], function() {
     .pipe(gulp.dest('tmp'));
 });
 
-gulp.task('compile-components', ['compile-libs'], function() {
-  return gulp.src('lib/**/*.js')
-    .pipe(rename(function(path) {
-      path.basename = path.basename.replace(/^_/, '');
-    }))
+gulp.task('compile-underwear', ['clean'], function() {
+  gulp.src('lib/**/*.js')
+    .pipe(concat('underwear.js'))
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('compile-libs', ['clean'], function() {
+gulp.task('compile-methods', ['compile-libs'], function() {
   return libs.forEach(function(lib) {
-    return gulp.src('lib/' + lib + '/*.js')
+    fs.readdirSync('lib/' + lib).forEach(function(method) {
+      gulp.src('lib/' + lib + '/' + method)
+        .pipe(gulp.dest('dist/' + lib));
+      return gulp.src(['lib/underwear.js', 'lib/' + lib + '/' + method])
+        .pipe(concat(method))
+        .pipe(gulp.dest('dist/standalone/' + lib));
+    });
+  });
+});
+
+gulp.task('compile-libs', ['compile-underwear'], function() {
+  return libs.forEach(function(lib) {
+    return gulp.src(['lib/underwear.js', 'lib/' + lib + '/*.js'])
       .pipe(concat(lib + '.js'))
       .pipe(gulp.dest('dist'));
   });
 });
 
-gulp.task('build', ['compile-components'], function() {
+gulp.task('build', ['compile-methods'], function() {
   return gulp.src(distLibs)
     .pipe(uglify())
     .pipe(rename(function(path) {

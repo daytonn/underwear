@@ -1,3 +1,3 @@
-Array.prototype.pluck = function() {
+Underwear.defineMethod(Array.prototype, 'pluck', function() {
   return _.pluck.apply(_, [this].concat(_.toArray(arguments)));
-};
+});

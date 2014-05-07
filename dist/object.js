@@ -1,58 +1,101 @@
-Object.prototype._clone = function() {
+//### defineProperty polyfill
+// Blatantly stolen from [https://github.com/inexorabletash/polyfill](https://github.com/inexorabletash/polyfill)
+// ES 15.2.3.6 Object.defineProperty ( O, P, Attributes )
+// Partial support for most common case - getters, setters, and values
+if (!Object.defineProperty || !(function () { try { Object.defineProperty({}, 'x', {}); return true; } catch (e) { return false; } } ())) {
+  var orig = Object.defineProperty;
+  Object.defineProperty = function (o, prop, desc) {
+    // In IE8 try built-in implementation for defining properties on DOM prototypes.
+    if (orig) {
+      try { return orig(o, prop, desc); } catch (e) {}
+    }
+    if (o !== Object(o)) { throw new Error("Object.defineProperty called on non-object"); }
+    if (Object.prototype.__defineGetter__ && ('get' in desc)) {
+      Object.prototype.__defineGetter__.call(o, prop, desc.get);
+    }
+    if (Object.prototype.__defineSetter__ && ('set' in desc)) {
+      Object.prototype.__defineSetter__.call(o, prop, desc.set);
+    }
+    if ('value' in desc) {
+      o[prop] = desc.value;
+    }
+    return o;
+  };
+}
+
+var Underwear = Underwear || {
+  version: '2.0.3',
+
+  //### defineMethod
+  // Defines a method on the given object with the defineProperty
+  // method with the appropriate properties for an inherited method
+  //
+  // `uw.defineMethod(Object.prototype, "foo", function() {});`
+  defineMethod: function(prototype, method, func) {
+    if (!prototype[method]) {
+      Object.defineProperty(prototype, method, {
+        writeable: false,
+        configurable: false,
+        enumerable: false,
+        value: func
+      });
+    }
+  },
+
+  //### defineMethod
+  // Defines an alias of a given method on the given object
+  // with the defineProperty method with the appropriate
+  // properties for an inherited method
+  //
+  // `uw.defineAlias(Array.prototype, "reverse", "backwards");`
+  defineAlias: function(prototype, method, alias) {
+    if (prototype[method]) {
+      Object.defineProperty(prototype, alias, {
+        writeable: false,
+        configurable: false,
+        enumerable: false,
+        value: prototype[method]
+      });
+    }
+  }
+};
+
+Underwear.defineMethod(Object.prototype, '_clone', function() {
   return _.clone.apply(this, [this].concat(_.toArray(arguments)));
-};
+});
 
-Object.prototype._defaults = function() {
+Underwear.defineMethod(Object.prototype, '_defaults', function() {
   return _.defaults.apply(this, [this].concat(_.toArray(arguments)));
-};
+});
 
-Object.prototype._extend = function() {
+Underwear.defineMethod(Object.prototype, '_extend', function() {
   return _.extend.apply(this, [this].concat(_.toArray(arguments)));
-};
+});
 
-Object.prototype._functions = function() {
-  return _(_.functions.apply(this, [this].concat(_.toArray(arguments)))).reject(function(func) {
-    return _([
-      '_keys', '_values', '_pairs', '_invert',
-      '_functions', '_pick', '_omit', '_defaults', '_map',
-      "_clone",
-      "_defined",
-      "_dup",
-      "_extend",
-      "_has",
-      "_mixin"
-    ]).contains(func);
-  });
-};
+Underwear.defineMethod(Object.prototype, '_functions', function() {
+  return _.functions.apply(this, [this].concat(_.toArray(arguments)));
+});
 
-Object.prototype._has = function() {
-  return _.has.apply(this, [this].concat(_.toArray(arguments)));
-};
-
-Object.prototype._invert = function() {
-  return _.invert.apply(this, [this].concat(_.toArray(arguments)));
-};
-
-Object.prototype._keys = function() {
+Underwear.defineMethod(Object.prototype, '_keys', function() {
   return _.keys.apply(this, [this].concat(_.toArray(arguments)));
-};
+});
 
-Object.prototype._map = function() {
+Underwear.defineMethod(Object.prototype, '_map', function() {
   return _.map.apply(this, [this].concat(_.toArray(arguments)));
-};
+});
 
-Object.prototype._omit = function() {
+Underwear.defineMethod(Object.prototype, '_omit', function() {
   return _.omit.apply(this, [this].concat(_.toArray(arguments)));
-};
+});
 
-Object.prototype._pairs = function() {
+Underwear.defineMethod(Object.prototype, '_pairs', function() {
   return _.pairs.apply(this, [this].concat(_.toArray(arguments)));
-};
+});
 
-Object.prototype._pick = function() {
+Underwear.defineMethod(Object.prototype, '_pick', function() {
   return _.pick.apply(this, [this].concat(_.toArray(arguments)));
-};
+});
 
-Object.prototype._values = function() {
+Underwear.defineMethod(Object.prototype, '_values', function() {
   return _.values.apply(this, [this].concat(_.toArray(arguments)));
-};
+});

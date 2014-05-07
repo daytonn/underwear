@@ -1,3 +1,3 @@
-Array.prototype.select = function() {
+Underwear.defineMethod(Array.prototype, 'select', function() {
   return _.select.apply(_, [this].concat(_.toArray(arguments)));
-};
+});
