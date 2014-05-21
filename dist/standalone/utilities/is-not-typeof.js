@@ -60,8 +60,6 @@ var Underwear = Underwear || {
   }
 };
 
-(function(global) {
-  global.isNotTypeof = function (constructor, suspect) {
-    return suspect.constructor !== constructor;
-  };
-})(global || window || this);
+isNotTypeof = function (constructor, suspect) {
+  return suspect.constructor !== constructor;
+};

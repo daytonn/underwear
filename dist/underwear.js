@@ -60,6 +60,46 @@ var Underwear = Underwear || {
   }
 };
 
+Underwear.defineMethod(Object.prototype, '_clone', function() {
+  return _.clone.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_defaults', function() {
+  return _.defaults.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_extend', function() {
+  return _.extend.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_functions', function() {
+  return _.functions.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_keys', function() {
+  return _.keys.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_map', function() {
+  return _.map.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_omit', function() {
+  return _.omit.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_pairs', function() {
+  return _.pairs.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_pick', function() {
+  return _.pick.apply(this, [this].concat(_.toArray(arguments)));
+});
+
+Underwear.defineMethod(Object.prototype, '_values', function() {
+  return _.values.apply(this, [this].concat(_.toArray(arguments)));
+});
+
 Underwear.defineMethod(Array.prototype, 'all', function() {
   return _.all.apply(_, [this].concat(_.toArray(arguments)));
 });
@@ -263,46 +303,6 @@ Underwear.defineMethod(Array.prototype, 'zip', function() {
   return _.zip.apply(_, [this].concat(_.toArray(arguments)));
 });
 
-Underwear.defineMethod(Object.prototype, '_clone', function() {
-  return _.clone.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_defaults', function() {
-  return _.defaults.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_extend', function() {
-  return _.extend.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_functions', function() {
-  return _.functions.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_keys', function() {
-  return _.keys.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_map', function() {
-  return _.map.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_omit', function() {
-  return _.omit.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_pairs', function() {
-  return _.pairs.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_pick', function() {
-  return _.pick.apply(this, [this].concat(_.toArray(arguments)));
-});
-
-Underwear.defineMethod(Object.prototype, '_values', function() {
-  return _.values.apply(this, [this].concat(_.toArray(arguments)));
-});
-
 Underwear.defineMethod(String.prototype, 'camelize', function() {
   return _(this.split(/_|-|\s/g)).map(function(part, i) {
     return (i > 0) ? part.charAt(0).toUpperCase() + part.slice(1) : part.toLowerCase();
@@ -464,86 +464,49 @@ Underwear.defineMethod(String.prototype, 'wrap', function(wrapper) {
   return wrapper.concat(this, wrapper);
 });
 
-(function(global) {
-  global.isArguments = _.isArguments;
-})(global || window || this);
+isArguments = _.isArguments;
 
-(function(global) {
-  global.isArray = _.isArray;
-})(global || window || this);
+isArray = _.isArray;
 
-(function(global) {
-  global.isBoolean = _.isBoolean;
-})(global || window || this);
+isBoolean = _.isBoolean;
 
-(function(global) {
-  global.isDate = _.isDate;
-})(global || window || this);
+isDate = _.isDate;
 
-(function(global) {
-  global.isDefined = function (suspect) {
-    return !_.isUndefined(suspect);
-  };
-})(global || window || this);
+isDefined = function (suspect) {
+  return !_.isUndefined(suspect);
+};
 
-(function(global) {
-  global.isElement = _.isElement;
-})(global || window || this);
+isElement = _.isElement;
 
-(function(global) {
-  global.isEmpty = function(suspect) {
-    return !!!(suspect && suspect.length > 0);
-  };
-})(global || window || this);
+isEmpty = function(suspect) {
+  return !!!(suspect && suspect.length > 0);
+};
 
-(function(global) {
-  global.isEqual = _.isEqual;
-})(global || window || this);
+isEqual = _.isEqual;
 
-(function(global) {
-  global.isFunction = _.isFunction;
-})(global || window || this);
+isFunction = _.isFunction;
 
-(function(global) {
-  global.isNaN = _.isNaN;
-})(global || window || this);
+isNaN = _.isNaN;
 
-(function(global) {
-  global.isNotTypeof = function (constructor, suspect) {
-    return suspect.constructor !== constructor;
-  };
-})(global || window || this);
+isNotTypeof = function (constructor, suspect) {
+  return suspect.constructor !== constructor;
+};
 
-(function(global) {
-  global.isNull = _.isNull;
-})(global || window || this);
+isNull = _.isNull;
 
-(function(global) {
-  global.isNumber = _.isNumber;
-})(global || window || this);
+isNumber = _.isNumber;
 
-(function(global) {
-  global.isObject = _.isObject;
-})(global || window || this);
+isObject = _.isObject;
 
-(function(global) {
-  global.isRegExp = _.isRegExp;
-})(global || window || this);
+isRegExp = _.isRegExp;
 
-(function(global) {
-  global.isString = _.isString;
-})(global || window || this);
 
-(function(global) {
-  global.isTypeof = function (constructor, suspect) {
-    return suspect.constructor === constructor;
-  };
-})(global || window || this);
+isString = _.isString;
 
-(function(global) {
-  global.isUndefined = _.isUndefined;
-})(global || window || this);
+isTypeof = function (constructor, suspect) {
+  return suspect.constructor === constructor;
+};
 
-(function(global) {
-  global.sequence = _.uniqueId;
-})(global || window || this);
+isUndefined = _.isUndefined;
+
+sequence = _.uniqueId;

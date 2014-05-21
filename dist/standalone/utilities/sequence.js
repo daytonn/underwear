@@ -60,6 +60,4 @@ var Underwear = Underwear || {
   }
 };
 
-(function(global) {
-  global.sequence = _.uniqueId;
-})(global || window || this);
+sequence = _.uniqueId;

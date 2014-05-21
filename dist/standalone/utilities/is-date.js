@@ -60,6 +60,4 @@ var Underwear = Underwear || {
   }
 };
 
-(function(global) {
-  global.isDate = _.isDate;
-})(global || window || this);
+isDate = _.isDate;

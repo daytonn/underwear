@@ -60,86 +60,49 @@ var Underwear = Underwear || {
   }
 };
 
-(function(global) {
-  global.isArguments = _.isArguments;
-})(global || window || this);
+isArguments = _.isArguments;
 
-(function(global) {
-  global.isArray = _.isArray;
-})(global || window || this);
+isArray = _.isArray;
 
-(function(global) {
-  global.isBoolean = _.isBoolean;
-})(global || window || this);
+isBoolean = _.isBoolean;
 
-(function(global) {
-  global.isDate = _.isDate;
-})(global || window || this);
+isDate = _.isDate;
 
-(function(global) {
-  global.isDefined = function (suspect) {
-    return !_.isUndefined(suspect);
-  };
-})(global || window || this);
+isDefined = function (suspect) {
+  return !_.isUndefined(suspect);
+};
 
-(function(global) {
-  global.isElement = _.isElement;
-})(global || window || this);
+isElement = _.isElement;
 
-(function(global) {
-  global.isEmpty = function(suspect) {
-    return !!!(suspect && suspect.length > 0);
-  };
-})(global || window || this);
+isEmpty = function(suspect) {
+  return !!!(suspect && suspect.length > 0);
+};
 
-(function(global) {
-  global.isEqual = _.isEqual;
-})(global || window || this);
+isEqual = _.isEqual;
 
-(function(global) {
-  global.isFunction = _.isFunction;
-})(global || window || this);
+isFunction = _.isFunction;
 
-(function(global) {
-  global.isNaN = _.isNaN;
-})(global || window || this);
+isNaN = _.isNaN;
 
-(function(global) {
-  global.isNotTypeof = function (constructor, suspect) {
-    return suspect.constructor !== constructor;
-  };
-})(global || window || this);
+isNotTypeof = function (constructor, suspect) {
+  return suspect.constructor !== constructor;
+};
 
-(function(global) {
-  global.isNull = _.isNull;
-})(global || window || this);
+isNull = _.isNull;
 
-(function(global) {
-  global.isNumber = _.isNumber;
-})(global || window || this);
+isNumber = _.isNumber;
 
-(function(global) {
-  global.isObject = _.isObject;
-})(global || window || this);
+isObject = _.isObject;
 
-(function(global) {
-  global.isRegExp = _.isRegExp;
-})(global || window || this);
+isRegExp = _.isRegExp;
 
-(function(global) {
-  global.isString = _.isString;
-})(global || window || this);
 
-(function(global) {
-  global.isTypeof = function (constructor, suspect) {
-    return suspect.constructor === constructor;
-  };
-})(global || window || this);
+isString = _.isString;
 
-(function(global) {
-  global.isUndefined = _.isUndefined;
-})(global || window || this);
+isTypeof = function (constructor, suspect) {
+  return suspect.constructor === constructor;
+};
 
-(function(global) {
-  global.sequence = _.uniqueId;
-})(global || window || this);
+isUndefined = _.isUndefined;
+
+sequence = _.uniqueId;

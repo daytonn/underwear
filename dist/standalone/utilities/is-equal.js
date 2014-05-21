@@ -60,6 +60,4 @@ var Underwear = Underwear || {
   }
 };
 
-(function(global) {
-  global.isEqual = _.isEqual;
-})(global || window || this);
+isEqual = _.isEqual;
