@@ -1,6 +1,6 @@
 {
   "name": "underwear",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Underwear translates most of the Underscore methods to the native JavaScript prototypes.",
   "main": "lib/underwear.js",
   "directories": {
