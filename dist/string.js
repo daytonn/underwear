@@ -136,6 +136,78 @@ Underwear.defineMethod(String.prototype, 'ltrim', function() {
   return this.replace(/^\s+/, "");
 });
 
+String.uncountableWords || Object.defineProperty(String, 'uncountableWords', {
+  writeable: true,
+  configurable: false,
+  enumerable: false,
+  value: [
+    'equipment',
+    'information',
+    'rice',
+    'money',
+    'species',
+    'series',
+    'fish',
+    'sheep',
+    'moose',
+    'deer',
+    'news'
+  ]
+});
+
+/*
+  These rules translate from the singular form of a noun to its plural form.
+*/
+Object.defineProperty(String, 'pluralizeRules', {
+  writeable: true,
+  configurable: false,
+  enumerable: false,
+  value: [
+    [new RegExp('(m)an$', 'gi'), '$1en'],
+    [new RegExp('(pe)rson$', 'gi'), '$1ople'],
+    [new RegExp('(child)$', 'gi'), '$1ren'],
+    [new RegExp('^(ox)$', 'gi'), '$1en'],
+    [new RegExp('(ax|test)is$', 'gi'), '$1es'],
+    [new RegExp('(octop|vir)us$', 'gi'), '$1i'],
+    [new RegExp('(alias|status)$', 'gi'), '$1es'],
+    [new RegExp('(bu)s$', 'gi'), '$1ses'],
+    [new RegExp('(buffal|tomat|potat)o$', 'gi'), '$1oes'],
+    [new RegExp('([ti])um$', 'gi'), '$1a'],
+    [new RegExp('sis$', 'gi'), 'ses'],
+    [new RegExp('(?:([^f])fe|([lr])?f)$', 'gi'), '$1$2ves'],
+    [new RegExp('([^aeiouy]|qu)y$', 'gi'), '$1ies'],
+    [new RegExp('(matr|vert|ind)(ix|ex)$', 'gi'), '$1ices'],
+    [new RegExp('(x|ch|ss|sh)$', 'gi'), '$1es'],
+    [new RegExp('([m|l])ouse$', 'gi'), '$1ice'],
+    [new RegExp('(quiz)$', 'gi'), '$1zes'],
+    [new RegExp('s$', 'gi'), 's'],
+    [new RegExp('$', 'gi'), 's']
+  ]
+});
+
+Underwear.defineMethod(String.prototype, 'pluralize', function(count) {
+  var result;
+  var word = this.toString();
+  if (count) {
+    count = Math.round(count);
+    result = (count === 1) ? word.singularize() : word.pluralize();
+  } else {
+    if (_(String.uncountableWords).include(word)) {
+      return word;
+    }
+    result = word;
+
+    _(String.pluralizeRules).find(function(rule) {
+      var regex = rule[0];
+      var replacement = rule[1];
+      var value = regex.test(word) ? word.replace(regex, replacement) : null;
+      return value ? (result = value) : false;
+    });
+  }
+
+  return result;
+});
+
 Underwear.defineMethod(String.prototype, 'rstrip', function() {
   return this.replace(/\s+$/, "");
 });
@@ -147,6 +219,83 @@ Underwear.defineMethod(String.prototype, 'rtrim', function() {
 Underwear.defineMethod(String.prototype, 'singleSpace', function() {
   return this.trim().replace(/\s{1,}/g, " ");
 });
+
+/*
+  These rules translate from the plural form of a noun to its singular form.
+*/
+Object.defineProperty(String, 'singularizeRules', {
+  writeable: true,
+  configurable: false,
+  enumerable: false,
+  value: [
+    [new RegExp('(m)en$', 'gi'), '$1an'],
+    [new RegExp('(pe)ople$', 'gi'), '$1rson'],
+    [new RegExp('(child)ren$', 'gi'), '$1'],
+    [new RegExp('([ti])a$', 'gi'), '$1um'],
+    [new RegExp('(hive)s$', "gi"), '$1'],
+    [new RegExp('(naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he|(io))ses$','gi'), '$1$2sis'],
+    [new RegExp('(tive)s$', 'gi'), '$1'],
+    [new RegExp('(curve)s$', 'gi'), '$1'],
+    [new RegExp('([lrae])ves$', 'gi'), '$1f'],
+    [new RegExp('([^fo])ves$', 'gi'), '$1fe'],
+    [new RegExp('(m)ovies$', 'gi'), '$1ovie'],
+    [new RegExp('([^aeiouy]|qu)ies$', 'gi'), '$1y'],
+    [new RegExp('(s)eries$', 'gi'), '$1eries'],
+    [new RegExp('([m|l])ice$', 'gi'), '$1ouse'],
+    [new RegExp('(bus)es$', 'gi'), '$1'],
+    [new RegExp('(shoe)s$', 'gi'), '$1'],
+    [new RegExp('(o)es$', 'gi'), '$1'],
+    [new RegExp('(cris|ax|test)es$', 'gi'), '$1is'],
+    [new RegExp('(x|ch|ss|sh)es$', 'gi'), '$1'],
+    [new RegExp('(octop|vir)i$', 'gi'), '$1us'],
+    [new RegExp('(alias|status)es$', 'gi'), '$1'],
+    [new RegExp('^(ox)en', 'gi'), '$1'],
+    [new RegExp('(vert|ind)ices$', 'gi'), '$1ex'],
+    [new RegExp('(matr)ices$', 'gi'), '$1ix'],
+    [new RegExp('(quiz)zes$', 'gi'), '$1'],
+    [new RegExp('([aiou]|s)s$', 'gi'), '$1s'],
+    [new RegExp('s$', 'gi'), '']
+  ]
+});
+
+String.uncountableWords || Object.defineProperty(String, 'uncountableWords', {
+  writeable: true,
+  configurable: false,
+  enumerable: false,
+  value: [
+    'equipment',
+    'information',
+    'rice',
+    'money',
+    'species',
+    'series',
+    'fish',
+    'sheep',
+    'moose',
+    'deer',
+    'news'
+  ]
+});
+
+Underwear.defineMethod(String.prototype, 'singularize', function(count) {
+  var result;
+  var word = this.toString();
+
+  if (_(String.uncountableWords).include(word)) {
+    return word;
+  }
+  result = word;
+
+  _(String.singularizeRules).find(function(rule) {
+    var regex = rule[0];
+    var replacement = rule[1];
+    var value = regex.test(word) ? word.replace(regex, replacement) : null;
+    return value ? (result = value) : false;
+  });
+
+  return result;
+});
+
 
 Underwear.defineMethod(String.prototype, 'stripTags', function() {
   return this.replace(/<\w+(\s+("[^"]*"|'[^']*'|[^>])+)?>|<\/\w+>/gi, '');

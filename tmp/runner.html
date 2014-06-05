@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="mocha.js"></script>
+  <script src="/testem.js"></script>
+  <script>mocha.setup('bdd');</script>
+  <script src="underscore.js"></script>
+  <script src="chai.js"></script>
+  <script src="index.js"></script>
+
+  <script src="underwear.js"></script>
+  <script>
+    var expect = chai.expect;
+  </script>
+
+  <script src="array_spec.js"></script>
+  <script src="object_spec.js"></script>
+  <script src="string_spec.js"></script>
+  <script src="utilities_spec.js"></script>
+  <script>
+    mocha.globals(['_']);
+    mocha.run();
+  </script>
+</body>
+</html>

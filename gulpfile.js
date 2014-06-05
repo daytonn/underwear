@@ -81,6 +81,10 @@ gulp.task('minify', ['compile-methods'], function() {
 
 gulp.task('build', ['minify']);
 
+gulp.task('watch', function() {
+  gulp.watch(["lib/**/*.js", "spec/**/*_spec.js"], ['build-specs']);
+});
+
 gulp.task('clean', function() {
   return gulp.src(['dist/**/*', 'tmp'])
       .pipe(clean());
@@ -92,7 +96,9 @@ gulp.task('spec', ['build-specs'], function() {
   var testemResult = sh.exec('testem ci');
   console.log(testemResult.stdout);
 
-  gulp.src('tmp/**/*')
-    .pipe(clean());
+  // gulp.src('tmp/**/*')
+  //   .pipe(clean());
   return (testemResult.code && mochaResult.code) ? 1 : 0;
 });
+
+gulp.task("default", ["watch"]);
