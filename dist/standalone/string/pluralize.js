@@ -24,7 +24,7 @@ if (!Object.defineProperty || !(function () { try { Object.defineProperty({}, 'x
 }
 
 var Underwear = Underwear || {
-  version: '2.0.4',
+  version: '2.0.6',
 
   //### defineMethod
   // Defines a method on the given object with the defineProperty

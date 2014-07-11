@@ -24,7 +24,7 @@ if (!Object.defineProperty || !(function () { try { Object.defineProperty({}, 'x
 }
 
 var Underwear = Underwear || {
-  version: '2.0.4',
+  version: '2.0.6',
 
   //### defineMethod
   // Defines a method on the given object with the defineProperty
@@ -80,10 +80,14 @@ Underwear.defineMethod(String.prototype, 'compact', function() {
 });
 
 Underwear.defineMethod(String.prototype, 'constantize', function() {
-  var s = _(this.split(/_|-|\s/g)).map(function(part, i) {
-    return (i > 0) ? part.charAt(0).toUpperCase() + part.slice(1) : part.toLowerCase();
-  }).join('');
-  return s.charAt(0).toUpperCase() + s.slice(1);
+  if (this.match(/_|-|\s/)) {
+    var s = _(this.split(/_|-|\s/g)).map(function(part, i) {
+      return (i > 0) ? part.charAt(0).toUpperCase() + part.slice(1) : part.toLowerCase();
+    }).join('');
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  } else {
+    return this.toString();
+  }
 });
 
 Underwear.defineMethod(String.prototype, 'dasherize', function() {

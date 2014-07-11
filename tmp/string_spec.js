@@ -85,6 +85,10 @@ describe("String extensions", function() {
     it("creates a constant string", function() {
       expect("this is a test string".constantize()).to.equal("ThisIsATestString");
     });
+
+    it("preserves camelcase words", function() {
+      expect("TestString".constantize()).to.equal("TestString");
+    });
   });
 
   describe("each", function() {
